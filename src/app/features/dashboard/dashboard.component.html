@@ -1,0 +1,26 @@
+<mat-drawer-container class="example-container" autosize>
+  <!--Inicio del SideBar-->
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <p>Auto-resizing sidenav</p>
+    @if (showFiller) {
+      <p>Lorem, ipsum dolor sit amet consectetur.</p>
+    }
+    <button (click)="showFiller = !showFiller" mat-raised-button>
+      Desplegar opciones      
+    </button>
+  </mat-drawer>
+  <!--Fin del SideBar-->
+
+  <!--Principal Content-->
+  <div class="example-sidenav-content">
+    <!--Inicio del ToolBar-->
+    <mat-toolbar color="primary">
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" type="button" (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="dashboardTitle">Panel de control educativo Version 1.0.</span>
+      <span class="example-spacer"></span>
+    </mat-toolbar>
+    <!--Fin del ToolBar-->
+  </div>
+</mat-drawer-container>  

@@ -1,0 +1,32 @@
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #FBF6E2;">
+
+  <mat-card style="max-width: 400px; background-color: #ffff;">
+    <mat-card-header id="iniciaSesion">
+      <h3>Iniciar Sesión</h3>
+    </mat-card-header>
+    <mat-card-content>
+      <form>
+        <!--Campo correo-->
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput />
+          <mat-icon matSuffix>email</mat-icon>
+        </mat-form-field>
+
+        <!--Campo contraseña-->
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" />
+          <button mat-icon-button matSuffix onclick="togglePasswordVisibility()" type="button">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        
+      </form>
+    </mat-card-content>
+    <mat-card-actions style="display: flex; justify-content: space-around;">
+      <button mat-flat-button>Clear</button>
+      <button mat-flat-button>Login</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
