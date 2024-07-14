@@ -7,25 +7,32 @@
     <mat-card-content>
       <form>
         <!--Campo correo-->
-        <mat-form-field>
+        <mat-form-field class="w-full">
           <mat-label>Email</mat-label>
           <input matInput />
           <mat-icon matSuffix>email</mat-icon>
         </mat-form-field>
 
         <!--Campo contraseña-->
-        <mat-form-field>
+        <mat-form-field class="w-full">
           <mat-label>Password</mat-label>
           <input matInput [type]="hide ? 'password' : 'text'" />
-          <button mat-icon-button matSuffix onclick="togglePasswordVisibility()" type="button">
+          <button mat-icon-button matSuffix (click)="togglePasswordVisibility()" type="button">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+          <mat-label>Rol</mat-label>
+          <mat-select formControlName="role">
+            <mat-option value="ADMIN">ADMIN</mat-option>
+            <mat-option value="USER">USER</mat-option>
+          </mat-select>
         </mat-form-field>
         
       </form>
     </mat-card-content>
     <mat-card-actions style="display: flex; justify-content: space-around;">
-      <button mat-flat-button>Clear</button>
       <button mat-flat-button>Login</button>
     </mat-card-actions>
   </mat-card>

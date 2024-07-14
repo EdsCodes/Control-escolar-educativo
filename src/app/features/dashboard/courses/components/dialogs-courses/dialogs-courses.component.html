@@ -1,0 +1,15 @@
+<div class="dialogWindow">
+    <h2 mat-dialog-title>Nombre del curso?</h2>
+    <mat-dialog-content>
+        <form [formGroup]="courseForm">
+            <mat-form-field class="w-full">
+                <mat-label>Nombres cortos y concisos, sin detalles extra</mat-label>
+                <input formControlName="courseName" matInput required/>
+            </mat-form-field>
+        </form> 
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-flat-button mat-dialog-close>Cancelar</button>
+        <button (click)="onSave()" mat-flat-button>Guardar</button>
+    </mat-dialog-actions>
+</div>

@@ -1,21 +1,47 @@
 .example-container {
-    width: 100%;
-    height: 100vh;
-    background-color: #FBF6E2;
-  }
-  
-  .example-sidenav-content {
-    display: flex;
-    height: 100%;
-  }
-  
-  .example-sidenav {
-    padding: 20px;
-    background-color: #E68369;
-  }
+  width: 100%;
+  height: 100vh;
+  background-color: #FBF6E2;
+}
 
-  .dashboardTitle {
-    margin-left: 35px;
-  }
+.example-sidenav-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
 
-  
+.example-sidenav {
+  padding: 20px;
+  background-color: #E68369;
+  width: 250px;
+}
+
+.dashboardTitle {
+  margin-left: 35px;
+}
+
+mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.p-5 {
+  padding: 1.25rem; /* PrimeFlex padding utility */
+}
+
+.d-flex {
+  display: flex;
+}
+
+.align-items-start {
+  align-items: flex-start;
+}
+
+.justify-content-start {
+  justify-content: flex-start;
+}
+
+main {
+  flex-grow: 1;
+}

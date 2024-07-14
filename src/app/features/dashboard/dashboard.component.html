@@ -2,9 +2,9 @@
   <!--Inicio del SideBar-->
   <mat-drawer #drawer class="example-sidenav" mode="side">
     <p>Auto-resizing sidenav</p>
-    @if (showFiller) {
+    <ng-container *ngIf="showFiller">
       <p>Lorem, ipsum dolor sit amet consectetur.</p>
-    }
+    </ng-container>
     <button (click)="showFiller = !showFiller" mat-raised-button>
       Desplegar opciones      
     </button>
@@ -18,9 +18,15 @@
       <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" type="button" (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-      <span class="dashboardTitle">Panel de control educativo Version 1.0.</span>
+      <span class="dashboardTitle text-3xl">Panel de control educativo Version 1.0. - By Gonzalez</span>
       <span class="example-spacer"></span>
     </mat-toolbar>
     <!--Fin del ToolBar-->
+
+    <!--Courses-->
+    <main class="p-5 d-flex align-items-start justify-content-start">
+      <app-courses></app-courses>
+    </main>
+    <!--Fin de Courses-->
   </div>
-</mat-drawer-container>  
+</mat-drawer-container>
