@@ -10,18 +10,10 @@ import { studentsInterface } from './components/studentsInterface';
 })
 
 export class StudentsComponent {
-  studentName = '';
-  inDate: Date | null = null;
 
-  displayedColumns: string[] = ['id', 'nombre', 'fechaNacimiento', 'celular', 'direccion', 'curso'];
+  displayedColumns: string[] = ['id', 'nombre', 'fechaNacimiento', 'celular', 'direccion', 'curso', 'actions'];
 
-  dataSource: studentsInterface[] = [
-    {id: 1, nombre: 'John Castro', fechaNacimiento: '07-01-1993', celular: 3205652541, direccion: 'Calle siempre viva 123', curso: 'ui/ux'},
-    {id: 2, nombre: 'Jorge Cao', fechaNacimiento: '18-02-1982', celular: 3205652541, direccion: 'Calle siempre viva 456', curso: 'Angular'},
-    {id: 3, nombre: 'John Travolta', fechaNacimiento: '31-03-1992', celular: 3205652541, direccion: 'Calle siempre viva 789', curso: 'JS'},
-    {id: 4, nombre: 'John Lenon', fechaNacimiento: '11-03-1982', celular: 3205652541, direccion: 'Calle esperanza 123', curso: 'Angular'},
-    {id: 5, nombre: 'Lenny Kravitz', fechaNacimiento: '15-07-1987', celular: 3205652541, direccion: 'Calle esperanza 456', curso: 'React'}
-  ];
+  dataSource: studentsInterface[] = [];
 
   constructor(private matDialog: MatDialog) {}
 
@@ -31,18 +23,18 @@ export class StudentsComponent {
       .afterClosed()
       .subscribe({
         next: (value) => {
-          if (value) {
-            if (value.studentName) {
-              this.studentName = value.studentName;
-              console.log('Nombre de estudiante recibido: ', value.studentName);
-            }
-            if (value.inDate) {
-              this.inDate = value.inDate;
-              console.log('Fecha de matricula recibida: ', value.inDate);
-            }
-          }
+          this.dataSource = [...this.dataSource, value]
         }
       });
+    }
+
+  editStudent (editingStudent: studentsInterface) {
+    this.matDialog.open(DialogsStudentsComponent, {data: editingStudent});
+  }
+
+  deleteStudentById (id: string){
+    if(confirm('confirma borrado de registro?')){
+      this.dataSource = this.dataSource.filter((el) => el.id != id);
+    }
   }
 }
-

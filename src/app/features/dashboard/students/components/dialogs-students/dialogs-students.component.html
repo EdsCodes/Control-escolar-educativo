@@ -1,26 +1,56 @@
 <div class="dialogWindow">
-  <h2 mat-dialog-title>Nombre del Estudiante</h2>
-    <mat-dialog-content>
-      <form [formGroup]="studentForm">
-        <mat-form-field class="w-full mb-3">
-            <mat-label>Nombre y apellidos</mat-label>
-            <input formControlName="studentName" matInput required/>
-            <mat-error>Campo requerido</mat-error>
-        </mat-form-field>
-        
-        <!--Inicio Selector de fecha-->
-        <mat-form-field class="w-full">
-          <mat-label>Fecha de nacimiento</mat-label>
-          <input formControlName="inDate" matInput [matDatepicker]="picker">
-          <mat-hint>MM/DD/YYYY</mat-hint>
-          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-        <!-- Fin Selector de fecha -->
-      </form> 
-    </mat-dialog-content>
-    <mat-dialog-actions>
-        <button mat-flat-button mat-dialog-close>Cancelar</button>
-        <button (click)="onSave()" mat-flat-button>Guardar</button>
-    </mat-dialog-actions>
+  <h2 mat-dialog-title>Nuevo estudiante</h2>
+  <mat-dialog-content>
+    <form [formGroup]="studentForm">
+
+      <!--campo de id-->
+      <mat-form-field class="w-full mb-3">
+        <mat-label>Ingrese No. Doc o Id</mat-label>
+        <input formControlName="id" matInput required/>
+        <mat-error>Campo requerido</mat-error>
+      </mat-form-field>
+
+      <!--campo de nombre-->
+      <mat-form-field class="w-full mb-3">
+          <mat-label>Nombre y apellidos</mat-label>
+          <input formControlName="nombre" matInput required/>
+          <mat-error>Campo requerido</mat-error>
+      </mat-form-field>
+      
+      <!--Selector de fecha nacimiento-->
+      <mat-form-field class="w-full">
+        <mat-label>Fecha de nacimiento</mat-label>
+        <input formControlName="fechaNacimiento" matInput [matDatepicker]="picker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <!--campo de celular-->
+      <mat-form-field class="w-full mb-3">
+        <mat-label>Celular</mat-label>
+        <input formControlName="celular" matInput required/>
+        <mat-error>Campo requerido</mat-error>
+      </mat-form-field>
+
+      <!--campo de direccion-->
+      <mat-form-field class="w-full mb-3">
+        <mat-label>direccion</mat-label>
+        <input formControlName="direccion" matInput required/>
+        <mat-error>Campo requerido</mat-error>
+      </mat-form-field>
+
+      <!--campo de curso-->
+      <mat-form-field class="w-full mb-3">
+        <mat-label>curso</mat-label>
+        <input formControlName="curso" matInput required/>
+        <mat-error>Campo requerido</mat-error>
+      </mat-form-field>
+
+    </form> 
+  </mat-dialog-content>
+  <mat-dialog-actions>
+      <button mat-flat-button mat-dialog-close>Cancelar</button>
+      <button (click)="onSave()" mat-flat-button>Guardar</button>
+  </mat-dialog-actions>
 </div>
