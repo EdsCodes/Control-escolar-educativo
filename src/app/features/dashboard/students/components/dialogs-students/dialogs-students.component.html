@@ -1,0 +1,26 @@
+<div class="dialogWindow">
+  <h2 mat-dialog-title>Nombre del Estudiante</h2>
+    <mat-dialog-content>
+      <form [formGroup]="studentForm">
+        <mat-form-field class="w-full mb-3">
+            <mat-label>Nombre y apellidos</mat-label>
+            <input formControlName="studentName" matInput required/>
+            <mat-error>Campo requerido</mat-error>
+        </mat-form-field>
+        
+        <!--Inicio Selector de fecha-->
+        <mat-form-field class="w-full">
+          <mat-label>Fecha de nacimiento</mat-label>
+          <input formControlName="inDate" matInput [matDatepicker]="picker">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <!-- Fin Selector de fecha -->
+      </form> 
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-flat-button mat-dialog-close>Cancelar</button>
+        <button (click)="onSave()" mat-flat-button>Guardar</button>
+    </mat-dialog-actions>
+</div>

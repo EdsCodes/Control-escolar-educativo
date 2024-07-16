@@ -2,10 +2,24 @@
     <h2 mat-dialog-title>Nombre del curso?</h2>
     <mat-dialog-content>
         <form [formGroup]="courseForm">
-            <mat-form-field class="w-full">
-                <mat-label>Nombres cortos y concisos, sin detalles extra</mat-label>
+            <mat-form-field class="w-full mb-3">
+                <mat-label>Nombres cortos, sin detalles extra</mat-label>
                 <input formControlName="courseName" matInput required/>
+                <mat-error>Campo requerido</mat-error>
             </mat-form-field>
+            
+            <!--Inicio Selector de fecha-->
+            <mat-form-field class="w-full">
+                <mat-label>Ingresa un rango de fecha</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                  <input matStartDate formControlName="startDate" placeholder="Fecha inicio">
+                  <input matEndDate formControlName="endDate" placeholder="Fecha Terminacion">
+                </mat-date-range-input>
+                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+            <!--Fin S1elector de fecha-->
         </form> 
     </mat-dialog-content>
     <mat-dialog-actions>
