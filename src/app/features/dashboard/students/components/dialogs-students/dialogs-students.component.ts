@@ -17,11 +17,12 @@ export class DialogsStudentsComponent {
     @Inject(MAT_DIALOG_DATA) private editingStudent: studentsInterface
   ) {
     this.studentForm = this.fb.group({
-      nombre: [null, Validators.required],
-      fechaNacimiento: [null, Validators.required],
-      celular: [null, Validators.required],
-      direccion: [null, Validators.required],
-      curso: [null, Validators.required]
+      id: [{ value: editingStudent.id || null, disabled: true }, Validators.required],
+      nombre: [editingStudent.nombre || '', Validators.required],
+      fechaNacimiento: [editingStudent.fechaNacimiento || '', Validators.required],
+      celular: [editingStudent.celular || '', Validators.required],
+      direccion: [editingStudent.direccion || '', Validators.required],
+      curso: [editingStudent.curso || '', Validators.required]
     });
 
     if (this.editingStudent) {
@@ -34,10 +35,11 @@ export class DialogsStudentsComponent {
     return isEmptySpace ? { 'emptySpace': true } : null;
   }
 
-    onSave(): void {
-    if(this.studentForm.valid){
+  onSave(): void {
+    if (this.studentForm.valid) {
       console.log(this.studentForm.value);
-      this.matDialogRef.close(this.studentForm.value);
+      const formValue = this.studentForm.getRawValue();
+      this.matDialogRef.close(formValue);
     } else {
       this.markFormGroupTouched(this.studentForm);
       alert("Por favor, introduzca datos válidos.");
