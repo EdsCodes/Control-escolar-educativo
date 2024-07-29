@@ -1,7 +1,7 @@
 export interface studentsInterface {
     id: string;
     nombre: string;
-    fechaNacimiento: String;
+    fechaNacimiento: string;
     celular: string;
     direccion: string;
     curso: string;

@@ -11,13 +11,12 @@ import { MatCardModule } from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { provideNativeDateAdapter } from '@angular/material/core';
-import { TextSizeDirective } from './features/shared/directives/directives.component';
+import { SharedModule } from './shared/modules/shared-module/shared.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    TextSizeDirective 
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +27,7 @@ import { TextSizeDirective } from './features/shared/directives/directives.compo
     MatCardModule,
     MatIconModule,
     MatButtonModule,
+    SharedModule
   ],
   providers: [
     provideAnimationsAsync(),
