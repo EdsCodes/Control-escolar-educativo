@@ -11,6 +11,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,13 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatFormFieldModule,
     MatInputModule, 
     ReactiveFormsModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatTableModule, 
+    MatIconModule,
+    MatInputModule,
+    MatCardModule
   ]
 })
 export class CoursesModule { }
+
+

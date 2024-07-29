@@ -19,6 +19,7 @@ export class DialogsStudentsComponent {
     this.studentForm = this.fb.group({
       id: [{ value: editingStudent.id || null, disabled: true }, Validators.required],
       nombre: [editingStudent.nombre || '', Validators.required],
+      apellidos: [editingStudent.apellidos || '', Validators.required],
       fechaNacimiento: [editingStudent.fechaNacimiento || '', Validators.required],
       celular: [editingStudent.celular || '', Validators.required],
       direccion: [editingStudent.direccion || '', Validators.required],
@@ -56,6 +57,6 @@ export class DialogsStudentsComponent {
   }
 
   onCancel(): void {
-    this.matDialogRef.close(null); // Close with null data
+    this.matDialogRef.close(null);
   }
 }

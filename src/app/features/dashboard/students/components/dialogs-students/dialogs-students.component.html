@@ -5,10 +5,18 @@
 
       <!--campo de nombre-->
       <mat-form-field class="w-full mb-3">
-        <mat-label>Nombre y apellidos</mat-label>
+        <mat-label>Nombre(s)</mat-label>
         <input formControlName="nombre" matInput required/>
         <mat-error *ngIf="studentForm.controls['nombre'].hasError('required') && studentForm.controls['nombre'].touched">Campo requerido</mat-error>
         <mat-error *ngIf="studentForm.controls['nombre'].hasError('emptySpace') && studentForm.controls['nombre'].touched">No se permiten solo espacios</mat-error>
+      </mat-form-field>
+      
+      <!--campo de apellidos-->
+      <mat-form-field class="w-full mb-3">
+        <mat-label>Apellidos</mat-label>
+        <input formControlName="apellidos" matInput required/>
+        <mat-error *ngIf="studentForm.controls['apellidos'].hasError('required') && studentForm.controls['apellidos'].touched">Campo requerido</mat-error>
+        <mat-error *ngIf="studentForm.controls['apellidos'].hasError('emptySpace') && studentForm.controls['apellidos'].touched">No se permiten solo espacios</mat-error>
       </mat-form-field>
       
       <!--Selector de fecha nacimiento-->

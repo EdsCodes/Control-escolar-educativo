@@ -13,11 +13,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
+import { NombreCompletoPipe } from '../../../shared/pipes/nombre-completo.pipe';
 
 @NgModule({
   declarations: [
     StudentsComponent,
-    DialogsStudentsComponent
+    DialogsStudentsComponent, 
+    NombreCompletoPipe
   ],
   exports: [StudentsComponent],
   imports: [

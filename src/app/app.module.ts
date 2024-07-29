@@ -11,12 +11,11 @@ import { MatCardModule } from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { provideNativeDateAdapter } from '@angular/material/core';
-import { SharedModule } from './shared/modules/shared-module/shared.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +26,6 @@ import { SharedModule } from './shared/modules/shared-module/shared.module';
     MatCardModule,
     MatIconModule,
     MatButtonModule,
-    SharedModule
   ],
   providers: [
     provideAnimationsAsync(),
