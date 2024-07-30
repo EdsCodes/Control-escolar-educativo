@@ -8,15 +8,15 @@
         <mat-label>Nombre(s)</mat-label>
         <input formControlName="nombre" matInput required/>
         <mat-error *ngIf="studentForm.controls['nombre'].hasError('required') && studentForm.controls['nombre'].touched">Campo requerido</mat-error>
-        <mat-error *ngIf="studentForm.controls['nombre'].hasError('emptySpace') && studentForm.controls['nombre'].touched">No se permiten solo espacios</mat-error>
+        <mat-error *ngIf="studentForm.controls['nombre'].hasError('minlength') && studentForm.controls['nombre'].touched">Debe tener al menos 3 caracteres.</mat-error>
       </mat-form-field>
       
       <!--campo de apellidos-->
       <mat-form-field class="w-full mb-3">
-        <mat-label>Apellidos</mat-label>
+        <mat-label>Apellido(s)</mat-label>
         <input formControlName="apellidos" matInput required/>
         <mat-error *ngIf="studentForm.controls['apellidos'].hasError('required') && studentForm.controls['apellidos'].touched">Campo requerido</mat-error>
-        <mat-error *ngIf="studentForm.controls['apellidos'].hasError('emptySpace') && studentForm.controls['apellidos'].touched">No se permiten solo espacios</mat-error>
+        <mat-error *ngIf="studentForm.controls['apellidos'].hasError('minlength') && studentForm.controls['apellidos'].touched">Debe tener al menos 3 caracteres.</mat-error>
       </mat-form-field>
       
       <!--Selector de fecha nacimiento-->
@@ -27,7 +27,6 @@
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
         <mat-error *ngIf="studentForm.controls['fechaNacimiento'].hasError('required') && studentForm.controls['fechaNacimiento'].touched">Campo requerido</mat-error>
-        <mat-error *ngIf="studentForm.controls['fechaNacimiento'].hasError('emptySpace') && studentForm.controls['fechaNacimiento'].touched">No se permiten solo espacios</mat-error>
       </mat-form-field>
 
       <!--campo de celular-->
@@ -35,7 +34,7 @@
         <mat-label>Celular</mat-label>
         <input formControlName="celular" matInput required/>
         <mat-error *ngIf="studentForm.controls['celular'].hasError('required') && studentForm.controls['celular'].touched">Campo requerido</mat-error>
-        <mat-error *ngIf="studentForm.controls['celular'].hasError('emptySpace') && studentForm.controls['celular'].touched">No se permiten solo espacios</mat-error>
+        <mat-error *ngIf="studentForm.controls['celular'].hasError('pattern') && studentForm.controls['celular'].touched">Celular debe tener al menos 10 dígitos numericos.</mat-error>
       </mat-form-field>
 
       <!--campo de direccion-->
@@ -43,7 +42,7 @@
         <mat-label>Direccion</mat-label>
         <input formControlName="direccion" matInput required/>
         <mat-error *ngIf="studentForm.controls['direccion'].hasError('required') && studentForm.controls['direccion'].touched">Campo requerido</mat-error>
-        <mat-error *ngIf="studentForm.controls['direccion'].hasError('emptySpace') && studentForm.controls['direccion'].touched">No se permiten solo espacios</mat-error>
+        <mat-error *ngIf="studentForm.controls['direccion'].hasError('maxlength') && studentForm.controls['direccion'].touched">No puede tener más de 50 caracteres.</mat-error>
       </mat-form-field>
 
       <!--campo de curso-->
@@ -51,7 +50,6 @@
         <mat-label>Curso</mat-label>
         <input formControlName="curso" matInput required/>
         <mat-error *ngIf="studentForm.controls['curso'].hasError('required') && studentForm.controls['curso'].touched">Campo requerido</mat-error>
-        <mat-error *ngIf="studentForm.controls['curso'].hasError('emptySpace') && studentForm.controls['curso'].touched">No se permiten solo espacios</mat-error>
       </mat-form-field>
 
     </form> 

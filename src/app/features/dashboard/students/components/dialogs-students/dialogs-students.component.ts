@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { studentsInterface } from '../../../../../shared/studentsInterface';
+import { studentsInterface } from '../../../../../shared/models/students';
 
 @Component({
   selector: 'app-dialogs-students',
@@ -18,11 +18,11 @@ export class DialogsStudentsComponent {
   ) {
     this.studentForm = this.fb.group({
       id: [{ value: editingStudent.id || null, disabled: true }, Validators.required],
-      nombre: [editingStudent.nombre || '', Validators.required],
-      apellidos: [editingStudent.apellidos || '', Validators.required],
+      nombre: [editingStudent.nombre || '', [Validators.required, Validators.minLength(3)]],
+      apellidos: [editingStudent.apellidos || '', [Validators.required, Validators.minLength(3)]],
       fechaNacimiento: [editingStudent.fechaNacimiento || '', Validators.required],
-      celular: [editingStudent.celular || '', Validators.required],
-      direccion: [editingStudent.direccion || '', Validators.required],
+      celular: [editingStudent.celular || '', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      direccion: [editingStudent.direccion || '', [Validators.required, Validators.maxLength(50)]],
       curso: [editingStudent.curso || '', Validators.required]
     });
 
@@ -31,11 +31,7 @@ export class DialogsStudentsComponent {
     }
   }
 
-  emptySpaceValidator(control: AbstractControl): { [key: string]: boolean } | null {
-    const isEmptySpace = (control.value || '').trim().length === 0;
-    return isEmptySpace ? { 'emptySpace': true } : null;
-  }
-
+  
   onSave(): void {
     if (this.studentForm.valid) {
       console.log(this.studentForm.value);
