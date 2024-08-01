@@ -4,7 +4,7 @@
         <form [formGroup]="courseForm">
             <mat-form-field class="w-full mb-3">
                 <mat-label>Nombres cortos, sin detalles extra</mat-label>
-                <input formControlName="courseName" matInput required/>
+                <input formControlName="nombreCurso" matInput required/>
                 <mat-error>Campo requerido</mat-error>
             </mat-form-field>
             
@@ -12,10 +12,10 @@
             <mat-form-field class="w-full">
                 <mat-label>Ingresa un rango de fecha</mat-label>
                 <mat-date-range-input [rangePicker]="picker">
-                  <input matStartDate formControlName="startDate" placeholder="Fecha inicio">
-                  <input matEndDate formControlName="endDate" placeholder="Fecha Terminacion">
+                  <input matStartDate formControlName="fechaInicioCurso" placeholder="Fecha inicio">
+                  <input matEndDate formControlName="fechaFinCurso" placeholder="Fecha Terminacion">
                 </mat-date-range-input>
-                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                <mat-hint>MM/DD/YYYY - MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-date-range-picker #picker></mat-date-range-picker>
             </mat-form-field>
@@ -23,7 +23,7 @@
         </form> 
     </mat-dialog-content>
     <mat-dialog-actions>
-        <button mat-flat-button mat-dialog-close>Cancelar</button>
+        <button (click)="onCancel()" mat-flat-button>Cancelar</button>
         <button (click)="onSave()" mat-flat-button>Guardar</button>
     </mat-dialog-actions>
 </div>

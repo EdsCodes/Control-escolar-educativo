@@ -14,7 +14,7 @@ export class StudentsComponent {
   displayedColumns: string[] = ['id', 'nombreCompleto', 'fechaNacimiento', 'celular', 'direccion', 'curso', 'actions'];
   nextId: number = 11;
 
-  dataSource: studentsInterface[] = [
+  studentsDataSource: studentsInterface[] = [
     { id: '1', nombre: 'Josefa', apellidos: 'Poblado', fechaNacimiento: '1990-07-19', celular: '3205904878', direccion: 'Calle 1 Nº 10', curso: 'React' },
     { id: '2', nombre: 'Juan', apellidos:'Cañas', fechaNacimiento: '1983-12-31', celular: '3508998877', direccion: 'Calle 2 Nº 20', curso: 'Angular' },
     { id: '3', nombre: 'John', apellidos: ' Hernandez', fechaNacimiento: '2002-05-31', celular: '3152615678', direccion: 'Calle 3 Nº 30', curso: 'Js' },
@@ -37,7 +37,7 @@ export class StudentsComponent {
     dialogRef.afterClosed().subscribe({
       next: (value) => {
         if (value) {
-          this.dataSource = [...this.dataSource, value];
+          this.studentsDataSource = [...this.studentsDataSource, value];
           this.nextId++;
         }
       } 
@@ -45,24 +45,26 @@ export class StudentsComponent {
   }
 
   editStudent(editingStudent: studentsInterface) {
-    this.matDialog.open(DialogsStudentsComponent, { data: editingStudent })
+    this.matDialog
+      .open(DialogsStudentsComponent, { data: editingStudent })
       .afterClosed()
       .subscribe({
         next: (value) => {
           if (value) {
-            const index = this.dataSource.findIndex(student => student.id === editingStudent.id);
+            const index = this.studentsDataSource.findIndex(student => student.id === editingStudent.id);
             if (index !== -1) {
-              this.dataSource[index] = value;
-              this.dataSource = [...this.dataSource]; 
+              this.studentsDataSource[index] = value;
+              this.studentsDataSource = [...this.studentsDataSource]; 
             }
           }
         }
       });
-  }
+    }
+  
 
   deleteStudentById(id: string) {
     if (confirm('Confirma borrado de registro?')) {
-      this.dataSource = this.dataSource.filter((el) => el.id !== id);
+      this.studentsDataSource = this.studentsDataSource.filter((el) => el.id !== id);
     }
   }
 }
