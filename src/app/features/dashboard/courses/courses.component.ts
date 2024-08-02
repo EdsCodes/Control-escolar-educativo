@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogsCoursesComponent } from './components/dialogs-courses/dialogs-courses.component';
 import { courses } from '../../../shared/models/courses';
+import { CoursesService } from '../../../core/services/courses.service';
 
 @Component({
   selector: 'app-courses',
@@ -15,15 +16,24 @@ export class CoursesComponent {
 
   nextId: number = 6;
 
-  coursesDataSource: courses[] = [
-    { idCurso: '1', nombreCurso: 'React', fechaInicioCurso: '08-15-2024', fechaFinCurso: '01-20-2025'},
-    { idCurso: '2', nombreCurso: 'Angular', fechaInicioCurso: '09-15-2024', fechaFinCurso: '02-20-2025'},
-    { idCurso: '3', nombreCurso: 'Js', fechaInicioCurso: '10-15-2024', fechaFinCurso: '03-20-2025'},
-    { idCurso: '4', nombreCurso: 'CSS', fechaInicioCurso: '11-15-2024', fechaFinCurso: '04-20-2025'},
-    { idCurso: '5', nombreCurso: 'SQL', fechaInicioCurso: '12-15-2024', fechaFinCurso: '05-20-2025'},
-  ]
+  coursesDataSource: courses[] = []
 
-  constructor(private matDialog: MatDialog) {}
+  constructor(private matDialog: MatDialog, private coursesService: CoursesService ) {}
+
+  ngOnInit(): void {
+    this.loadingCourses();
+  }
+
+  loadingCourses() {
+    this.coursesService.getCourses().subscribe({
+      next: (courses) => {
+        this.coursesDataSource = courses;
+      },
+      error: (err) => {
+        console.error('Error al cargar los cursos', err);
+      }
+    });
+  }
 
   openDialog(): void {
     const dialogRef =this.matDialog.open
