@@ -30,7 +30,7 @@ import { AuthMockService } from '../../core/services/auth-mock.service';
   providers: [
     {
       provide: AuthService,
-      useClass: AuthMockService
+      useClass: AuthService
     }
   ]
 }) 
