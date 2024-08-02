@@ -9,6 +9,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from '../../core/services/auth.service';
+import { AuthMockService } from '../../core/services/auth-mock.service';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -22,7 +25,13 @@ import { MatSelectModule } from '@angular/material/select';
     MatButtonModule,
     MatInputModule,
     MatSelectModule,
-
+    ReactiveFormsModule
+  ],
+  providers: [
+    {
+      provide: AuthService,
+      useClass: AuthMockService
+    }
   ]
 }) 
 

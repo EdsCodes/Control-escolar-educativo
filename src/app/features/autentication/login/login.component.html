@@ -1,39 +1,43 @@
 <div style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #FBF6E2;">
-
   <mat-card style="max-width: 400px; background-color: #ffff;">
     <mat-card-header id="iniciaSesion">
       <h3>Iniciar Sesión</h3>
     </mat-card-header>
     <mat-card-content>
-      <form>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <!--Campo correo-->
-        <mat-form-field class="w-full">
+        <mat-form-field class="w-full my-2">
           <mat-label>Email</mat-label>
-          <input matInput />
+          <input formControlName="email" matInput />
+          <mat-error *ngIf="loginForm.controls['email'].hasError('email')">Ingrese un email correcto</mat-error>
+          <mat-error *ngIf="loginForm.controls['email'].hasError('required')">Campo requerido</mat-error>
           <mat-icon matSuffix>email</mat-icon>
         </mat-form-field>
 
         <!--Campo contraseña-->
-        <mat-form-field class="w-full">
+        <mat-form-field class="w-full my-2">
           <mat-label>Password</mat-label>
-          <input matInput [type]="hide ? 'password' : 'text'" />
+          <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" />
+          <mat-error *ngIf="loginForm.controls['password'].hasError('minlength')">Contraseña debe tener mas de 5 caracteres</mat-error>
+          <mat-error *ngIf="loginForm.controls['password'].hasError('required')">Campo requerido</mat-error>
           <button mat-icon-button matSuffix (click)="togglePasswordVisibility()" type="button">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
         </mat-form-field>
 
-        <mat-form-field class="w-full">
+        <!--Campo rol-->
+        <mat-form-field class="w-full my-2">
           <mat-label>Rol</mat-label>
           <mat-select formControlName="role">
             <mat-option value="ADMIN">ADMIN</mat-option>
             <mat-option value="USER">USER</mat-option>
           </mat-select>
         </mat-form-field>
-        
+
+        <button type="submit" class="w-full my-3" mat-flat-button color="primary">
+          Login
+        </button>
       </form>
     </mat-card-content>
-    <mat-card-actions style="display: flex; justify-content: space-around;">
-      <button mat-flat-button>Login</button>
-    </mat-card-actions>
   </mat-card>
 </div>
