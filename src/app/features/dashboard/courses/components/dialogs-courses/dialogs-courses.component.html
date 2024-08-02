@@ -1,8 +1,8 @@
 <div class="dialogWindow">
-    <h2 mat-dialog-title>Nombre del curso?</h2>
+    <h2 class="my-2" mat-dialog-title>Nombre del curso?</h2>
     <mat-dialog-content>
         <form [formGroup]="courseForm">
-            <mat-form-field class="w-full mb-3">
+            <mat-form-field class="w-full">
                 <mat-label>Nombres cortos, sin detalles extra</mat-label>
                 <input formControlName="nombreCurso" matInput required/>
                 <mat-error>Campo requerido</mat-error>
