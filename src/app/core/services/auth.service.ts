@@ -10,7 +10,9 @@ export class AuthService {
 
     login () {
       console.log(this.getAuthentifyUser());
-      this.getAuthentifyUser().then(())
+      this.getAuthentifyUser().then((User)=> {
+        console.log('User', User)
+      });
     }
     
     verifyToken () {}
