@@ -3,7 +3,7 @@ export class AuthMockService {
         console.log('Se ejecuto los service fake.')
         return {
             name: 'TEST USER',
-            EMAIL: '...',
+            EMAIL: 'test@user.com',
         };
     }
 }
