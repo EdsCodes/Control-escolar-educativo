@@ -48,8 +48,9 @@ export class StudentsComponent {
     dialogRef.afterClosed().subscribe({
       next: (value) => {
         if (value) {
-          this.studentsDataSource = [...this.studentsDataSource, value];
           this.nextId++;
+          console.log('Recibimos este  valor: ', value);
+          
         }
       } 
     });

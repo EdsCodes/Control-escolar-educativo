@@ -18,7 +18,7 @@ export class DialogsCoursesComponent {
   ) {
     this.courseForm = this.fb.group({
       idCurso: [{ value: editingCourse.idCurso || null, disabled: true }, Validators.required],
-      nombreCurso: [editingCourse.nombreCurso || '', [Validators.required, Validators.minLength(3)]],
+      nombreCurso: [editingCourse.nombreCurso || '', [Validators.required, Validators.minLength(2)]],
       fechaInicioCurso: [editingCourse.fechaInicioCurso || '', Validators.required],
       fechaFinCurso: [editingCourse.fechaFinCurso || '', Validators.required]
     });
