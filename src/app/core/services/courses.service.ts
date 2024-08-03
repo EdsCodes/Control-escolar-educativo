@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { delay, Observable, of } from 'rxjs';
 import { courses } from '../../shared/models/courses';
 
 @Injectable({
@@ -15,29 +15,25 @@ export class CoursesService {
   ];
 
   getAllCourses(): Observable<courses[]> {
-    return new Observable(observer => {
-      setTimeout(() => {
-        observer.next(this.MY_COURSESDATABASE);
-        observer.complete();
-      }, 500);
-    });
+    return of(this.MY_COURSESDATABASE).pipe(
+      delay(500)
+    );
   }
 
   addCourses(course: courses): Observable<courses[]> {
     this.MY_COURSESDATABASE.push(course);
-    return this.getAllCourses();
+    return of(this.MY_COURSESDATABASE);
   }
 
   deleteCourseById(idCurso: string): Observable<courses[]> {
-    this.MY_COURSESDATABASE = this.MY_COURSESDATABASE.filter(el => el.idCurso !== idCurso);
+    this.MY_COURSESDATABASE = this.MY_COURSESDATABASE.filter(element => element.idCurso !== idCurso);
     return this.getAllCourses();
   }
 
   editCoursesById(idCurso: string, update: courses) {
-    const index = this.MY_COURSESDATABASE.findIndex(course => course.idCurso === idCurso);
-    if (index !== -1) {
-      this.MY_COURSESDATABASE[index] = { ...this.MY_COURSESDATABASE[index], ...update };
-    }
+    this.MY_COURSESDATABASE = this.MY_COURSESDATABASE.map((element) =>
+      element.idCurso === idCurso ? { ...update, idCurso } : element
+    );
     return this.getAllCourses();
   }
   

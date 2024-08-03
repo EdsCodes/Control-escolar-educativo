@@ -27,7 +27,7 @@ export class StudentsComponent {
 
   loadingStudents() {
     this.loadingInProcess = true;
-    this.StudentsService.getStudents().subscribe({
+    this.StudentsService.getAllStudents().subscribe({
       next: (students) => {
         this.studentsDataSource = students;
       },
@@ -49,8 +49,6 @@ export class StudentsComponent {
       next: (value) => {
         if (value) {
           this.nextId++;
-          console.log('Recibimos este  valor: ', value);
-          
         }
       } 
     });
@@ -58,25 +56,32 @@ export class StudentsComponent {
 
   editStudent(editingStudent: students) {
     this.matDialog
-      .open(DialogsStudentsComponent, { data: editingStudent })
-      .afterClosed()
-      .subscribe({
-        next: (value) => {
-          if (value) {
-            const index = this.studentsDataSource.findIndex(student => student.id === editingStudent.id);
-            if (index !== -1) {
-              this.studentsDataSource[index] = value;
-              this.studentsDataSource = [...this.studentsDataSource]; 
+    .open(DialogsStudentsComponent, { data: editingStudent })
+    .afterClosed()
+    .subscribe({
+      next: (value) => {
+        if (!!value) {
+          this.StudentsService.editStudentsById(editingStudent.id, value).subscribe({
+            next: (students) => {
+              this.studentsDataSource = [...students];
             }
-          }
+          });
         }
-      });
-    }
-  
-
-  deleteStudentById(id: string) {
-    if (confirm('Confirma borrado de registro?')) {
-      this.studentsDataSource = this.studentsDataSource.filter((el) => el.id !== id);
-    }
+      }
+    });
   }
+
+    deleteStudentById(id: string) {
+      if(confirm('Confirma borrado de estudiante?')){
+        this.loadingInProcess = true;
+        this.StudentsService.deleteStudentsById(id).subscribe({
+          next: (students) => {
+            this.studentsDataSource = [...students]
+          },
+          complete: () => {
+            this.loadingInProcess = false;
+          },
+        });
+      }
+    }
 }

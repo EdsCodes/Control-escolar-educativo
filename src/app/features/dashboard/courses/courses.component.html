@@ -22,13 +22,13 @@
         <!-- fecha Inicio Curso Column -->
         <ng-container matColumnDef="fechaInicioCurso">
             <th mat-header-cell *matHeaderCellDef> Fecha de inicio de curso </th>
-            <td mat-cell *matCellDef="let element"> {{element.fechaInicioCurso | date: 'dd/MM/yyyy'}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.fechaInicioCurso | date: 'dd/MM/YYYY'}} </td>
         </ng-container>
         
         <!-- fecha final Curso Column -->
         <ng-container matColumnDef="fechaFinCurso">
             <th mat-header-cell *matHeaderCellDef> Fecha final de curso </th>
-            <td mat-cell *matCellDef="let element"> {{element.fechaFinCurso | date: 'dd/MM/yyyy'}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.fechaFinCurso | date: 'dd/MM/YYYY'}} </td>
         </ng-container>
 
         <!-- Acciones -->

@@ -70,7 +70,7 @@ export class CoursesComponent implements OnInit {
     .afterClosed()
     .subscribe({
       next: (value) => {
-        if (value) {
+        if (!!value) {
           this.coursesService.editCoursesById(editingCourse.idCurso, value).subscribe({
             next: (courses) => {
               this.coursesDataSource = [...courses];

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { students } from '../../shared/models/students';
-import { Observable } from 'rxjs';
+import { delay, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,12 +19,27 @@ export class StudentsService {
     { id: '10', nombre: 'Lautaro', apellidos: 'Ramirez', fechaNacimiento: '2001-12-31', celular: '3225971011', direccion: 'Calle 10 Nº 100', curso: 'Angular' },
   ]
 
-  getStudents(): Observable<students[]> {
-    return new Observable(observer => {
-      setTimeout(() => {
-        observer.next(this.MY_STUDENTSDATABASE);
-        observer.complete();
-      }, 1500);
-    });
+  getAllStudents(): Observable<students[]> {
+    return of(this.MY_STUDENTSDATABASE).pipe(
+      delay(500)
+    );
   }
+
+  addStudents(students: students): Observable<students[]>{
+    this.MY_STUDENTSDATABASE.push(students);
+    return of(this.MY_STUDENTSDATABASE);
+  }
+  
+  deleteStudentsById(id: string): Observable<students[]>{
+    this.MY_STUDENTSDATABASE = this.MY_STUDENTSDATABASE.filter(element => element.id !== id);
+    return this.getAllStudents();
+  }
+
+  editStudentsById(id: string, update: students) {
+    this.MY_STUDENTSDATABASE = this.MY_STUDENTSDATABASE.map((element) =>
+      element.id === id ? { ...update, id } : element
+    );
+    return this.getAllStudents();
+  }
+
 }
