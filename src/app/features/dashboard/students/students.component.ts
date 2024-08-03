@@ -14,9 +14,7 @@ export class StudentsComponent {
 
   displayedColumns: string[] = ['id', 'nombreCompleto', 'fechaNacimiento', 'celular', 'direccion', 'curso', 'actions'];
   nextId: number = 11;
-
   studentsDataSource: students[] = [];
-
   loadingInProcess = false;
 
   constructor(private matDialog: MatDialog, private StudentsService: StudentsService) {}
@@ -48,9 +46,22 @@ export class StudentsComponent {
     dialogRef.afterClosed().subscribe({
       next: (value) => {
         if (value) {
-          this.nextId++;
+          value.id = this.nextId.toString();
+          this.loadingInProcess = true
+          this.StudentsService.addStudents(value).subscribe({
+            next: (students) => {
+              this.studentsDataSource = [...students];
+              this.nextId++;
+            },
+            error: (err) => {
+              console.error('Error al agregar el estudiante', err);
+            },
+            complete: () => {
+              this.loadingInProcess = false;
+            }
+          });
         }
-      } 
+      }
     });
   }
 
