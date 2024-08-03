@@ -17,6 +17,8 @@ export class StudentsComponent {
 
   studentsDataSource: students[] = [];
 
+  loadingInProcess = false;
+
   constructor(private matDialog: MatDialog, private StudentsService: StudentsService) {}
 
   ngOnInit(): void {
@@ -24,12 +26,16 @@ export class StudentsComponent {
   }
 
   loadingStudents() {
+    this.loadingInProcess = true;
     this.StudentsService.getStudents().subscribe({
       next: (students) => {
         this.studentsDataSource = students;
       },
       error: (err) => {
         console.error('Error al cargar los estudiantes', err);
+      },
+      complete: () => {
+        this.loadingInProcess = false;
       }
     });
   }

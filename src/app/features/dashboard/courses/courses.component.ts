@@ -18,6 +18,8 @@ export class CoursesComponent {
 
   coursesDataSource: courses[] = []
 
+  loadingInProcess = false;
+
   constructor(private matDialog: MatDialog, private coursesService: CoursesService ) {}
 
   ngOnInit(): void {
@@ -25,12 +27,16 @@ export class CoursesComponent {
   }
 
   loadingCourses() {
+    this.loadingInProcess = true;
     this.coursesService.getCourses().subscribe({
       next: (courses) => {
         this.coursesDataSource = courses;
       },
       error: (err) => {
         console.error('Error al cargar los cursos', err);
+      },
+      complete: () => {
+        this.loadingInProcess = false;
       }
     });
   }

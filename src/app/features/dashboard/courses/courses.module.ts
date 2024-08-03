@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { MatTableModule } from '@angular/material/table';
     ReactiveFormsModule,
     MatDatepickerModule,
     MatTableModule, 
-    MatCardModule
+    MatCardModule,
+    MatProgressBarModule
   ]
 })
 export class CoursesModule { }
