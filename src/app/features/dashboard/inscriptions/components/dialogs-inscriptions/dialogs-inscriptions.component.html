@@ -1,0 +1,24 @@
+<div class="dialogWindow">
+    <h2 mat-dialog-title>Añadir inscripción</h2>
+    <mat-dialog-content>
+      <form [formGroup]="inscriptionsForm">
+  
+        <mat-form-field class="w-full mb-3">
+          <mat-label>id Estudiante</mat-label>
+          <input formControlName="studentId" matInput required/>
+          <mat-error *ngIf="inscriptionsForm.controls['studentId'].hasError('required') && inscriptionsForm.controls['studentId'].touched">Campo requerido</mat-error>
+        </mat-form-field>
+        
+        <mat-form-field class="w-full mb-3">
+          <mat-label>Id Curso</mat-label>
+          <input formControlName="courseId" matInput required/>
+          <mat-error *ngIf="inscriptionsForm.controls['courseId'].hasError('required') && inscriptionsForm.controls['courseId'].touched">Campo requerido</mat-error>
+        </mat-form-field>
+  
+      </form> 
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-flat-button (click)="onCancel()">Cancelar</button>
+        <button (click)="onSave()" mat-flat-button>Guardar</button>
+    </mat-dialog-actions>
+  </div>

@@ -25,8 +25,8 @@ export class StudentsService {
     );
   }
 
-  addStudents(students: students): Observable<students[]>{
-    this.MY_STUDENTSDATABASE.push(students);
+  addStudents(newStudent: students): Observable<students[]>{
+    this.MY_STUDENTSDATABASE.push(newStudent);
     return of(this.MY_STUDENTSDATABASE);
   }
   

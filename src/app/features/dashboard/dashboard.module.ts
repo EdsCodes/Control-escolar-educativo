@@ -10,6 +10,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { CoursesModule } from './courses/courses.module';
 import { MatListModule } from '@angular/material/list';
 import { StudentsModule } from './students/students.module';
+import { InscriptionsModule } from './inscriptions/inscriptions.module';
 
 
 @NgModule({
@@ -24,9 +25,10 @@ import { StudentsModule } from './students/students.module';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    CoursesModule,
     MatListModule,
-    StudentsModule
+    CoursesModule,
+    StudentsModule,
+    InscriptionsModule
 ]
 })
 export class DashboardModule { }
