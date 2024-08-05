@@ -14,14 +14,19 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { CourseDetailComponent } from './detailedComponent/course-detail/course-detail.component';
 
 
 @NgModule({
   declarations: [
     CoursesComponent,
-    DialogsCoursesComponent
+    DialogsCoursesComponent,
+    CourseDetailComponent
   ],
-  exports: [CoursesComponent],
+  exports: [
+    CoursesComponent,
+    CourseDetailComponent
+  ],
   imports: [
     CommonModule,
     CoursesRoutingModule,

@@ -27,7 +27,7 @@ mat-toolbar {
 }
 
 .p-5 {
-  padding: 1.25rem; /* PrimeFlex padding utility */
+  padding: 1.25rem;
 }
 
 .d-flex {
@@ -44,4 +44,11 @@ mat-toolbar {
 
 main {
   flex-grow: 1;
+}
+
+.activeLink {
+  button{
+    background-color: #006a6a;
+    color: #FBF6E2;
+  }
 }

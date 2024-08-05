@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -6,21 +7,11 @@ import { Observable } from 'rxjs';
 })
 
 export class AuthService {
-
-  constructor() {}
+  constructor(private router: Router) {}
 
   login() {
-    this.getObservableUser().subscribe({
-      next: (user) => {
-        console.log(user)
-      },
-      error: (error) => {
-        console.log(error)
-      },
-      complete: () => {
-        console.log("Sesion iniciada correctamente")
-      }
-    })
+    localStorage.setItem('token', 'lkjfsd78wqeuirhsnnckivs0sh7sdf');
+    this.router.navigate(['dashboard', 'courses']);
   }
 
   verifyToken() {}

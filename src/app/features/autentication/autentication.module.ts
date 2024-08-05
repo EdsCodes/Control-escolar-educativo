@@ -28,10 +28,11 @@ import { AuthMockService } from '../../core/services/auth-mock.service';
     ReactiveFormsModule
   ],
   providers: [
-    {
-      provide: AuthService,
-      useClass: AuthService
-    }
+    AuthService,
+    // {
+    //   provide: AuthService,
+    //   useClass: AuthService
+    // }
   ]
 }) 
 

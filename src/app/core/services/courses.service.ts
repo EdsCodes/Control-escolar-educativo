@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { delay, Observable, of } from 'rxjs';
+import { delay, elementAt, map, Observable, of } from 'rxjs';
 import { courses } from '../../shared/models/courses';
 
 @Injectable({
@@ -20,8 +20,8 @@ export class CoursesService {
     );
   }
 
-  addCourses(course: courses): Observable<courses[]> {
-    this.MY_COURSESDATABASE.push(course);
+  addCourses(newCourse: courses): Observable<courses[]> {
+    this.MY_COURSESDATABASE.push(newCourse);
     return of(this.MY_COURSESDATABASE);
   }
 
@@ -35,6 +35,12 @@ export class CoursesService {
       element.idCurso === idCurso ? { ...update, idCurso } : element
     );
     return this.getAllCourses();
+  }
+
+  getCourseById(idCurso: string): Observable<courses | undefined> {
+    return this.getAllCourses().pipe(
+      map((allTheCourses) => allTheCourses.find((element) => element.idCurso === idCurso))
+    );
   }
   
 }

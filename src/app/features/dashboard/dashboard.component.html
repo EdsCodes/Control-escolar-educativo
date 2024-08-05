@@ -2,10 +2,11 @@
   <!--Inicio del SideBar-->
   <mat-drawer #drawer class="example-sidenav" mode="side">
     <mat-nav-list >
-      <a mat-list-item href="..."><button mat-raised-button class="w-full">Inicio</button></a>
-      <a mat-list-item href="..."><button mat-raised-button class="w-full">Alumnos</button></a>
-      <a mat-list-item href="..."><button mat-raised-button class="w-full">Cursos</button></a>
-      <a mat-list-item href="..."><button mat-raised-button class="w-full">Inscripciones</button></a>
+      <a mat-list-item routerLink="home" routerLinkActive="activeLink"><button mat-raised-button class="w-full">Inicio</button></a>
+      <a mat-list-item routerLink="students" routerLinkActive="activeLink"><button mat-raised-button class="w-full">Alumnos</button></a>
+      <a mat-list-item routerLink="courses" routerLinkActive="activeLink"><button mat-raised-button class="w-full">Cursos</button></a>
+      <a mat-list-item routerLink="inscriptions" routerLinkActive="activeLink"><button mat-raised-button class="w-full">Inscripciones</button></a>
+      <a mat-list-item routerLink="/auth" routerLinkActive="activeLink"><button mat-raised-button class="w-full">Cerrar Sesión</button></a>
     </mat-nav-list>
   </mat-drawer>
   <!--Fin del SideBar-->
@@ -25,9 +26,7 @@
     <!--Courses-->
     <main class="p-5 d-flex align-items-start justify-content-start">
       <div class="dashBoardComps w-full">
-        <app-courses></app-courses>
-        <app-students></app-students>
-        <app-inscriptions></app-inscriptions>
+        <router-outlet />
       </div>
     </main>
     <!--Fin de Courses-->

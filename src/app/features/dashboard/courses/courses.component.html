@@ -41,6 +41,9 @@
                 <button mat-icon-button (click)="deleteCourseById(element.idCurso)">
                     <mat-icon>delete</mat-icon>
                 </button>
+                <button mat-icon-button [routerLink]="['/dashboard/course', element.idCurso]">
+                    <mat-icon>visibility</mat-icon>
+                </button>
             </td>
         </ng-container>
 

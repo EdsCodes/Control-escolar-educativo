@@ -3,6 +3,7 @@ import { InscriptionsService } from '../../../core/services/inscriptions.service
 import { inscriptions } from '../../../shared/models';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogsInscriptionsComponent } from './components/dialogs-inscriptions/dialogs-inscriptions.component';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-inscriptions',
@@ -16,7 +17,12 @@ export class InscriptionsComponent {
   inscriptionsDataSource: inscriptions[] = [];
   loadingInProcess = false;
 
+  mySubject$ = new Subject();
+
   constructor(private matDialog: MatDialog, private inscriptionsService: InscriptionsService) {
+
+    this.mySubject$.next(1);
+
     this.inscriptionsService.getAllInscriptions().subscribe({
       next: (val) => (this.inscriptionsDataSource = val),
       complete: () => (this.loadingInProcess = false),
@@ -99,5 +105,11 @@ export class InscriptionsComponent {
       });
     }
   }
+
+  // addInscription(): void {
+  //   this.inscriptionsService.addInscription().subscribe({
+  //     next: (val) => (this.incriptions = val)
+  //   })
+  // }
   
 }
