@@ -11,6 +11,7 @@ import { CoursesModule } from './courses/courses.module';
 import { MatListModule } from '@angular/material/list';
 import { StudentsModule } from './students/students.module';
 import { InscriptionsModule } from './inscriptions/inscriptions.module';
+import { SharedModule } from '../../shared/modules/shared-module/shared.module';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { InscriptionsModule } from './inscriptions/inscriptions.module';
     MatListModule,
     CoursesModule,
     StudentsModule,
-    InscriptionsModule
+    InscriptionsModule,
+    SharedModule
 ]
 })
 export class DashboardModule { }

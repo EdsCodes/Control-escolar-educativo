@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTableModule } from '@angular/material/table';
 import { DialogsInscriptionsComponent } from './components/dialogs-inscriptions/dialogs-inscriptions.component';
+import { SharedModule } from '../../../shared/modules/shared-module/shared.module';
  
 
 @NgModule({
@@ -25,18 +26,7 @@ import { DialogsInscriptionsComponent } from './components/dialogs-inscriptions/
   imports: [
     CommonModule,
     InscriptionsRoutingModule,
-    MatIconModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatFormFieldModule, 
-    MatInputModule, 
-    ReactiveFormsModule,
-    MatDatepickerModule,
-    MatTableModule, 
-    MatIconModule,
-    MatInputModule,
-    MatCardModule,
-    MatProgressBarModule
+    SharedModule,
   ]
 })
 export class InscriptionsModule { }

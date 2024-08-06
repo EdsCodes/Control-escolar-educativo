@@ -11,7 +11,7 @@ export class AuthService {
 
   login() {
     localStorage.setItem('token', 'lkjfsd78wqeuirhsnnckivs0sh7sdf');
-    this.router.navigate(['dashboard', 'courses']);
+    this.router.navigate(['dashboard', 'home']);
   }
 
   verifyToken() {}

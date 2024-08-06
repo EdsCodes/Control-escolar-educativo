@@ -3,27 +3,28 @@
     <mat-dialog-content>
         <form [formGroup]="courseForm">
             <mat-form-field class="w-full">
-                <mat-label>Nombres cortos, sin detalles extra</mat-label>
-                <input formControlName="nombreCurso" matInput required/>
-                <mat-error>Campo requerido</mat-error>
+            <mat-label>Nombres cortos, sin detalles extra</mat-label>
+            <input formControlName="nombreCurso" matInput required/>
+            <mat-error>Campo requerido</mat-error>
             </mat-form-field>
-            
+    
             <!--Inicio Selector de fecha-->
-            <mat-form-field class="w-full">
-                <mat-label>Ingresa un rango de fecha</mat-label>
-                <mat-date-range-input [rangePicker]="picker">
-                  <input matStartDate formControlName="fechaInicioCurso" placeholder="Fecha inicio">
-                  <input matEndDate formControlName="fechaFinCurso" placeholder="Fecha Terminacion">
-                </mat-date-range-input>
-                <mat-hint>MM/DD/YYYY - MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-date-range-picker #picker></mat-date-range-picker>
+            <mat-form-field class="w-full" formGroupName="dateRange">
+            <mat-label>Ingresa un rango de fecha</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+                <input matStartDate formControlName="fechaInicioCurso" placeholder="Fecha inicio">
+                <input matEndDate formControlName="fechaFinCurso" placeholder="Fecha Terminacion">
+            </mat-date-range-input>
+            <mat-hint>MM/DD/YYYY - MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
             </mat-form-field>
             <!--Fin Selector de fecha-->
+            
         </form> 
     </mat-dialog-content>
     <mat-dialog-actions>
-        <button (click)="onCancel()" mat-flat-button>Cancelar</button>
-        <button (click)="onSave()" mat-flat-button>Guardar</button>
+      <button (click)="onCancel()" mat-flat-button>Cancelar</button>
+      <button (click)="onSave()" mat-flat-button>Guardar</button>
     </mat-dialog-actions>
-</div>
+  </div>

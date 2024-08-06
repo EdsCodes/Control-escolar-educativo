@@ -15,6 +15,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CourseDetailComponent } from './detailedComponent/course-detail/course-detail.component';
+import { SharedModule } from '../../../shared/modules/shared-module/shared.module';
 
 
 @NgModule({
@@ -30,16 +31,7 @@ import { CourseDetailComponent } from './detailedComponent/course-detail/course-
   imports: [
     CommonModule,
     CoursesRoutingModule,
-    MatIconModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatFormFieldModule, 
-    MatInputModule, 
-    ReactiveFormsModule,
-    MatDatepickerModule,
-    MatTableModule, 
-    MatCardModule,
-    MatProgressBarModule
+    SharedModule
   ]
 })
 export class CoursesModule { }

@@ -11,7 +11,9 @@ import { MatCardModule } from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { provideNativeDateAdapter } from '@angular/material/core';
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/modules/shared-module/shared.module';
+import { HomeModule } from './features/dashboard/home/home.module';
 
 
 @NgModule({
@@ -27,11 +29,13 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
     MatCardModule,
     MatIconModule,
     MatButtonModule,
+    CoreModule,
+    SharedModule, 
+    HomeModule
   ],
   providers: [
     provideAnimationsAsync(),
-    provideNativeDateAdapter(),
-    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}    
+    provideNativeDateAdapter()
   ],
   bootstrap: [AppComponent]
 })

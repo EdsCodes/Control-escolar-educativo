@@ -1,1 +1,41 @@
-<p>home works!</p>
+<div class="home-container">
+  <mat-card class="welcomeHome-card">
+    <mat-card-header>
+      <mat-card-title>Bienvenido al Sistema de Control Escolar</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        Aquí puedes gestionar estudiantes, cursos, inscripciones, ver estadisticas de estos (proximamente) y más.
+      </p>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="homeLinks-section" (click)="navigateTo('students')">
+    <div class="homeLink-card" >
+      <mat-card-header>
+        <mat-card-title>Estudiantes</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Gestiona y consulta la información de los estudiantes</p>
+      </mat-card-content>
+    </div>
+
+    <div class="homeLink-card" (click)="navigateTo('courses')">
+      <mat-card-header>
+        <mat-card-title>Cursos</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Gestiona y consulta los cursos ofrecidos</p>
+      </mat-card-content>
+    </div>
+    
+    <div class="homeLink-card" (click)="navigateTo('inscriptions')">
+      <mat-card-header>
+        <mat-card-title>Inscripciones</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Gestiona y consulta las inscripciones de los estudiantes</p>
+      </mat-card-content>
+    </div>
+  </div>
+</div>

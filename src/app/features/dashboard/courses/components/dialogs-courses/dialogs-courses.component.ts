@@ -19,20 +19,30 @@ export class DialogsCoursesComponent {
     this.courseForm = this.fb.group({
       idCurso: [{ value: editingCourse.idCurso || null, disabled: true }, Validators.required],
       nombreCurso: [editingCourse.nombreCurso || '', [Validators.required, Validators.minLength(2)]],
-      fechaInicioCurso: [editingCourse.fechaInicioCurso || '', Validators.required],
-      fechaFinCurso: [editingCourse.fechaFinCurso || '', Validators.required]
+      dateRange: this.fb.group({
+        fechaInicioCurso: [editingCourse.fechaInicioCurso || '', Validators.required],
+        fechaFinCurso: [editingCourse.fechaFinCurso || '', Validators.required]
+      })
     });
 
     if (this.editingCourse) {
-      this.courseForm.patchValue(this.editingCourse);
+      this.courseForm.patchValue({
+        idCurso: this.editingCourse.idCurso,
+        nombreCurso: this.editingCourse.nombreCurso,
+        dateRange: {
+          fechaInicioCurso: new Date(this.editingCourse.fechaInicioCurso),
+          fechaFinCurso: new Date(this.editingCourse.fechaFinCurso)
+        }
+      });
     }
-   }
+  }
 
   onSave(): void {
-    if(this.courseForm.valid){
-      console.log(this.courseForm.value);
-      this.matDialogRef.close(this.courseForm.value);
-      const formValue = this.courseForm.getRawValue();
+    if (this.courseForm.valid) {
+      const formValue = {
+        ...this.courseForm.getRawValue(),
+        ...this.courseForm.get('dateRange')?.value
+      };
       this.matDialogRef.close(formValue);
     } else {
       this.markFormGroupTouched(this.courseForm);
