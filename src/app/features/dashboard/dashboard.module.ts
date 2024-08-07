@@ -7,10 +7,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
-import { CoursesModule } from './courses/courses.module';
 import { MatListModule } from '@angular/material/list';
-import { StudentsModule } from './students/students.module';
-import { InscriptionsModule } from './inscriptions/inscriptions.module';
 import { SharedModule } from '../../shared/modules/shared-module/shared.module';
 
 
@@ -27,9 +24,6 @@ import { SharedModule } from '../../shared/modules/shared-module/shared.module';
     MatIconModule,
     MatButtonModule,
     MatListModule,
-    CoursesModule,
-    StudentsModule,
-    InscriptionsModule,
     SharedModule
 ]
 })
