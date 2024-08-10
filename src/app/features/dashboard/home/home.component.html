@@ -5,10 +5,10 @@
     </mat-card-header>
     <mat-card-content>
       <p class="m-3" *ngIf="(autenticatedUser | async)?.role === 'ADMIN'">
-        Aquí puedes gestionar estudiantes, cursos, inscripciones, ver estadísticas de estos (próximamente) y más.
+        Aquí puedes gestionar estudiantes, cursos, inscripciones, ver estadísticas de estos (próximamente) y más
       </p>
       <p class="m-3" *ngIf="(autenticatedUser | async)?.role === 'USER'">
-        Aquí puedes consultar el detalle de los cursos disponibles y el listado de estudiantes inscritos en estos.
+        Aquí puedes consultar info referente a estudiantes y cursos
       </p>
     </mat-card-content>
   </mat-card>
@@ -19,8 +19,12 @@
         <mat-card-title>Estudiantes</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <p>Gestiona y consulta la información de los estudiantes</p>
-      </mat-card-content>
+        <p class="m-3" *ngIf="(autenticatedUser | async)?.role === 'ADMIN'">
+          Gestiona y consulta los estudiantes
+        </p>
+        <p class="m-3" *ngIf="(autenticatedUser | async)?.role === 'USER'">
+          Consulta el listado de los estudiantes inscritos
+        </p>      </mat-card-content>
     </div>
 
     <div class="homeLink-card" (click)="navigateTo('courses')">
@@ -28,7 +32,12 @@
         <mat-card-title>Cursos</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <p>Gestiona y consulta los cursos ofrecidos</p>
+        <p class="m-3" *ngIf="(autenticatedUser | async)?.role === 'ADMIN'">
+          Gestiona y consulta los cursos ofrecidos
+        </p>
+        <p class="m-3" *ngIf="(autenticatedUser | async)?.role === 'USER'">
+          Consulta el detalle de los cursos ofrecidos
+        </p>
       </mat-card-content>
     </div>
     

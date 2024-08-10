@@ -4,7 +4,7 @@
       <form [formGroup]="inscriptionsForm">
   
         <!--campo de id de estudiante-->
-        <mat-form-field class="w-full mb-3">
+        <mat-form-field class="w-full mb-2 pt-2">
           <mat-label>id Estudiante</mat-label>
           <input formControlName="studentId" matInput required/>
           <mat-error *ngIf="inscriptionsForm.controls['studentId'].hasError('required') && inscriptionsForm.controls['studentId'].touched">Campo requerido</mat-error>

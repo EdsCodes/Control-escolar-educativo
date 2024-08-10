@@ -4,23 +4,37 @@
     <form [formGroup]="studentForm">
 
       <!--campo de nombre-->
-      <mat-form-field class="w-full mb-3">
+      <mat-form-field class="w-full mb-2 pt-2">
         <mat-label>Nombre(s)</mat-label>
         <input formControlName="nombre" matInput required/>
-        <mat-error *ngIf="studentForm.controls['nombre'].hasError('required') && studentForm.controls['nombre'].touched">Campo requerido</mat-error>
-        <mat-error *ngIf="studentForm.controls['nombre'].hasError('minlength') && studentForm.controls['nombre'].touched">Debe tener al menos 3 caracteres.</mat-error>
+        <mat-error *ngIf="studentForm.controls['nombre'].hasError('required') && studentForm.controls['nombre'].touched">
+          Campo requerido
+        </mat-error>
+        <mat-error *ngIf="studentForm.controls['nombre'].hasError('minlength') && studentForm.controls['nombre'].touched">
+          Debe tener al menos 3 caracteres.
+        </mat-error>
+        <mat-error *ngIf="studentForm.get('nombre')?.hasError('pattern')">
+          Solo se permiten letras y espacios.
+        </mat-error>
       </mat-form-field>
       
       <!--campo de apellidos-->
-      <mat-form-field class="w-full mb-3">
+      <mat-form-field class="w-full mb-2">
         <mat-label>Apellido(s)</mat-label>
         <input formControlName="apellidos" matInput required/>
-        <mat-error *ngIf="studentForm.controls['apellidos'].hasError('required') && studentForm.controls['apellidos'].touched">Campo requerido</mat-error>
-        <mat-error *ngIf="studentForm.controls['apellidos'].hasError('minlength') && studentForm.controls['apellidos'].touched">Debe tener al menos 3 caracteres.</mat-error>
+        <mat-error *ngIf="studentForm.controls['apellidos'].hasError('required') && studentForm.controls['apellidos'].touched">
+          Campo requerido
+        </mat-error>
+        <mat-error *ngIf="studentForm.controls['apellidos'].hasError('minlength') && studentForm.controls['apellidos'].touched">
+          Debe tener al menos 3 caracteres.
+        </mat-error>
+        <mat-error *ngIf="studentForm.get('apellidos')?.hasError('pattern')">
+          Solo se permiten letras y espacios.
+        </mat-error>
       </mat-form-field>
       
       <!--Selector de fecha nacimiento-->
-      <mat-form-field class="w-full mb-3">
+      <mat-form-field class="w-full mb-2">
         <mat-label>Fecha de nacimiento</mat-label>
         <input formControlName="fechaNacimiento" matInput [matDatepicker]="picker">
         <mat-hint>MM/DD/YYYY</mat-hint>
@@ -30,7 +44,7 @@
       </mat-form-field>
 
       <!--campo de celular-->
-      <mat-form-field class="w-full mb-3">
+      <mat-form-field class="w-full mb-2">
         <mat-label>Celular</mat-label>
         <input formControlName="celular" matInput required/>
         <mat-error *ngIf="studentForm.controls['celular'].hasError('required') && studentForm.controls['celular'].touched">Campo requerido</mat-error>
@@ -38,7 +52,7 @@
       </mat-form-field>
 
       <!--campo de direccion-->
-      <mat-form-field class="w-full mb-3">
+      <mat-form-field class="w-full mb-2">
         <mat-label>Direccion</mat-label>
         <input formControlName="direccion" matInput required/>
         <mat-error *ngIf="studentForm.controls['direccion'].hasError('required') && studentForm.controls['direccion'].touched">Campo requerido</mat-error>
@@ -46,7 +60,7 @@
       </mat-form-field>
 
       <!--campo de curso-->
-      <mat-form-field class="w-full mb-3">
+      <mat-form-field class="w-full mb-2">
         <mat-label>Curso</mat-label>
         <input formControlName="curso" matInput required/>
         <mat-error *ngIf="studentForm.controls['curso'].hasError('required') && studentForm.controls['curso'].touched">Campo requerido</mat-error>

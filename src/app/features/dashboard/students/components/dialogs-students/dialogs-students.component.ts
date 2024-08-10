@@ -17,9 +17,9 @@ export class DialogsStudentsComponent {
     @Inject(MAT_DIALOG_DATA) private editingStudent: students
   ) {
     this.studentForm = this.fb.group({
-      id: [{ value: editingStudent.id || null, disabled: true }, Validators.required],
-      nombre: [editingStudent.nombre || '', [Validators.required, Validators.minLength(3)]],
-      apellidos: [editingStudent.apellidos || '', [Validators.required, Validators.minLength(3)]],
+      id: [{ value: editingStudent.id || null, disabled: true }, Validators.required, ],
+      nombre: [editingStudent.nombre || '', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z\s]+$/)]],
+      apellidos: [editingStudent.apellidos || '', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z\s]+$/)]], 
       fechaNacimiento: [editingStudent.fechaNacimiento || '', Validators.required],
       celular: [editingStudent.celular || '', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
       direccion: [editingStudent.direccion || '', [Validators.required, Validators.maxLength(50)]],

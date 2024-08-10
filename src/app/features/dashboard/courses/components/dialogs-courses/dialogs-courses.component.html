@@ -2,10 +2,15 @@
     <h2 class="my-2" mat-dialog-title>Nombre del curso?</h2>
     <mat-dialog-content>
         <form [formGroup]="courseForm">
-            <mat-form-field class="w-full">
+            <mat-form-field class="w-full mb-2 pt-2">
             <mat-label>Nombres cortos, sin detalles extra</mat-label>
             <input formControlName="nombreCurso" matInput required/>
-            <mat-error>Campo requerido</mat-error>
+            <mat-error *ngIf="courseForm.controls['nombreCurso'].hasError('required') && courseForm.controls['nombreCurso'].touched">
+                Campo requerido
+            </mat-error>
+            <mat-error *ngIf="courseForm.controls['nombreCurso'].hasError('minlength') && courseForm.controls['nombreCurso'].touched">
+                Debe tener al menos 2 caracteres.
+              </mat-error>
             </mat-form-field>
     
             <!--Inicio Selector de fecha-->
