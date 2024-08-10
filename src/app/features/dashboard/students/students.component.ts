@@ -3,6 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogsStudentsComponent } from './components/dialogs-students/dialogs-students.component';
 import { students } from '../../../shared/models/students';
 import { StudentsService } from '../../../core/services/students.service';
+import { AuthService } from '../../../core/services/auth.service';
+import { User } from '../../../shared/models/users';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-students',
@@ -17,7 +20,11 @@ export class StudentsComponent {
   studentsDataSource: students[] = [];
   loadingInProcess = false;
 
-  constructor(private matDialog: MatDialog, private StudentsService: StudentsService) {}
+  autenticatedUser: Observable<User | null>
+  
+  constructor(private matDialog: MatDialog, private StudentsService: StudentsService, private authService: AuthService) {
+    this.autenticatedUser = this.authService.autenticatedUser;
+  }
 
   ngOnInit(): void {
     this.loadingStudents();

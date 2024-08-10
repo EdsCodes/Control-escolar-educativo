@@ -1,0 +1,13 @@
+<div *ngIf="student$ | async as student; else loading">
+    <h2>Detalles del Estudiante</h2>
+    <p><strong>ID:</strong> {{ student.id }}</p>
+    <p><strong>Nombre Completo:</strong> {{ student.nombre }} {{ student.apellidos }}</p>
+    <p><strong>Fecha de Nacimiento:</strong> {{ student.fechaNacimiento }}</p>
+    <p><strong>Celular:</strong> {{ student.celular }}</p>
+    <p><strong>Dirección:</strong> {{ student.direccion }}</p>
+    <p><strong>Curso:</strong> {{ student.curso }}</p>
+  </div>
+  
+  <ng-template #loading>
+    <p>Cargando detalles del estudiante...</p>
+  </ng-template>

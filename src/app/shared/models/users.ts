@@ -1,11 +1,7 @@
-export type UserRole = 'ADMIN' | 'EMPLOYEE';
+export type UserRole = 'ADMIN' | 'USER';
 
 export interface User {
   email: string;
   password: string;
-  role: UserRole;
-  id: string;
-  firstName: string;
-  lastName: string;
-  token: string;
+  role: UserRole;  
 }

@@ -3,6 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogsCoursesComponent } from './components/dialogs-courses/dialogs-courses.component';
 import { courses } from '../../../shared/models/courses';
 import { CoursesService } from '../../../core/services/courses.service';
+import { Observable } from 'rxjs';
+import { User } from '../../../shared/models/users';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-courses',
@@ -15,8 +18,12 @@ export class CoursesComponent implements OnInit {
   nextId: number = 6;
   coursesDataSource: courses[] = [];
   loadingInProcess = false;
+  autenticatedUser: Observable<User | null>
 
-  constructor(private matDialog: MatDialog, private coursesService: CoursesService) {}
+
+  constructor(private matDialog: MatDialog, private coursesService: CoursesService, private authService: AuthService) {
+    this.autenticatedUser = this.authService.autenticatedUser;
+  }
 
   ngOnInit(): void {
     this.loadingCourses();

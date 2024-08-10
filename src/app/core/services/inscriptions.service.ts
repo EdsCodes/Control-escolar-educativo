@@ -7,10 +7,10 @@ import { inscriptions } from '../../shared/models';
 })
 export class InscriptionsService {
   private MY_INSCRIPTIONSDATABASE: inscriptions[] = [
-    { inscriptionId: '1', studentId: '1', courseId: '5' },
-    { inscriptionId: '2', studentId: '3', courseId: '2' },
-    { inscriptionId: '3', studentId: '4', courseId: '3' },
-    { inscriptionId: '4', studentId: '6', courseId: '1' },
+    { inscriptionId: '1', studentId: '1', studentName: 'Josefa Poblado', courseId: '5', courseName: 'SQL' },
+    { inscriptionId: '2', studentId: '3', studentName:'John Hernandez', courseId: '2', courseName: 'Angular' },
+    { inscriptionId: '3', studentId: '4', studentName:'Fernando Casas', courseId: '3', courseName: 'Js' },
+    { inscriptionId: '4', studentId: '6', studentName:'Johanna Messi', courseId: '1', courseName: 'React' },
   ];
     
   getAllInscriptions(): Observable<inscriptions[]> {

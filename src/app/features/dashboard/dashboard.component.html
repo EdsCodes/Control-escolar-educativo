@@ -5,8 +5,8 @@
       <a mat-list-item routerLink="home" routerLinkActive="activeLink"><button mat-raised-button class="w-full">Inicio</button></a>
       <a mat-list-item routerLink="students" routerLinkActive="activeLink"><button mat-raised-button class="w-full">Alumnos</button></a>
       <a mat-list-item routerLink="courses" routerLinkActive="activeLink"><button mat-raised-button class="w-full">Cursos</button></a>
-      <a mat-list-item routerLink="inscriptions" routerLinkActive="activeLink"><button mat-raised-button class="w-full">Inscripciones</button></a>
-      <a mat-list-item routerLink="/auth" routerLinkActive="activeLink"><button mat-raised-button class="w-full">Cerrar Sesión</button></a>
+      <a *ngIf="(autenticatedUser | async)?.role === 'ADMIN'" mat-list-item routerLink="inscriptions" routerLinkActive="activeLink"><button mat-raised-button class="w-full">Inscripciones</button></a>
+      <a mat-list-item routerLink="/auth" (click)= logout()  routerLinkActivate="activeLink"><button mat-raised-button class="w-full">Cerrar Sesión</button></a>
     </mat-nav-list>
   </mat-drawer>
   <!--Fin del SideBar-->
@@ -20,6 +20,9 @@
       </button>
       <span TextSizeDirective class="dashboardTitle">Panel de control educativo Version 2.1.=>(segunda entrega, primera correcion) By Gonzalez</span>
       <span class="example-spacer"></span>
+      <div class="actualRole">
+        Perfil actual: {{ (autenticatedUser | async )?.role }}
+      </div>
     </mat-toolbar>
     <!--Fin del ToolBar-->
 

@@ -29,7 +29,6 @@ export class DialogsInscriptionsComponent {
   
   onSave(): void {
     if (this.inscriptionsForm.valid) {
-      console.log(this.inscriptionsForm.value);
       const formValue = this.inscriptionsForm.getRawValue();
       this.matDialogRef.close(formValue);
     } else {

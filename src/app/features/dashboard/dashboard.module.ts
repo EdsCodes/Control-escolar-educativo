@@ -24,7 +24,7 @@ import { SharedModule } from '../../shared/modules/shared-module/shared.module';
     MatIconModule,
     MatButtonModule,
     MatListModule,
-    SharedModule
+    SharedModule,
 ]
 })
 export class DashboardModule { }

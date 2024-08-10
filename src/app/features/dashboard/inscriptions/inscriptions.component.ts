@@ -12,8 +12,8 @@ import { Subject } from 'rxjs';
 })
 export class InscriptionsComponent {
 
-  displayedColumns: string[] = ['inscriptionId','studentId', 'courseId', 'actions'];
-  nextId: number = 6;
+  displayedColumns: string[] = ['inscriptionId','studentId', 'studentName', 'courseId', 'courseName', 'actions'];
+  nextId: number = 5;
   inscriptionsDataSource: inscriptions[] = [];
   loadingInProcess = false;
 
@@ -56,7 +56,7 @@ export class InscriptionsComponent {
     dialogRef.afterClosed().subscribe({
       next: (value) => {
         if (value) {
-          value.id = this.nextId.toString();
+          value.inscriptionId = this.nextId.toString();
           this.loadingInProcess = true
           this.inscriptionsService.addInscription(value).subscribe({
             next: (inscriptions) => {
@@ -106,10 +106,5 @@ export class InscriptionsComponent {
     }
   }
 
-  // addInscription(): void {
-  //   this.inscriptionsService.addInscription().subscribe({
-  //     next: (val) => (this.incriptions = val)
-  //   })
-  // }
-  
+   
 }

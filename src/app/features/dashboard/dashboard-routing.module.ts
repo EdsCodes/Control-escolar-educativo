@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { adminGuard } from '../../core/guards/admin.guard';
 
 const routes: Routes = [
     {
@@ -16,6 +17,7 @@ const routes: Routes = [
     },   
     {
       path: 'inscriptions',
+      canActivate: [adminGuard],
       loadChildren: () => import('./inscriptions/inscriptions.module').then((archiveReference) => archiveReference.InscriptionsModule),
     },
     {

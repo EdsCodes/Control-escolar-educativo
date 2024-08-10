@@ -5,12 +5,14 @@ import { NombreCompletoPipe } from '../../../shared/pipes/nombre-completo.pipe';
 import { DialogsStudentsComponent } from './components/dialogs-students/dialogs-students.component';
 import { StudentsComponent } from './students.component';
 import { SharedModule } from '../../../shared/modules/shared-module/shared.module';
+import { StudentsDetailComponent } from './detailedComponent/students-detail/students-detail.component';
 
 @NgModule({
   declarations: [
     StudentsComponent,
     DialogsStudentsComponent,
-    NombreCompletoPipe
+    NombreCompletoPipe,
+    StudentsDetailComponent
   ],
   exports: [StudentsComponent],
   imports: [

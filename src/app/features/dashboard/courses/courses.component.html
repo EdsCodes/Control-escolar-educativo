@@ -1,4 +1,4 @@
-<button (click)="openDialog()" class="flex: 0 1 auto;" mat-flat-button>
+<button *ngIf="(autenticatedUser | async)?.role === 'ADMIN'" (click)="openDialog()" class="flex: 0 1 auto;" mat-flat-button>
     <mat-icon>add</mat-icon>Nuevo curso
 </button>
 
@@ -35,10 +35,10 @@
         <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef> Acciones </th>
             <td mat-cell *matCellDef="let element">
-                <button mat-icon-button (click)="editCourse(element)">
+                <button *ngIf="(autenticatedUser | async)?.role === 'ADMIN'" mat-icon-button (click)="editCourse(element)">
                     <mat-icon>edit</mat-icon>
                 </button>
-                <button mat-icon-button (click)="deleteCourseById(element.idCurso)">
+                <button *ngIf="(autenticatedUser | async)?.role === 'ADMIN'" mat-icon-button (click)="deleteCourseById(element.idCurso)">
                     <mat-icon>delete</mat-icon>
                 </button>
                 <button mat-icon-button [routerLink]="element.idCurso">

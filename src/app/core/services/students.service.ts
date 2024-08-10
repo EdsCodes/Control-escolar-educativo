@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { students } from '../../shared/models/students';
-import { delay, Observable, of } from 'rxjs';
+import { delay, map, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -42,4 +42,9 @@ export class StudentsService {
     return this.getAllStudents();
   }
 
+  getStudentById(id: string): Observable<students | undefined> {
+    return this.getAllStudents().pipe(
+      map((allTheStudents) => allTheStudents.find((element) => element.id === id))
+    );
+  }
 }
