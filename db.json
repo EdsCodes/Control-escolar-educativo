@@ -68,7 +68,7 @@
       "apellidos": "Poblado",
       "fechaNacimiento": "1990-07-19",
       "celular": "3205904878",
-      "direccion": "Calle 1 Nº 10",
+      "direccion": "Calle 1 Nº 10-30",
       "curso": "React"
     },
     {
@@ -77,7 +77,7 @@
       "apellidos": "Cañas",
       "fechaNacimiento": "1983-12-31",
       "celular": "3508998877",
-      "direccion": "Calle 2 Nº 20",
+      "direccion": "Calle 2 Nº 20-03",
       "curso": "Angular"
     },
     {
@@ -88,6 +88,69 @@
       "celular": "3152615678",
       "direccion": "Calle 3 Nº 30",
       "curso": "Js"
+    },
+    {
+      "id": "4955",
+      "nombre": "Fernando",
+      "apellidos": "Casas",
+      "fechaNacimiento": "1997-09-14",
+      "celular": "3232104456",
+      "direccion": "Calle 4 Nº 40-15",
+      "curso": "React"
+    },
+    {
+      "id": "c4d5",
+      "nombre": "Andrea",
+      "apellidos": "Castaño",
+      "fechaNacimiento": "1994-09-27",
+      "celular": "3155810545",
+      "direccion": "Calle 5 Nº 50-21",
+      "curso": "Js"
+    },
+    {
+      "id": "63ff",
+      "nombre": "Johanna",
+      "apellidos": "Messi",
+      "fechaNacimiento": "2002-01-08",
+      "celular": "3108010669",
+      "direccion": "Calle 6 Nº 60-87",
+      "curso": "Angular"
+    },
+    {
+      "id": "fea0",
+      "nombre": "Cristiano",
+      "apellidos": "Paredes",
+      "fechaNacimiento": "2001-10-10",
+      "celular": "3193010747",
+      "direccion": "Calle 7 Nº 70-02",
+      "curso": "Angular"
+    },
+    {
+      "id": "d008",
+      "nombre": "Robin",
+      "apellidos": "Del Aguila",
+      "fechaNacimiento": "2003-03-31",
+      "celular": "3155010819",
+      "direccion": "Calle 8 Nº 80-50",
+      "curso": "React"
+    },
+    {
+      "id": "e052",
+      "nombre": "Lucy",
+      "apellidos": "Martinez",
+      "fechaNacimiento": "1993-02-22",
+      "celular": "3169010973",
+      "direccion": "Calle 9 Nº 90-07",
+      "curso": "Js"
+    },
+    {
+      "id": "b5df",
+      "nombre": "Lautaro",
+      "apellidos": "Ramirez",
+      "fechaNacimiento": "2001-12-31",
+      "celular": "3225971011",
+      "direccion": "Calle 10 Nº 10-18",
+      "curso": "Angular"
     }
   ],
   "inscriptions": []
