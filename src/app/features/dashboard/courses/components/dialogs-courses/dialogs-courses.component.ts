@@ -17,17 +17,18 @@ export class DialogsCoursesComponent {
     @Inject(MAT_DIALOG_DATA) private editingCourse: courses
   ) {
     this.courseForm = this.fb.group({
-      idCurso: [{ value: editingCourse.idCurso || null, disabled: true }, Validators.required],
-      nombreCurso: [editingCourse.nombreCurso || '', [Validators.required, Validators.minLength(2)]],
+      id: [{ value: (editingCourse && editingCourse.id) || null, disabled: true }, Validators.required],
+      nombreCurso: [editingCourse?.nombreCurso || '', [Validators.required, Validators.minLength(2)]],
       dateRange: this.fb.group({
-        fechaInicioCurso: [editingCourse.fechaInicioCurso || '', Validators.required],
-        fechaFinCurso: [editingCourse.fechaFinCurso || '', Validators.required]
+        fechaInicioCurso: [editingCourse?.fechaInicioCurso || '', Validators.required],
+        fechaFinCurso: [editingCourse?.fechaFinCurso || '', Validators.required]
       })
     });
+  
 
     if (this.editingCourse) {
       this.courseForm.patchValue({
-        idCurso: this.editingCourse.idCurso,
+        id: this.editingCourse.id,
         nombreCurso: this.editingCourse.nombreCurso,
         dateRange: {
           fechaInicioCurso: new Date(this.editingCourse.fechaInicioCurso),
@@ -40,8 +41,9 @@ export class DialogsCoursesComponent {
   onSave(): void {
     if (this.courseForm.valid) {
       const formValue = {
-        ...this.courseForm.getRawValue(),
-        ...this.courseForm.get('dateRange')?.value
+        ...this.courseForm.value,
+        fechaInicioCurso: this.courseForm.get('dateRange')?.get('fechaInicioCurso')?.value,
+        fechaFinCurso: this.courseForm.get('dateRange')?.get('fechaFinCurso')?.value
       };
       this.matDialogRef.close(formValue);
     } else {

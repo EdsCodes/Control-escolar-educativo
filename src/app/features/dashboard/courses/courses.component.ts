@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogsCoursesComponent } from './components/dialogs-courses/dialogs-courses.component';
 import { courses } from '../../../shared/models/courses';
 import { CoursesService } from '../../../core/services/courses.service';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { User } from '../../../shared/models/users';
 import { AuthService } from '../../../core/services/auth.service';
 
@@ -13,13 +13,11 @@ import { AuthService } from '../../../core/services/auth.service';
   styleUrls: ['./courses.component.scss']
 })
 export class CoursesComponent implements OnInit {
-
-  displayedColumns: string[] = ['idCurso','nombreCurso', 'fechaInicioCurso', 'fechaFinCurso',  'actions'];
-  nextId: number = 6;
+  
   coursesDataSource: courses[] = [];
   loadingInProcess = false;
+  displayedColumns: string[] = ['id', 'nombreCurso', 'fechaInicioCurso', 'fechaFinCurso', 'actions'];
   autenticatedUser: Observable<User | null>
-
 
   constructor(private matDialog: MatDialog, private coursesService: CoursesService, private authService: AuthService) {
     this.autenticatedUser = this.authService.autenticatedUser;
@@ -45,19 +43,15 @@ export class CoursesComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.matDialog.open(DialogsCoursesComponent, {
-      data: { idCurso: this.nextId.toString() }
-    });
+    const dialogRef = this.matDialog.open(DialogsCoursesComponent, {});
 
     dialogRef.afterClosed().subscribe({
       next: (value) => {
         if (value) {
-          value.idCurso = this.nextId.toString();
-          this.loadingInProcess = true
+          this.loadingInProcess = true;
           this.coursesService.addCourses(value).subscribe({
-            next: (courses) => {
-              this.coursesDataSource = [...courses];
-              this.nextId++;
+            next: (course: courses) => {
+              this.coursesDataSource.push(course);
             },
             error: (err) => {
               console.error('Error al agregar el curso', err);
@@ -78,9 +72,13 @@ export class CoursesComponent implements OnInit {
     .subscribe({
       next: (value) => {
         if (!!value) {
-          this.coursesService.editCoursesById(editingCourse.idCurso, value).subscribe({
-            next: (courses) => {
-              this.coursesDataSource = [...courses];
+          this.coursesService.editCoursesById(editingCourse.id, value)
+          .subscribe({
+            next: (course) => {
+              this.coursesDataSource = this.coursesDataSource.map(c => c.id === course.id ? course : c);
+            },
+            error: (err) => {
+              console.error('Error al editar el curso', err);
             }
           });
         }
@@ -88,17 +86,20 @@ export class CoursesComponent implements OnInit {
     });
   }
 
-  deleteCourseById(idCurso: string) {
-    if(confirm('Confirma borrado de curso?')){
-      this.loadingInProcess = true;
-      this.coursesService.deleteCourseById(idCurso).subscribe({
-        next: (courses) => {
-          this.coursesDataSource = [...courses]
-        },
-        complete: () => {
-          this.loadingInProcess = false;
-        },
-      });
+  deleteCourse(id: string) {
+    if (confirm('Confirma borrado de curso?')) {
+      this.coursesService.deleteCourseById(id)
+        .pipe(
+          tap(() => this.loadingCourses())
+        )
+        .subscribe({
+          error: (err) => {
+            console.error('Error al borrar el curso', err);
+          },
+          complete: () => {
+            alert('curso borrado correctamente');
+          }
+        });
     }
   }
 }

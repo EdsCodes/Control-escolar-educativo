@@ -13,6 +13,6 @@ export class CourseDetailComponent {
   course$: Observable<courses | undefined>;
 
   constructor(private coursesService: CoursesService, private activatedRoute: ActivatedRoute) {
-    this.course$ = this.coursesService.getCourseById(this.activatedRoute.snapshot.params['idCurso']);
+    this.course$ = this.coursesService.getCourseById(this.activatedRoute.snapshot.params['id']);
   }
 }

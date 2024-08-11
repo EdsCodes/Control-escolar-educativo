@@ -1,6 +1,6 @@
 <div *ngIf="course$ | async as course; else loading">
     <h2>Detalles del Curso</h2>
-    <p><strong>ID del Curso:</strong> {{ course.idCurso }}</p>
+    <p><strong>ID del Curso:</strong> {{ course.id }}</p>
     <p><strong>Nombre del Curso:</strong> {{ course.nombreCurso }}</p>
     <p><strong>Fecha de Inicio:</strong> {{ course.fechaInicioCurso }}</p>
     <p><strong>Fecha de Finalización:</strong> {{ course.fechaFinCurso }}</p>

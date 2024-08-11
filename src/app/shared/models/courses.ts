@@ -1,5 +1,5 @@
 export interface courses {
-    idCurso: string;
+    id: string;
     nombreCurso: string;
     fechaInicioCurso: string;
     fechaFinCurso: string;
