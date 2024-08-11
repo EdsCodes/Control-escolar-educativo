@@ -5,7 +5,7 @@ import { students } from '../../../shared/models/students';
 import { StudentsService } from '../../../core/services/students.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { User } from '../../../shared/models/users';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Component({
   selector: 'app-students',
@@ -14,12 +14,10 @@ import { Observable } from 'rxjs';
 })
 
 export class StudentsComponent {
-
-  displayedColumns: string[] = ['id', 'nombreCompleto', 'fechaNacimiento', 'celular', 'direccion', 'curso', 'actions'];
-  nextId: number = 11;
+  
   studentsDataSource: students[] = [];
   loadingInProcess = false;
-
+  displayedColumns: string[] = ['id', 'nombreCompleto', 'fechaNacimiento', 'celular', 'direccion', 'curso', 'actions'];
   autenticatedUser: Observable<User | null>
   
   constructor(private matDialog: MatDialog, private StudentsService: StudentsService, private authService: AuthService) {
@@ -46,19 +44,15 @@ export class StudentsComponent {
   }
 
   openDialog(): void {
-    const dialogRef = this.matDialog.open(DialogsStudentsComponent, {
-      data: { id: this.nextId.toString() }
-    });
+    const dialogRef = this.matDialog.open(DialogsStudentsComponent, {});
 
     dialogRef.afterClosed().subscribe({
       next: (value) => {
         if (value) {
-          value.id = this.nextId.toString();
           this.loadingInProcess = true
           this.StudentsService.addStudents(value).subscribe({
-            next: (students) => {
-              this.studentsDataSource = [...students];
-              this.nextId++;
+            next: (students: students) => {
+              this.studentsDataSource.push(students);
             },
             error: (err) => {
               console.error('Error al agregar el estudiante', err);
@@ -81,7 +75,10 @@ export class StudentsComponent {
         if (!!value) {
           this.StudentsService.editStudentsById(editingStudent.id, value).subscribe({
             next: (students) => {
-              this.studentsDataSource = [...students];
+              this.studentsDataSource = this.studentsDataSource.map(c => c.id === students.id ? students : c);
+            },
+            error: (err) => {
+              console.error('Error al editar el estudiante', err)
             }
           });
         }
@@ -89,17 +86,22 @@ export class StudentsComponent {
     });
   }
 
-    deleteStudentById(id: string) {
-      if(confirm('Confirma borrado de estudiante?')){
-        this.loadingInProcess = true;
-        this.StudentsService.deleteStudentsById(id).subscribe({
-          next: (students) => {
-            this.studentsDataSource = [...students]
-          },
-          complete: () => {
-            this.loadingInProcess = false;
-          },
-        });
-      }
+  deleteStudentById(id: string) {
+    this.loadingInProcess = true;
+    if(confirm('Confirma borrado de estudiante?')) {
+      this.StudentsService.deleteStudentsById(id)
+      .pipe(
+        tap(() => this.loadingStudents())
+      )
+      .subscribe({
+        error: (err) => {
+          console.error('Error al borrar el estudiante', err);
+        },
+        complete: () => {
+          this.loadingInProcess = false;
+          alert('curso borrado correctamente');
+        },
+      });
     }
+  }
 }

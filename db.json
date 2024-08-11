@@ -81,15 +81,6 @@
       "curso": "Angular"
     },
     {
-      "id": "b1a4",
-      "nombre": "John",
-      "apellidos": "Hernandez",
-      "fechaNacimiento": "2002-05-31",
-      "celular": "3152615678",
-      "direccion": "Calle 3 Nº 30",
-      "curso": "Js"
-    },
-    {
       "id": "4955",
       "nombre": "Fernando",
       "apellidos": "Casas",

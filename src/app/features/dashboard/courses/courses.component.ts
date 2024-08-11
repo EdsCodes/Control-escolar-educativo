@@ -87,19 +87,21 @@ export class CoursesComponent implements OnInit {
   }
 
   deleteCourse(id: string) {
+    this.loadingInProcess = true;
     if (confirm('Confirma borrado de curso?')) {
       this.coursesService.deleteCourseById(id)
-        .pipe(
-          tap(() => this.loadingCourses())
-        )
-        .subscribe({
-          error: (err) => {
-            console.error('Error al borrar el curso', err);
-          },
-          complete: () => {
-            alert('curso borrado correctamente');
-          }
-        });
+      .pipe(
+        tap(() => this.loadingCourses())
+      )
+      .subscribe({
+        error: (err) => {
+          console.error('Error al borrar el curso', err);
+        },
+        complete: () => {
+          this.loadingInProcess = false;
+          alert('curso borrado correctamente');
+        }
+      });
     }
   }
 }
