@@ -41,7 +41,7 @@
                 <button *ngIf="(autenticatedUser | async)?.role === 'ADMIN'" mat-icon-button (click)="deleteCourse(element.id)">
                     <mat-icon>delete</mat-icon>
                 </button>
-                <button mat-icon-button [routerLink]="element.idCurso">
+                <button mat-icon-button [routerLink]="element.id">
                     <mat-icon>visibility</mat-icon>
                 </button>
             </td>
