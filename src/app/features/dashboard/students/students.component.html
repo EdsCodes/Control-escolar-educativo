@@ -50,7 +50,7 @@
                 <button *ngIf="(autenticatedUser | async)?.role === 'ADMIN'" mat-icon-button (click)="editStudent(element)">
                     <mat-icon>edit</mat-icon>
                 </button>
-                <button *ngIf="(autenticatedUser | async)?.role === 'ADMIN'" mat-icon-button (click)="deleteStudentById(element.id)">
+                <button *ngIf="(autenticatedUser | async)?.role === 'ADMIN'" mat-icon-button (click)="deleteStudent(element.id)">
                     <mat-icon>delete</mat-icon>
                 </button>
                 <button mat-icon-button [routerLink]="element.id">

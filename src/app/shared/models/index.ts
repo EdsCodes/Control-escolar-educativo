@@ -1,5 +1,6 @@
 export interface inscriptions {
-    inscriptionId: string;
+    id(id: any, value: any): unknown;
+    Id: string;
     studentId: string;
     studentName: string;
     courseId: string;

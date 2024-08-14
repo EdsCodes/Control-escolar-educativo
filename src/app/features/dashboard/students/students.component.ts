@@ -86,7 +86,7 @@ export class StudentsComponent {
     });
   }
 
-  deleteStudentById(id: string) {
+  deleteStudent(id: string) {
     this.loadingInProcess = true;
     if(confirm('Confirma borrado de estudiante?')) {
       this.StudentsService.deleteStudentsById(id)

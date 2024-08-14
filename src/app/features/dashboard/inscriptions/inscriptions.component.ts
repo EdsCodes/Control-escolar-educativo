@@ -1,32 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { InscriptionsService } from '../../../core/services/inscriptions.service';
 import { inscriptions } from '../../../shared/models';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogsInscriptionsComponent } from './components/dialogs-inscriptions/dialogs-inscriptions.component';
-import { Subject } from 'rxjs';
+import { Observable, tap } from 'rxjs';
+import { AuthService } from '../../../core/services/auth.service';
+import { User } from '../../../shared/models/users';
 
 @Component({
   selector: 'app-inscriptions',
   templateUrl: './inscriptions.component.html',
   styleUrls: ['./inscriptions.component.scss']
 })
-export class InscriptionsComponent {
-
-  displayedColumns: string[] = ['inscriptionId','studentId', 'studentName', 'courseId', 'courseName', 'actions'];
-  nextId: number = 5;
+export class InscriptionsComponent implements OnInit {
+  
   inscriptionsDataSource: inscriptions[] = [];
   loadingInProcess = false;
+  displayedColumns: string[] = ['id', 'studentId', 'studentName', 'courseId', 'courseName', 'actions'];
+  autenticatedUser: Observable<User | null>
 
-  mySubject$ = new Subject();
-
-  constructor(private matDialog: MatDialog, private inscriptionsService: InscriptionsService) {
-
-    this.mySubject$.next(1);
-
-    this.inscriptionsService.getAllInscriptions().subscribe({
-      next: (val) => (this.inscriptionsDataSource = val),
-      complete: () => (this.loadingInProcess = false),
-    });
+  constructor(
+    private matDialog: MatDialog,
+    private inscriptionsService: InscriptionsService,
+    private authService: AuthService
+  ) {
+    this.autenticatedUser = this.authService.autenticatedUser;
   }
 
   ngOnInit(): void {
@@ -49,22 +47,18 @@ export class InscriptionsComponent {
   }
 
   openDialog(): void {
-    const dialogRef = this.matDialog.open(DialogsInscriptionsComponent, {
-      data: { id: this.nextId.toString() }
-    });
+    const dialogRef = this.matDialog.open(DialogsInscriptionsComponent, {});
 
     dialogRef.afterClosed().subscribe({
       next: (value) => {
         if (value) {
-          value.inscriptionId = this.nextId.toString();
-          this.loadingInProcess = true
+          this.loadingInProcess = true;
           this.inscriptionsService.addInscription(value).subscribe({
-            next: (inscriptions) => {
-              this.inscriptionsDataSource = [...inscriptions];
-              this.nextId++;
+            next: (inscription) => {
+              this.inscriptionsDataSource.push(inscription);
             },
             error: (err) => {
-              console.error('Error al agregar el estudiante', err);
+              console.error('Error al agregar la inscripción', err);
             },
             complete: () => {
               this.loadingInProcess = false;
@@ -84,27 +78,29 @@ export class InscriptionsComponent {
         if (!!value) {
           this.inscriptionsService.editInscriptonById(editingInscription.studentId, value).subscribe({
             next: (inscriptions) => {
-              this.inscriptionsDataSource = [...inscriptions];
-            }
+              this.inscriptionsDataSource = this.inscriptionsDataSource.map(c => c.id === inscriptions.id ? inscriptions : c);            }
           });
         }
       }
     });
   }
 
-  deleteInscriptionById(inscriptionId: string) {
-    if(confirm('Confirma borrado de Inscripcion?')){
-      this.loadingInProcess = true;
-      this.inscriptionsService.deleteInscriptionById(inscriptionId).subscribe({
-        next: (inscriptions) => {
-          this.inscriptionsDataSource = [...inscriptions]
-        },
-        complete: () => {
-          this.loadingInProcess = false;
-        },
-      });
+  deleteInscriptionById(id: string) {
+    this.loadingInProcess = true;
+    if (confirm('Confirma borrado de inscripción?')) {
+      this.inscriptionsService.deleteInscriptionById(id)
+        .pipe(
+          tap(() => this.loadingInscriptions())
+        )
+        .subscribe({
+          error: (err) => {
+            console.error('Error al borrar la inscripción', err);
+          },
+          complete: () => {
+            alert('Inscripción borrada correctamente');
+            this.loadingInProcess = false;
+          }
+        });
     }
   }
-
-   
 }

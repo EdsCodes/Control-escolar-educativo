@@ -59,12 +59,22 @@
       },
       "fechaInicioCurso": "2025-03-03T05:00:00.000Z",
       "fechaFinCurso": "2025-07-31T05:00:00.000Z"
+    },
+    {
+      "nombreCurso": "Photoshop",
+      "dateRange": {
+        "fechaInicioCurso": "2025-12-31T05:00:00.000Z",
+        "fechaFinCurso": "2026-04-30T05:00:00.000Z"
+      },
+      "fechaInicioCurso": "2025-12-31T05:00:00.000Z",
+      "fechaFinCurso": "2026-04-30T05:00:00.000Z",
+      "id": "ea8c"
     }
   ],
   "students": [
     {
       "id": "db6c",
-      "nombre": "Josefa",
+      "nombre": "Josefina",
       "apellidos": "Poblado",
       "fechaNacimiento": "1990-07-19",
       "celular": "3205904878",
@@ -108,41 +118,46 @@
       "curso": "Angular"
     },
     {
-      "id": "fea0",
-      "nombre": "Cristiano",
-      "apellidos": "Paredes",
-      "fechaNacimiento": "2001-10-10",
-      "celular": "3193010747",
-      "direccion": "Calle 7 Nº 70-02",
-      "curso": "Angular"
-    },
-    {
       "id": "d008",
       "nombre": "Robin",
-      "apellidos": "Del Aguila",
+      "apellidos": "Delgado",
       "fechaNacimiento": "2003-03-31",
       "celular": "3155010819",
-      "direccion": "Calle 8 Nº 80-50",
+      "direccion": "Calle 8 Nº 80-58",
       "curso": "React"
     },
     {
-      "id": "e052",
-      "nombre": "Lucy",
-      "apellidos": "Martinez",
-      "fechaNacimiento": "1993-02-22",
-      "celular": "3169010973",
-      "direccion": "Calle 9 Nº 90-07",
-      "curso": "Js"
-    },
-    {
-      "id": "b5df",
-      "nombre": "Lautaro",
-      "apellidos": "Ramirez",
-      "fechaNacimiento": "2001-12-31",
-      "celular": "3225971011",
-      "direccion": "Calle 10 Nº 10-18",
-      "curso": "Angular"
+      "Id": null,
+      "nombre": "Adolfo ",
+      "apellidos": "Jimenez",
+      "fechaNacimiento": "2001-10-02T05:00:00.000Z",
+      "celular": "3519703465",
+      "direccion": "Calle 45 9-79",
+      "curso": "SQL",
+      "id": "0be7"
     }
   ],
-  "inscriptions": []
+  "inscriptions": [
+    {
+      "id": "9b90",
+      "studentId": "1",
+      "studentName": "Josefa Poblado",
+      "courseId": "5",
+      "courseName": "SQL"
+    },
+    {
+      "id": "60ec",
+      "studentId": "3",
+      "studentName": "John Hernandez",
+      "courseId": "2",
+      "courseName": "Angular"
+    },
+    {
+      "id": "8eed",
+      "studentId": "4",
+      "studentName": "Fernando Casas",
+      "courseId": "3",
+      "courseName": "Js"
+    }
+  ]
 }

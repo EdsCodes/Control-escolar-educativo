@@ -7,9 +7,9 @@
 }@else {
     <table mat-table [dataSource]="inscriptionsDataSource" class="mat-elevation-z8">
         <!-- Inscription Id Column -->
-        <ng-container matColumnDef="inscriptionId">
+        <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef> id Inscripcion </th>
-            <td mat-cell *matCellDef="let element"> {{element.inscriptionId}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
         </ng-container>
 
         <!-- studentId Column -->
@@ -43,7 +43,7 @@
                 <button mat-icon-button (click)="editInscription(element)">
                     <mat-icon>edit</mat-icon>
                 </button>
-                <button mat-icon-button (click)="deleteInscriptionById(element.inscriptionId)">
+                <button mat-icon-button (click)="deleteInscriptionById(element.id)">
                     <mat-icon>delete</mat-icon>
                 </button>
             </td>

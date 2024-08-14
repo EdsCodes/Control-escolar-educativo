@@ -14,16 +14,16 @@ export class DialogsInscriptionsComponent {
   constructor(
     private fb: FormBuilder, 
     private matDialogRef: MatDialogRef<DialogsInscriptionsComponent>,
-    @Inject(MAT_DIALOG_DATA) private editingInscriptions: inscriptions
+    @Inject(MAT_DIALOG_DATA) private editingInscriptions: inscriptions | null
   ) {
     this.inscriptionsForm = this.fb.group({
-      inscriptionId: [{ value: editingInscriptions.inscriptionId || null, disabled: true }, Validators.required],
-      studentId: [editingInscriptions.studentId || '', Validators.required],
-      courseId: [editingInscriptions.courseId || '', Validators.required],
+      Id: [{ value: editingInscriptions?.id || null, disabled: true }, Validators.required],
+      studentId: [editingInscriptions?.studentId || '', Validators.required],
+      courseId: [editingInscriptions?.courseId || '', Validators.required],
     });
-
-    if (this.editingInscriptions) {
-      this.inscriptionsForm.patchValue(this.editingInscriptions);
+  
+    if (editingInscriptions) {
+      this.inscriptionsForm.patchValue(editingInscriptions);
     }
   }
   

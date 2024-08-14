@@ -12,6 +12,7 @@ import { AuthService } from '../../../core/services/auth.service';
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.scss']
 })
+
 export class CoursesComponent implements OnInit {
   
   coursesDataSource: courses[] = [];
@@ -98,8 +99,8 @@ export class CoursesComponent implements OnInit {
           console.error('Error al borrar el curso', err);
         },
         complete: () => {
-          this.loadingInProcess = false;
           alert('curso borrado correctamente');
+          this.loadingInProcess = false;
         }
       });
     }

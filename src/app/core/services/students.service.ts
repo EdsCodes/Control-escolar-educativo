@@ -8,7 +8,7 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class StudentsService {
-  
+
   constructor(private httpclient: HttpClient) {}
 
   getAllStudents(): Observable<students[]> {
@@ -16,10 +16,11 @@ export class StudentsService {
   }
 
   addStudents(student: students): Observable<students>{
-    return this.httpclient.post<students>(`${environment.apiUrl}/students`, student);  }
-  
-  deleteStudentsById(id: string): Observable<students>{
-    return this.httpclient.delete<students>(`${environment.apiUrl}/students/${id}`)
+    return this.httpclient.post<students>(`${environment.apiUrl}/students`, student);  
+  }
+
+  deleteStudentsById(id: string): Observable<void>{
+    return this.httpclient.delete<void>(`${environment.apiUrl}/students/${id}`);
   }
 
   editStudentsById(id: string, update: students): Observable<students> {

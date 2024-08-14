@@ -17,13 +17,13 @@ export class DialogsStudentsComponent {
     @Inject(MAT_DIALOG_DATA) private editingStudent: students
   ) {
     this.studentForm = this.fb.group({
-      id: [{ value: editingStudent.id || null, disabled: true }, Validators.required, ],
-      nombre: [editingStudent.nombre || '', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z\s]+$/)]],
-      apellidos: [editingStudent.apellidos || '', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z\s]+$/)]], 
-      fechaNacimiento: [editingStudent.fechaNacimiento || '', Validators.required],
-      celular: [editingStudent.celular || '', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
-      direccion: [editingStudent.direccion || '', [Validators.required, Validators.maxLength(50)]],
-      curso: [editingStudent.curso || '', Validators.required]
+      Id: [{ value: (editingStudent && editingStudent.id) || null, disabled: true }, Validators.required],
+      nombre: [editingStudent?.nombre || '', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z\s]+$/)]],
+      apellidos: [editingStudent?.apellidos || '', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z\s]+$/)]], 
+      fechaNacimiento: [editingStudent?.fechaNacimiento || '', Validators.required],
+      celular: [editingStudent?.celular || '', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      direccion: [editingStudent?.direccion || '', [Validators.required, Validators.maxLength(50)]],
+      curso: [editingStudent?.curso || '', Validators.required]
     });
 
     if (this.editingStudent) {
@@ -33,8 +33,7 @@ export class DialogsStudentsComponent {
 
   onSave(): void {
     if (this.studentForm.valid) {
-      console.log(this.studentForm.value);
-      const formValue = this.studentForm.getRawValue();
+      const formValue = this.studentForm.getRawValue(); 
       this.matDialogRef.close(formValue);
     } else {
       this.markFormGroupTouched(this.studentForm);
