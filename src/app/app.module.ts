@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -9,6 +9,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/modules/shared-module/shared.module';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { MatProgressBar } from '@angular/material/progress-bar';
 
 
 @NgModule({
@@ -21,12 +22,14 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
     AppRoutingModule,
     CoreModule,
     SharedModule,
+    MatProgressBar
   ],
   providers: [
     provideAnimationsAsync(),
     provideNativeDateAdapter(),
     provideHttpClient(withFetch()),
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

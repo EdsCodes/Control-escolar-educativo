@@ -6,6 +6,7 @@ import { DialogsStudentsComponent } from './components/dialogs-students/dialogs-
 import { StudentsComponent } from './students.component';
 import { SharedModule } from '../../../shared/modules/shared-module/shared.module';
 import { StudentsDetailComponent } from './detailedComponent/students-detail/students-detail.component';
+import { MatProgressBar } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { StudentsDetailComponent } from './detailedComponent/students-detail/stu
   imports: [
     CommonModule,
     StudentsRoutingModule,
-    SharedModule
+    SharedModule,
+    MatProgressBar
   ]
 })
 export class StudentsModule { }
