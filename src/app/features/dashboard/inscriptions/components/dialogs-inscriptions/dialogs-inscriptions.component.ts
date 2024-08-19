@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { inscriptions } from '../../../../../shared/models/index';
+import { NotificationService } from '../../../../../core/services/notifications.service';
 
 @Component({
   selector: 'app-dialogs-inscriptions',
@@ -14,6 +15,7 @@ export class DialogsInscriptionsComponent {
   constructor(
     private fb: FormBuilder, 
     private matDialogRef: MatDialogRef<DialogsInscriptionsComponent>,
+    private notifier: NotificationService,
     @Inject(MAT_DIALOG_DATA) private editingInscriptions: inscriptions | null
   ) {
     this.inscriptionsForm = this.fb.group({
@@ -33,7 +35,7 @@ export class DialogsInscriptionsComponent {
       this.matDialogRef.close(formValue);
     } else {
       this.markFormGroupTouched(this.inscriptionsForm);
-      alert("Por favor, introduzca datos válidos.");
+      this.notifier.showNotification('Por favor, introduzca datos válidos.');
     }
   }
 

@@ -17,7 +17,7 @@ const routes: Routes = [
     },   
     {
       path: 'inscriptions',
-      canActivate: [adminGuard],
+      // canActivate: [adminGuard],
       loadChildren: () => import('./inscriptions/inscriptions.module').then((archiveReference) => archiveReference.InscriptionsModule),
     },
     {

@@ -17,9 +17,8 @@ export class LoginComponent {
 
   constructor(private authService: AuthService, private fb: FormBuilder) {
     this.loginForm = this.fb.group({
-      email: ['test@user.com', [Validators.required, Validators.email]],
-      password: ['Kioas#dsd98789**', [Validators.required, Validators.minLength(5)]],
-      role: ['ADMIN', [Validators.required]],
+      email: ['johncodes@gmail.com', [Validators.required, Validators.email]],
+      password: ['kalemi123321*', [Validators.required, Validators.minLength(5)]],
     });
   }
 
@@ -27,7 +26,11 @@ export class LoginComponent {
     if(this.loginForm.invalid){
       alert('Por favor verifique el formulario, no es válido')
     } else {
-      this.authService.login();
+      const data = {
+        email: this.loginForm.get('email')?.value,
+        password: this.loginForm.get('password')?.value,
+      };
+      this.authService.login(data);
     }
   }
 }

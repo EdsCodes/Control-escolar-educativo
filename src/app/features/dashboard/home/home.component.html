@@ -8,7 +8,7 @@
         Aquí puedes gestionar estudiantes, cursos, inscripciones, ver estadísticas de estos (próximamente) y más
       </p>
       <p class="m-3" *ngIf="(autenticatedUser | async)?.role === 'USER'">
-        Aquí puedes consultar info referente a estudiantes y cursos
+        Aquí puedes consultar y modificar info referente a estudiantes y cursos y agregar o eliminar usuarios e inscripciones de alumnos a los cursos.
       </p>
     </mat-card-content>
   </mat-card>
@@ -41,7 +41,7 @@
       </mat-card-content>
     </div>
     
-    <div *ngIf="(autenticatedUser | async)?.role === 'ADMIN'" class="homeLink-card" (click)="navigateTo('inscriptions')">
+    <div class="homeLink-card" (click)="navigateTo('inscriptions')">
       <mat-card-header>
         <mat-card-title>Inscripciones</mat-card-title>
       </mat-card-header>

@@ -5,7 +5,7 @@
       <a mat-list-item routerLink="home" routerLinkActive="activeLink"><button mat-raised-button class="w-full">Inicio</button></a>
       <a mat-list-item routerLink="students" routerLinkActive="activeLink"><button mat-raised-button class="w-full">Alumnos</button></a>
       <a mat-list-item routerLink="courses" routerLinkActive="activeLink"><button mat-raised-button class="w-full">Cursos</button></a>
-      <a *ngIf="(autenticatedUser | async)?.role === 'ADMIN'" mat-list-item routerLink="inscriptions" routerLinkActive="activeLink"><button mat-raised-button class="w-full">Inscripciones</button></a>
+      <a mat-list-item routerLink="inscriptions" routerLinkActive="activeLink"><button mat-raised-button class="w-full">Inscripciones</button></a>
       <a mat-list-item routerLink="/auth" (click)= logout()  routerLinkActivate="activeLink"><button mat-raised-button class="w-full">Cerrar Sesión</button></a>
     </mat-nav-list>
   </mat-drawer>
@@ -18,10 +18,17 @@
       <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" type="button" (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-      <span TextSizeDirective class="dashboardTitle">Panel de control educativo Version 3.1.=>3ra entrega, 1ra correccion) By Gonzalez</span>
+      <span TextSizeDirective class="dashboardTitle">Panel de control educativo Version 4.0. 4ta entrega, trab final - By Gonzalez</span>
       <span class="example-spacer"></span>
       <div class="actualRole text-sm font-medium">
-        Perfil actual: {{ (autenticatedUser | async )?.role }}
+        <div class="flex flex-column align-items-end">
+          <div *ngIf="autenticatedUser | async as user">
+            {{user.firstName + ' ' + user.lastName}}
+          </div>
+          <div>
+            Perfil actual: {{ (autenticatedUser | async)?.role }}
+          </div>
+        </div>
       </div>
     </mat-toolbar>
     <!--Fin del ToolBar-->
@@ -32,6 +39,6 @@
         <router-outlet />
       </div>
     </main>
-    <!--Fin de Courses-->
+    <!--Fin de Students, courses o Inscriptions-->
   </div>
 </mat-drawer-container>

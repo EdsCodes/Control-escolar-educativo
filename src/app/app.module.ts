@@ -29,7 +29,6 @@ import { MatProgressBar } from '@angular/material/progress-bar';
     provideNativeDateAdapter(),
     provideHttpClient(withFetch()),
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

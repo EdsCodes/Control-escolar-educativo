@@ -27,7 +27,6 @@ import { MatCardModule } from '@angular/material/card';
     ReactiveFormsModule
   ],
   providers: [
-    AuthService,
   ]
 }) 
 

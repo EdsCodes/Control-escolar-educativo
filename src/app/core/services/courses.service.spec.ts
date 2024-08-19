@@ -1,8 +1,9 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { CoursesService } from './courses.service';
 import { courses } from '../../shared/models/courses';
 import { environment } from '../../../environments/environment.development';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('Prueba del servicio CoursesService', () => {
   let service: CoursesService;
@@ -11,8 +12,10 @@ describe('Prueba del servicio CoursesService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      providers: [CoursesService],
+      providers: [
+        CoursesService,
+        provideHttpClient(), 
+        provideHttpClientTesting(),      ],
     });
     service = TestBed.inject(CoursesService);
     httpMock = TestBed.inject(HttpTestingController);
@@ -23,7 +26,9 @@ describe('Prueba del servicio CoursesService', () => {
   });
 
   it('Prueba al obtener los cursos de la RestApi', () => {
-    const mockCourses: courses[] = [{ id: '1', nombreCurso: 'Angular', fechaInicioCurso: '2023-01-01', fechaFinCurso: '2023-06-01' }];
+    const mockCourses: courses[] = [
+      { id: '1', nombreCurso: 'Angular', fechaInicioCurso: '2023-01-01', fechaFinCurso: '2023-06-01' }
+    ];
 
     service.getAllCourses().subscribe((courses) => {
       expect(courses).toEqual(mockCourses);

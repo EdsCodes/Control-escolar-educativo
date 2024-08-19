@@ -1,4 +1,24 @@
 {
+  "users": [
+    {
+      "id": "98ui",
+      "firstName": "John",
+      "lastName": "Gonzalez",
+      "email": "johncodes@gmail.com",
+      "password": "kalemi123321*",
+      "token": "ds4dkcjajsd789sssa898$64@",
+      "role": "ADMIN"
+    },    
+    {
+      "id": "87td",
+      "firstName": "Edward",
+      "lastName": "Codes",
+      "email": "edcodes@gmail.com",
+      "password": "kalemi123321*",
+      "token": "ty5jsdghetu563asdq0321$75@",
+      "role": "USER"
+    }    
+  ],
   "courses": [
     {
       "nombreCurso": "React Js",
@@ -127,14 +147,14 @@
       "curso": "React"
     },
     {
+      "id": "5c11",
       "Id": null,
-      "nombre": "Adolfo ",
-      "apellidos": "Jimenez",
-      "fechaNacimiento": "2001-10-02T05:00:00.000Z",
-      "celular": "3519703465",
-      "direccion": "Calle 45 9-79",
-      "curso": "SQL",
-      "id": "0be7"
+      "nombre": "Maria",
+      "apellidos": "De Armas",
+      "fechaNacimiento": "1990-02-28T05:00:00.000Z",
+      "celular": "3196548759",
+      "direccion": "CL 15 # 15 - 59",
+      "curso": "SQL"
     }
   ],
   "inscriptions": [
@@ -158,12 +178,6 @@
       "studentName": "Fernando Casas",
       "courseId": "3",
       "courseName": "Js"
-    },
-    {
-      "id": "7212",
-      "Id": null,
-      "studentId": "7",
-      "courseId": "8"
     }
   ]
 }
