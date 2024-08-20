@@ -39,7 +39,7 @@ export class DialogsStudentsComponent {
       this.matDialogRef.close(formValue);
     } else {
       this.markFormGroupTouched(this.studentForm);
-      this.notifier.showNotification('Por favor, introduzca datos válidos.');
+      this.notifier.showWarningNotification('Por favor, introduzca datos válidos.');
     }
   }
 

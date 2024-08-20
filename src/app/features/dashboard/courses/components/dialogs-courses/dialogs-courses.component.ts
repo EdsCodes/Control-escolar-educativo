@@ -39,7 +39,7 @@ export class DialogsCoursesComponent {
       });
     }
   }
-
+  
   onSave(): void {
     if (this.courseForm.valid) {
       const formValue = {
@@ -48,9 +48,10 @@ export class DialogsCoursesComponent {
         fechaFinCurso: this.courseForm.get('dateRange')?.get('fechaFinCurso')?.value
       };
       this.matDialogRef.close(formValue);
+      this.notifier.showSuccessNotification('Info enviada correctamente')
     } else {
       this.markFormGroupTouched(this.courseForm);
-      this.notifier.showNotification('Por favor, introduzca datos válidos.');
+      this.notifier.showWarningNotification('Por favor, introduzca datos válidos.');
     }
   }
 

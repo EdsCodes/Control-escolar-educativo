@@ -35,7 +35,7 @@ export class DialogsInscriptionsComponent {
       this.matDialogRef.close(formValue);
     } else {
       this.markFormGroupTouched(this.inscriptionsForm);
-      this.notifier.showNotification('Por favor, introduzca datos válidos.');
+      this.notifier.showWarningNotification('Por favor, introduzca datos válidos.');
     }
   }
 

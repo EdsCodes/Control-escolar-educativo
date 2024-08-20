@@ -37,7 +37,7 @@ export class AuthService {
         }
       },
       error: (err) => {
-        this.notifier.showNotification('Error al conectarse a la API, pongase en contacto con su administrador')
+        this.notifier.showErrorNotification('Error al conectarse a la API, pongase en contacto con su administrador')
       }
     });
   }
@@ -69,7 +69,7 @@ export class AuthService {
         }
       }),
       catchError((error) => {
-        this.notifier.showNotification('Error al verificar el token, comuniquese con su admin.')
+        this.notifier.showErrorNotification('Error al verificar el token, comuniquese con su admin.')
         return of(false)
       })
     );

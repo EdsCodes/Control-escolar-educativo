@@ -6,6 +6,7 @@ import { DialogsInscriptionsComponent } from './components/dialogs-inscriptions/
 import { Observable, tap } from 'rxjs';
 import { AuthService } from '../../../core/services/auth.service';
 import { User } from '../../../shared/models/users';
+import { NotificationService } from '../../../core/services/notifications.service';
 
 @Component({
   selector: 'app-inscriptions',
@@ -22,7 +23,8 @@ export class InscriptionsComponent implements OnInit {
   constructor(
     private matDialog: MatDialog,
     private inscriptionsService: InscriptionsService,
-    private authService: AuthService
+    private authService: AuthService,
+    private notifier: NotificationService
   ) {
     this.autenticatedUser = this.authService.autenticatedUser;
   }
@@ -37,8 +39,8 @@ export class InscriptionsComponent implements OnInit {
       next: (inscriptions) => {
         this.inscriptionsDataSource = inscriptions;
       },
-      error: (err) => {
-        console.error('Error al cargar las inscripciones', err);
+      error: () => {
+        this.notifier.showErrorNotification('Error al cargar las inscripciones');
       },
       complete: () => {
         this.loadingInProcess = false;
@@ -57,8 +59,8 @@ export class InscriptionsComponent implements OnInit {
             next: (inscription) => {
               this.inscriptionsDataSource.push(inscription);
             },
-            error: (err) => {
-              console.error('Error al agregar la inscripción', err);
+            error: () => {
+              this.notifier.showErrorNotification('Error al agregar la inscripción');
             },
             complete: () => {
               this.loadingInProcess = false;
@@ -78,7 +80,8 @@ export class InscriptionsComponent implements OnInit {
         if (!!value) {
           this.inscriptionsService.editInscriptonById(editingInscription.studentId, value).subscribe({
             next: (inscriptions) => {
-              this.inscriptionsDataSource = this.inscriptionsDataSource.map(c => c.id === inscriptions.id ? inscriptions : c);            }
+              this.inscriptionsDataSource = this.inscriptionsDataSource.map(c => c.id === inscriptions.id ? inscriptions : c);            
+            }
           });
         }
       }
@@ -93,11 +96,11 @@ export class InscriptionsComponent implements OnInit {
           tap(() => this.loadingInscriptions())
         )
         .subscribe({
-          error: (err) => {
-            console.error('Error al borrar la inscripción', err);
+          error: () => {
+            this.notifier.showErrorNotification('Error al borrar la inscripción');
           },
           complete: () => {
-            alert('Inscripción borrada correctamente');
+            this.notifier.showSuccessNotification('Inscripción borrada correctamente');
             this.loadingInProcess = false;
           }
         });

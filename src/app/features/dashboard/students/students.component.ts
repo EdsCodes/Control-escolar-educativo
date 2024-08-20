@@ -6,6 +6,7 @@ import { StudentsService } from '../../../core/services/students.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { User } from '../../../shared/models/users';
 import { Observable, tap } from 'rxjs';
+import { NotificationService } from '../../../core/services/notifications.service';
 
 @Component({
   selector: 'app-students',
@@ -20,7 +21,7 @@ export class StudentsComponent {
   displayedColumns: string[] = ['id', 'nombreCompleto', 'fechaNacimiento', 'celular', 'direccion', 'curso', 'actions'];
   autenticatedUser: Observable<User | null>
   
-  constructor(private matDialog: MatDialog, private StudentsService: StudentsService, private authService: AuthService) {
+  constructor(private matDialog: MatDialog, private StudentsService: StudentsService, private authService: AuthService, private notifier: NotificationService) {
     this.autenticatedUser = this.authService.autenticatedUser;
   }
 
@@ -34,8 +35,8 @@ export class StudentsComponent {
       next: (students) => {
         this.studentsDataSource = students;
       },
-      error: (err) => {
-        console.error('Error al cargar los estudiantes', err);
+      error: () => {
+        this.notifier.showErrorNotification('Error al cargar los estudiantes');
       },
       complete: () => {
         this.loadingInProcess = false;
@@ -54,8 +55,8 @@ export class StudentsComponent {
             next: (students: students) => {
               this.studentsDataSource.push(students);
             },
-            error: (err) => {
-              console.error('Error al agregar el estudiante', err);
+            error: () => {
+              this.notifier.showErrorNotification('Error al agregar el estudiante');
             },
             complete: () => {
               this.loadingInProcess = false;
@@ -77,8 +78,8 @@ export class StudentsComponent {
             next: (students) => {
               this.studentsDataSource = this.studentsDataSource.map(c => c.id === students.id ? students : c);
             },
-            error: (err) => {
-              console.error('Error al editar el estudiante', err)
+            error: () => {
+              this.notifier.showErrorNotification('Error al editar el estudiante')
             }
           });
         }
@@ -94,12 +95,12 @@ export class StudentsComponent {
         tap(() => this.loadingStudents())
       )
       .subscribe({
-        error: (err) => {
-          console.error('Error al borrar el estudiante', err);
+        error: () => {
+          this.notifier.showErrorNotification('Error al borrar el estudiante');
         },
         complete: () => {
           this.loadingInProcess = false;
-          alert('curso borrado correctamente');
+          this.notifier.showSuccessNotification('curso borrado correctamente');
         },
       });
     }

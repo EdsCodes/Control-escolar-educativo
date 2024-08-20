@@ -8,7 +8,7 @@
       "password": "kalemi123321*",
       "token": "ds4dkcjajsd789sssa898$64@",
       "role": "ADMIN"
-    },    
+    },
     {
       "id": "87td",
       "firstName": "Edward",
@@ -17,7 +17,7 @@
       "password": "kalemi123321*",
       "token": "ty5jsdghetu563asdq0321$75@",
       "role": "USER"
-    }    
+    }
   ],
   "courses": [
     {
@@ -89,6 +89,16 @@
       "fechaInicioCurso": "2025-12-31T05:00:00.000Z",
       "fechaFinCurso": "2026-04-30T05:00:00.000Z",
       "id": "ea8c"
+    },
+    {
+      "id": "e66d",
+      "nombreCurso": "PHP",
+      "dateRange": {
+        "fechaInicioCurso": "2024-08-28T05:00:00.000Z",
+        "fechaFinCurso": "2024-09-30T05:00:00.000Z"
+      },
+      "fechaInicioCurso": "2024-08-28T05:00:00.000Z",
+      "fechaFinCurso": "2024-09-30T05:00:00.000Z"
     }
   ],
   "students": [

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../../core/services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NotificationService } from '../../../core/services/notifications.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent {
   
   loginForm: FormGroup;
 
-  constructor(private authService: AuthService, private fb: FormBuilder) {
+  constructor(private authService: AuthService, private fb: FormBuilder, private notifier: NotificationService) {
     this.loginForm = this.fb.group({
       email: ['johncodes@gmail.com', [Validators.required, Validators.email]],
       password: ['kalemi123321*', [Validators.required, Validators.minLength(5)]],
@@ -24,7 +25,7 @@ export class LoginComponent {
 
   onSubmit() {
     if(this.loginForm.invalid){
-      alert('Por favor verifique el formulario, no es válido')
+      this.notifier.showWarningNotification('Por favor ingrese datos válidos en el formulario');
     } else {
       const data = {
         email: this.loginForm.get('email')?.value,
