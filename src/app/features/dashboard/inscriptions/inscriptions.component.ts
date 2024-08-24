@@ -1,12 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { InscriptionsService } from '../../../core/services/inscriptions.service';
-import { inscriptions } from '../../../shared/models';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogsInscriptionsComponent } from './components/dialogs-inscriptions/dialogs-inscriptions.component';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { AuthService } from '../../../core/services/auth.service';
 import { User } from '../../../shared/models/users';
 import { NotificationService } from '../../../core/services/notifications.service';
+import { Store, select } from '@ngrx/store';
+import { RootState } from './store/rootstate';
+import { loadInscriptionss, addInscription, editInscription, deleteInscription } from './store/inscriptions.actions';
+import { selectAllInscriptions, selectInscriptionsLoading } from '../inscriptions/store/inscriptions.selectors';
+import { inscriptions } from '../../../shared/models/inscriptions';
+import { DialogsInscriptionsComponent } from './components/dialogs-inscriptions/dialogs-inscriptions.component';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-inscriptions',
@@ -14,37 +19,29 @@ import { NotificationService } from '../../../core/services/notifications.servic
   styleUrls: ['./inscriptions.component.scss']
 })
 export class InscriptionsComponent implements OnInit {
-  
-  inscriptionsDataSource: inscriptions[] = [];
-  loadingInProcess = false;
-  displayedColumns: string[] = ['id', 'studentId', 'studentName', 'courseId', 'courseName', 'actions'];
-  autenticatedUser: Observable<User | null>
+
+  inscriptionsDataSource = new MatTableDataSource<inscriptions>(); 
+  loadingInProcess$: Observable<boolean>;
+  displayedColumns: string[] = ['id', 'studentName', 'courseName', 'startDate', 'endDate', 'actions'];
+  autenticatedUser: Observable<User | null>;
 
   constructor(
     private matDialog: MatDialog,
-    private inscriptionsService: InscriptionsService,
     private authService: AuthService,
-    private notifier: NotificationService
+    private store: Store<RootState>
   ) {
     this.autenticatedUser = this.authService.autenticatedUser;
+    this.loadingInProcess$ = this.store.pipe(select(selectInscriptionsLoading));
   }
 
   ngOnInit(): void {
-    this.loadingInscriptions();
-  }
-
-  loadingInscriptions() {
-    this.loadingInProcess = true;
-    this.inscriptionsService.getAllInscriptions().subscribe({
-      next: (inscriptions) => {
-        this.inscriptionsDataSource = inscriptions;
-      },
-      error: () => {
-        this.notifier.showErrorNotification('Error al cargar las inscripciones');
-      },
-      complete: () => {
-        this.loadingInProcess = false;
-      }
+    this.store.dispatch(loadInscriptionss());
+    
+    this.store.pipe(
+      select(selectAllInscriptions),
+      map(inscriptions => inscriptions || [])
+    ).subscribe(inscriptions => {
+      this.inscriptionsDataSource.data = inscriptions;
     });
   }
 
@@ -54,56 +51,27 @@ export class InscriptionsComponent implements OnInit {
     dialogRef.afterClosed().subscribe({
       next: (value) => {
         if (value) {
-          this.loadingInProcess = true;
-          this.inscriptionsService.addInscription(value).subscribe({
-            next: (inscription) => {
-              this.inscriptionsDataSource.push(inscription);
-            },
-            error: () => {
-              this.notifier.showErrorNotification('Error al agregar la inscripción');
-            },
-            complete: () => {
-              this.loadingInProcess = false;
-            }
-          });
+          this.store.dispatch(addInscription({ inscription: value }));
         }
       }
     });
   }
 
-  editInscription(editingInscription: inscriptions) {
-    this.matDialog
-    .open(DialogsInscriptionsComponent, { data: editingInscription })
-    .afterClosed()
-    .subscribe({
+  editInscription(editingInscription: inscriptions): void {
+    const dialogRef = this.matDialog.open(DialogsInscriptionsComponent, { data: editingInscription });
+
+    dialogRef.afterClosed().subscribe({
       next: (value) => {
-        if (!!value) {
-          this.inscriptionsService.editInscriptonById(editingInscription.studentId, value).subscribe({
-            next: (inscriptions) => {
-              this.inscriptionsDataSource = this.inscriptionsDataSource.map(c => c.id === inscriptions.id ? inscriptions : c);            
-            }
-          });
+        if (value) {
+          this.store.dispatch(editInscription({ id: editingInscription.id, update: value }));
         }
       }
     });
   }
 
-  deleteInscriptionById(id: string) {
-    this.loadingInProcess = true;
-    if (confirm('Confirma borrado de inscripción?')) {
-      this.inscriptionsService.deleteInscriptionById(id)
-        .pipe(
-          tap(() => this.loadingInscriptions())
-        )
-        .subscribe({
-          error: () => {
-            this.notifier.showErrorNotification('Error al borrar la inscripción');
-          },
-          complete: () => {
-            this.notifier.showSuccessNotification('Inscripción borrada correctamente');
-            this.loadingInProcess = false;
-          }
-        });
+  deleteInscriptionById(id: string): void {
+    if (confirm('¿Confirma el borrado de la inscripción?')) {
+      this.store.dispatch(deleteInscription({ id }));
     }
   }
 }

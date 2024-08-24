@@ -1,63 +1,150 @@
 import { TestBed } from '@angular/core/testing';
-import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';  
+import { Router } from '@angular/router';
+import { NotificationService } from './notifications.service';
 import { User } from '../../shared/models/users';
+import { environment } from '../../../environments/environment.development';
 
-describe('prueba sobre el AuthService', () => {
+describe('AuthService', () => {
   let service: AuthService;
-  let routerSpy: jasmine.SpyObj<Router>;
-  const fakeUser: User = {
-    email: 'test@user.com',
-    password: 'Kioas#dsd98789**',
-    role: 'USER'
-  };
+  let httpMock: HttpTestingController;
+  let routerSpy = { navigate: jasmine.createSpy('navigate') };
+  let notificationServiceSpy = jasmine.createSpyObj('NotificationService', ['showErrorNotification']);
 
   beforeEach(() => {
-    const spy = jasmine.createSpyObj('Router', ['navigate']);
-
     TestBed.configureTestingModule({
-      providers: [AuthService, { provide: Router, useValue: spy }]
+      imports: [],
+      providers: [
+        AuthService,
+        provideHttpClientTesting(),
+        { provide: Router, useValue: routerSpy },
+        { provide: NotificationService, useValue: notificationServiceSpy }
+      ]
     });
+
     service = TestBed.inject(AuthService);
-    routerSpy = TestBed.inject(Router) as jasmine.SpyObj<Router>;
+    httpMock = TestBed.inject(HttpTestingController);
+  });
+
+  afterEach(() => {
+    httpMock.verify();
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('Loguea el usuario y lo redirige a Dashboard', () => {
-    service.login();
-    const storedToken = localStorage.getItem('token');
-    
-    expect(storedToken).not.toBeNull();
-    expect(storedToken).toBe(service['CORRECT_TOKEN']);
-    expect(service['_autenticatedUser'].value).toEqual(fakeUser);
-    expect(routerSpy.navigate).toHaveBeenCalledWith(['dashboard', 'home']);
-  });
-  
+  describe('#login', () => {
+    it('should authenticate user and navigate to home on success', () => {
+      const mockUser: User = {
+        id: '1', firstName: 'User', lastName: 'Fake', email: 'test@test.com', password: '123456', token: 'abcd1234', role: 'USER',
+      };
 
-  it('hace el log out del usuario y lo lleva al login', () => {
-    service.logout();
+      const loginData = { email: 'test@test.com', password: '123456' };
 
-    expect(localStorage.getItem('token')).toBeNull();
-    expect(service['_autenticatedUser'].value).toBeNull();
-    expect(routerSpy.navigate).toHaveBeenCalledWith(['auth', 'login']);
-  });
+      service.login(loginData);
 
-  it('verifica que el token sea el correcto', () => {
-    localStorage.setItem('token', service['CORRECT_TOKEN']);
-    service.verifyToken().subscribe(isCorrect => {
-      expect(isCorrect).toBeTrue();
-      expect(service['_autenticatedUser'].value).toEqual(fakeUser);
+      const req = httpMock.expectOne(`${environment.apiUrl}/users?email=${loginData.email}&password=${loginData.password}`);
+      expect(req.request.method).toBe('GET');
+      req.flush([mockUser]);
+
+      expect(localStorage.getItem('token')).toBe(mockUser.token);
+
+      service.autenticatedUser.subscribe(user => {
+        expect(user).toEqual(mockUser);
+      });
+
+      expect(routerSpy.navigate).toHaveBeenCalledWith(['dashboard', 'home']);
+    });
+
+    it('should show error notification on API error', () => {
+      const loginData = { email: 'test@test.com', password: '123456' };
+
+      service.login(loginData);
+
+      const req = httpMock.expectOne(`${environment.apiUrl}/users?email=${loginData.email}&password=${loginData.password}`);
+      req.error(new ErrorEvent('Network error'));
+
+      expect(notificationServiceSpy.showErrorNotification).toHaveBeenCalledWith('Error al conectarse a la API, pongase en contacto con su administrador');
+    });
+
+    it('should show alert when no user is found', () => {
+      spyOn(window, 'alert');
+      const loginData = { email: 'notfound@test.com', password: 'wrongpassword' };
+
+      service.login(loginData);
+
+      const req = httpMock.expectOne(`${environment.apiUrl}/users?email=${loginData.email}&password=${loginData.password}`);
+      req.flush([]);
+
+      expect(window.alert).toHaveBeenCalledWith('Datos de usuario inválidos, por favor verifique');
     });
   });
 
-  it('la verificacion del token falla si el token es incorrecto', () => {
-    localStorage.setItem('token', 'invalid_token');
-    service.verifyToken().subscribe(isCorrect => {
-      expect(isCorrect).toBeFalse();
-      expect(service['_autenticatedUser'].value).toBeNull();
+  describe('#logout', () => {
+    it('should clear token and navigate to login', () => {
+      localStorage.setItem('token', 'abcd1234');
+      service.logout();
+
+      expect(localStorage.getItem('token')).toBeNull();
+
+      service.autenticatedUser.subscribe(user => {
+        expect(user).toBeNull();
+      });
+
+      expect(routerSpy.navigate).toHaveBeenCalledWith(['auth', 'login']);
+    });
+  });
+
+  describe('#verifyToken', () => {
+    it('should return true if token is valid', () => {
+      const mockUser: User = {
+        id: '1', firstName: 'User', lastName: 'Fake', email: 'test@test.com', password: '123456', token: 'abcd1234', role: 'USER',
+      };
+
+      localStorage.setItem('token', 'abcd1234');
+
+      service.verifyToken().subscribe((isValid) => {
+        expect(isValid).toBeTrue();
+      });
+
+      const req = httpMock.expectOne(`${environment.apiUrl}/users?token=abcd1234`);
+      req.flush([mockUser]);
+
+      expect(localStorage.getItem('token')).toBe(mockUser.token);
+
+      service.autenticatedUser.subscribe(user => {
+        expect(user).toEqual(mockUser);
+      });
+    });
+
+    it('should return false if token is invalid', () => {
+      localStorage.setItem('token', 'invalidtoken');
+
+      service.verifyToken().subscribe((isValid) => {
+        expect(isValid).toBeFalse();
+      });
+
+      const req = httpMock.expectOne(`${environment.apiUrl}/users?token=invalidtoken`);
+      req.flush([]);
+
+      service.autenticatedUser.subscribe(user => {
+        expect(user).toBeNull();
+      });
+    });
+
+    it('should return false and show error notification on API error', () => {
+      localStorage.setItem('token', 'abcd1234');
+
+      service.verifyToken().subscribe((isValid) => {
+        expect(isValid).toBeFalse();
+      });
+
+      const req = httpMock.expectOne(`${environment.apiUrl}/users?token=abcd1234`);
+      req.error(new ErrorEvent('Network error'));
+
+      expect(notificationServiceSpy.showErrorNotification).toHaveBeenCalledWith('Error al verificar el token, comuniquese con su admin.');
     });
   });
 });

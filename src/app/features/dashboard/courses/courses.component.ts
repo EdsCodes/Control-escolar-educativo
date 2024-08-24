@@ -6,6 +6,7 @@ import { CoursesService } from '../../../core/services/courses.service';
 import { Observable, tap } from 'rxjs';
 import { User } from '../../../shared/models/users';
 import { AuthService } from '../../../core/services/auth.service';
+import { NotificationService } from '../../../core/services/notifications.service';
 
 @Component({
   selector: 'app-courses',
@@ -20,7 +21,7 @@ export class CoursesComponent implements OnInit {
   displayedColumns: string[] = ['id', 'nombreCurso', 'fechaInicioCurso', 'fechaFinCurso', 'actions'];
   autenticatedUser: Observable<User | null>;
 
-  constructor(private matDialog: MatDialog, private coursesService: CoursesService, private authService: AuthService) {
+  constructor(private matDialog: MatDialog, private coursesService: CoursesService, private authService: AuthService, private notifier: NotificationService) {
     this.autenticatedUser = this.authService.autenticatedUser;
   }
 
@@ -34,8 +35,8 @@ export class CoursesComponent implements OnInit {
       next: (courses) => {
         this.coursesDataSource = courses;
       },
-      error: (err) => {
-        console.error('Error al cargar los cursos', err);
+      error: () => {
+        this.notifier.showErrorNotification('Error al cargar los cursos');
       },
       complete: () => {
         this.loadingInProcess = false;
@@ -54,8 +55,8 @@ export class CoursesComponent implements OnInit {
             next: (course: courses) => {
               this.coursesDataSource.push(course);
             },
-            error: (err) => {
-              console.error('Error al agregar el curso', err);
+            error: () => {
+              this.notifier.showErrorNotification('Error al agregar el curso');
             },
             complete: () => {
               this.loadingInProcess = false;
@@ -78,8 +79,8 @@ export class CoursesComponent implements OnInit {
             next: (course) => {
               this.coursesDataSource = this.coursesDataSource.map(c => c.id === course.id ? course : c);
             },
-            error: (err) => {
-              console.error('Error al editar el curso', err);
+            error: () => {
+              this.notifier.showErrorNotification('Error al editar el curso');
             }
           });
         }
@@ -95,11 +96,11 @@ export class CoursesComponent implements OnInit {
         tap(() => this.loadingCourses())
       )
       .subscribe({
-        error: (err) => {
-          console.error('Error al borrar el curso', err);
+        error: () => {
+          this.notifier.showErrorNotification('Error al borrar el curso');
         },
         complete: () => {
-          alert('curso borrado correctamente');
+          this.notifier.showSuccessNotification('Curso borrado correctamente')
           this.loadingInProcess = false;
         }
       });

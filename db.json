@@ -61,44 +61,14 @@
       "id": "91e3"
     },
     {
+      "id": "6a28",
       "nombreCurso": "SQL",
       "dateRange": {
-        "fechaInicioCurso": "2024-08-11T05:00:00.000Z",
-        "fechaFinCurso": "2024-08-31T05:00:00.000Z"
+        "fechaInicioCurso": "2024-12-24T05:00:00.000Z",
+        "fechaFinCurso": "2025-03-31T05:00:00.000Z"
       },
-      "fechaInicioCurso": "2024-08-11T05:00:00.000Z",
-      "fechaFinCurso": "2024-08-31T05:00:00.000Z",
-      "id": "9911"
-    },
-    {
-      "id": "c265",
-      "nombreCurso": "MySQL",
-      "dateRange": {
-        "fechaInicioCurso": "2025-03-03T05:00:00.000Z",
-        "fechaFinCurso": "2025-07-31T05:00:00.000Z"
-      },
-      "fechaInicioCurso": "2025-03-03T05:00:00.000Z",
-      "fechaFinCurso": "2025-07-31T05:00:00.000Z"
-    },
-    {
-      "nombreCurso": "Photoshop",
-      "dateRange": {
-        "fechaInicioCurso": "2025-12-31T05:00:00.000Z",
-        "fechaFinCurso": "2026-04-30T05:00:00.000Z"
-      },
-      "fechaInicioCurso": "2025-12-31T05:00:00.000Z",
-      "fechaFinCurso": "2026-04-30T05:00:00.000Z",
-      "id": "ea8c"
-    },
-    {
-      "id": "e66d",
-      "nombreCurso": "PHP",
-      "dateRange": {
-        "fechaInicioCurso": "2024-08-28T05:00:00.000Z",
-        "fechaFinCurso": "2024-09-30T05:00:00.000Z"
-      },
-      "fechaInicioCurso": "2024-08-28T05:00:00.000Z",
-      "fechaFinCurso": "2024-09-30T05:00:00.000Z"
+      "fechaInicioCurso": "2024-12-24T05:00:00.000Z",
+      "fechaFinCurso": "2025-03-31T05:00:00.000Z"
     }
   ],
   "students": [
@@ -165,29 +135,38 @@
       "celular": "3196548759",
       "direccion": "CL 15 # 15 - 59",
       "curso": "SQL"
+    },
+    {
+      "id": "addd",
+      "Id": null,
+      "nombre": "Jose",
+      "apellidos": "Rivera",
+      "fechaNacimiento": "1990-12-12T05:00:00.000Z",
+      "celular": "3197841033",
+      "direccion": "Mz 5 Cs 9 Villas de Carolina",
+      "curso": "React"
+    },
+    {
+      "id": "acb0",
+      "Id": null,
+      "nombre": "Andrea",
+      "apellidos": "Serna",
+      "fechaNacimiento": "1989-11-25T05:00:00.000Z",
+      "celular": "3128620742",
+      "direccion": "Call5 15 - 49",
+      "curso": "SQL"
     }
   ],
   "inscriptions": [
     {
       "id": "9b90",
-      "studentId": "1",
-      "studentName": "Josefa Poblado",
-      "courseId": "5",
-      "courseName": "SQL"
-    },
-    {
-      "id": "60ec",
-      "studentId": "3",
-      "studentName": "John Hernandez",
-      "courseId": "2",
-      "courseName": "Angular"
+      "studentId": "db6c",
+      "courseId": "2a0c"
     },
     {
       "id": "8eed",
-      "studentId": "4",
-      "studentName": "Fernando Casas",
-      "courseId": "3",
-      "courseName": "Js"
+      "studentId": "d008",
+      "courseId": "e0ac"
     }
   ]
 }
