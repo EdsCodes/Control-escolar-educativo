@@ -1,77 +1,81 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { AuthService } from '../../../core/services/auth.service';
-import { User } from '../../../shared/models/users';
+import { inscriptions, Student, Course } from '../../../shared/models/inscriptions';
 import { NotificationService } from '../../../core/services/notifications.service';
-import { Store, select } from '@ngrx/store';
-import { RootState } from './store/rootstate';
-import { loadInscriptionss, addInscription, editInscription, deleteInscription } from './store/inscriptions.actions';
-import { selectAllInscriptions, selectInscriptionsLoading } from '../inscriptions/store/inscriptions.selectors';
-import { inscriptions } from '../../../shared/models/inscriptions';
-import { DialogsInscriptionsComponent } from './components/dialogs-inscriptions/dialogs-inscriptions.component';
+import { Store } from '@ngrx/store';
+import { RootState } from '../../../core/store';
+import { InscriptionsActions } from '../../dashboard/inscriptions/store/inscriptions.actions';
+import {
+  selectInscriptions,
+  selectInscriptionsError,
+  selectInscriptionsIsLoading,
+  selectInscriptionsCourses,
+  selectInscriptionsStudents,
+} from '../../../features/dashboard/inscriptions/store/inscriptions.selectors';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { DialogsInscriptionsComponent } from '../inscriptions/components/dialogs-inscriptions/dialogs-inscriptions.component';
 
 @Component({
   selector: 'app-inscriptions',
   templateUrl: './inscriptions.component.html',
-  styleUrls: ['./inscriptions.component.scss']
+  styleUrls: ['./inscriptions.component.scss'],
 })
 export class InscriptionsComponent implements OnInit {
-
-  inscriptionsDataSource = new MatTableDataSource<inscriptions>(); 
-  loadingInProcess$: Observable<boolean>;
+  enrollmentForm: FormGroup;
+  isLoading$: Observable<boolean>;
+  dataSource: MatTableDataSource<inscriptions>;
+  students$: Observable<Student[]>;
+  courses$: Observable<Course[]>;
+  error$: Observable<unknown>;
   displayedColumns: string[] = ['id', 'studentName', 'courseName', 'startDate', 'endDate', 'actions'];
-  autenticatedUser: Observable<User | null>;
 
   constructor(
-    private matDialog: MatDialog,
-    private authService: AuthService,
-    private store: Store<RootState>
+    private notificationService: NotificationService,
+    private store: Store<RootState>,
+    private fb: FormBuilder,
+    private dialog: MatDialog
   ) {
-    this.autenticatedUser = this.authService.autenticatedUser;
-    this.loadingInProcess$ = this.store.pipe(select(selectInscriptionsLoading));
+    this.isLoading$ = this.store.select(selectInscriptionsIsLoading);
+    this.error$ = this.store.select(selectInscriptionsError);
+    this.students$ = this.store.select(selectInscriptionsStudents);
+    this.courses$ = this.store.select(selectInscriptionsCourses);
+    this.dataSource = new MatTableDataSource<inscriptions>();
+    this.enrollmentForm = this.fb.group({
+      studentId: [null, Validators.required],
+      courseId: [null, Validators.required],
+    });
   }
 
   ngOnInit(): void {
-    this.store.dispatch(loadInscriptionss());
-    
-    this.store.pipe(
-      select(selectAllInscriptions),
-      map(inscriptions => inscriptions || [])
-    ).subscribe(inscriptions => {
-      this.inscriptionsDataSource.data = inscriptions;
+    this.store.dispatch(InscriptionsActions.loadInscriptions());
+    this.store.dispatch(InscriptionsActions.loadStudentsAndCourses());
+    this.store.select(selectInscriptions).subscribe((data) => {
+      if (data) {
+        this.dataSource.data = data;
+      }
     });
   }
 
   openDialog(): void {
-    const dialogRef = this.matDialog.open(DialogsInscriptionsComponent, {});
+    const dialogRef = this.dialog.open(DialogsInscriptionsComponent, {
+      width: '400px',
+      data: null,
+    });
 
-    dialogRef.afterClosed().subscribe({
-      next: (value) => {
-        if (value) {
-          this.store.dispatch(addInscription({ inscription: value }));
-        }
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.store.dispatch(InscriptionsActions.createInscription({ payload: result }));
       }
     });
   }
 
-  editInscription(editingInscription: inscriptions): void {
-    const dialogRef = this.matDialog.open(DialogsInscriptionsComponent, { data: editingInscription });
-
-    dialogRef.afterClosed().subscribe({
-      next: (value) => {
-        if (value) {
-          this.store.dispatch(editInscription({ id: editingInscription.id, update: value }));
-        }
-      }
-    });
+  editInscription(inscription: inscriptions): void {
+    // Pendiente Implementar lógica de edición
   }
 
-  deleteInscriptionById(id: string): void {
-    if (confirm('¿Confirma el borrado de la inscripción?')) {
-      this.store.dispatch(deleteInscription({ id }));
-    }
+  deleteInscriptionById(id: number): void {
+    // Pendiente Implementar lógica de eliminación
   }
 }

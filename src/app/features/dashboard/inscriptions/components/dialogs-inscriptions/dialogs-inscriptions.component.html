@@ -2,25 +2,35 @@
   <h2 mat-dialog-title>Añadir inscripción</h2>
   <mat-dialog-content>
     <form [formGroup]="inscriptionsForm">
-
-      <!--campo de id de estudiante-->
+      <!-- Campo de selección de estudiante -->
       <mat-form-field class="w-full mb-2 pt-2">
-        <mat-label>id Estudiante</mat-label>
-        <input formControlName="studentId" matInput required/>
-        <mat-error *ngIf="inscriptionsForm.controls['studentId'].hasError('required') && inscriptionsForm.controls['studentId'].touched">Campo requerido</mat-error>
+        <mat-label>Estudiante</mat-label>
+        <mat-select formControlName="studentId" required>
+          <mat-option *ngFor="let student of students$ | async" [value]="student.id">
+            {{ student.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="inscriptionsForm.controls['studentId'].hasError('required') && inscriptionsForm.controls['studentId'].touched">
+          Campo requerido
+        </mat-error>
       </mat-form-field>
       
-      <!--campo de id de curso-->
+      <!-- Campo de selección de curso -->
       <mat-form-field class="w-full mb-3">
-        <mat-label>Id Curso</mat-label>
-        <input formControlName="courseId" matInput required/>
-        <mat-error *ngIf="inscriptionsForm.controls['courseId'].hasError('required') && inscriptionsForm.controls['courseId'].touched">Campo requerido</mat-error>
+        <mat-label>Curso</mat-label>
+        <mat-select formControlName="courseId" required>
+          <mat-option *ngFor="let course of courses$ | async" [value]="course.id">
+            {{ course.nombreCurso }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="inscriptionsForm.controls['courseId'].hasError('required') && inscriptionsForm.controls['courseId'].touched">
+          Campo requerido
+        </mat-error>
       </mat-form-field>
-
     </form> 
   </mat-dialog-content>
   <mat-dialog-actions>
-      <button mat-flat-button (click)="onCancel()">Cancelar</button>
-      <button (click)="onSave()" mat-flat-button>Guardar</button>
+    <button mat-flat-button (click)="onCancel()">Cancelar</button>
+    <button (click)="onSave()" mat-flat-button color="primary">Guardar</button>
   </mat-dialog-actions>
 </div>

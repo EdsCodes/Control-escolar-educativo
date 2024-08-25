@@ -128,7 +128,6 @@
     },
     {
       "id": "5c11",
-      "Id": null,
       "nombre": "Maria",
       "apellidos": "De Armas",
       "fechaNacimiento": "1990-02-28T05:00:00.000Z",
@@ -138,7 +137,6 @@
     },
     {
       "id": "addd",
-      "Id": null,
       "nombre": "Jose",
       "apellidos": "Rivera",
       "fechaNacimiento": "1990-12-12T05:00:00.000Z",
@@ -148,7 +146,6 @@
     },
     {
       "id": "acb0",
-      "Id": null,
       "nombre": "Andrea",
       "apellidos": "Serna",
       "fechaNacimiento": "1989-11-25T05:00:00.000Z",

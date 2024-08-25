@@ -1,23 +1,28 @@
 export interface inscriptions {
-    id: string;
-    studentId: string;
-    courseId: string;
-    student: {
-      id: string;
-      nombre: string;
-      apellidos: string;
-      fechaNacimiento: string;
-      celular: string;
-      direccion: string;
-      curso: string;
-    };
-    course: {
-      nombreCurso: string;
-      dateRange: {
-        fechaInicioCurso: string;
-        fechaFinCurso: string;
-      };
-      id: string;
-    };
-  }
+  studentId: string;
+  courseId: string;
+}
+
+export interface Student {
+  id: string;
+  name: string;
+}
+
+export interface Course {
+  id: string;
+  nombreCurso: string;
+  fechaInicioCurso: string;
+  fechaFinCurso: string;
+}
+
+export interface LoadStudentsAndCoursesResp {
+  students: Student[];
+  courses: Course[];
+}
+
+export interface CreateInscriptionPayload {
+  studentId: string;
+  courseId: string;
+}
+
   

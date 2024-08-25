@@ -1,19 +1,32 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { State } from './inscriptions.reducer';
+import * as frominscriptions from './inscriptions.reducer';
 
-export const selectInscriptionsState = createFeatureSelector<State>('inscriptions');
+export const selectinscriptionsState =
+  createFeatureSelector<frominscriptions.State>(
+    frominscriptions.inscriptionsFeatureKey
+  );
 
-export const selectAllInscriptions = createSelector(
-  selectInscriptionsState,
-  (state: State) => state.inscriptions
+export const selectInscriptions = createSelector(
+  selectinscriptionsState,
+  (state) => state.inscriptions
 );
 
-export const selectInscriptionsLoading = createSelector(
-  selectInscriptionsState,
-  (state: State) => state.loading
+export const selectInscriptionsIsLoading = createSelector(
+  selectinscriptionsState,
+  (state) => state.isLoading
 );
 
 export const selectInscriptionsError = createSelector(
-  selectInscriptionsState,
-  (state: State) => state.error
+  selectinscriptionsState,
+  (state) => state.error
+);
+
+export const selectInscriptionsStudents = createSelector(
+  selectinscriptionsState,
+  (state) => state.students
+);
+
+export const selectInscriptionsCourses = createSelector(
+  selectinscriptionsState,
+  (state) => state.courses
 );

@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTableModule } from '@angular/material/table';
+import { MatOptionModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [TextSizeDirective],
@@ -26,6 +27,8 @@ import { MatTableModule } from '@angular/material/table';
     MatDatepickerModule,
     MatTableModule, 
     MatProgressBarModule,
+    MatOptionModule,
+    MatDialogModule,
   ],
   imports: [
     CommonModule,
