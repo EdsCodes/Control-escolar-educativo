@@ -5,7 +5,8 @@ export interface inscriptions {
 
 export interface Student {
   id: string;
-  name: string;
+  nombre: string;
+  apellidos: string;
 }
 
 export interface Course {
@@ -24,5 +25,3 @@ export interface CreateInscriptionPayload {
   studentId: string;
   courseId: string;
 }
-
-  

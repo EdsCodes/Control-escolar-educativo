@@ -7,6 +7,11 @@ import { InscriptionsService } from '../../../../core/services/inscriptions.serv
 
 @Injectable()
 export class InscriptionsEffects {
+  constructor(
+    private actions$: Actions,
+    private inscriptionsService: InscriptionsService
+  ) {}
+
   createInscription$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(InscriptionsActions.createInscription),
@@ -21,7 +26,7 @@ export class InscriptionsEffects {
     );
   });
 
-  loadEnrollments$ = createEffect(() => {
+  loadInscriptiopns$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(InscriptionsActions.loadInscriptions),
       concatMap(() =>
@@ -50,9 +55,4 @@ export class InscriptionsEffects {
       )
     );
   });
-
-  constructor(
-    private actions$: Actions,
-    private inscriptionsService: InscriptionsService
-  ) {}
 }

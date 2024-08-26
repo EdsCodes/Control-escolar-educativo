@@ -3,11 +3,11 @@
   <mat-dialog-content>
     <form [formGroup]="inscriptionsForm">
       <!-- Campo de selección de estudiante -->
-      <mat-form-field class="w-full mb-2 pt-2">
+      <mat-form-field appearance="fill" class="w-full mb-3">
         <mat-label>Estudiante</mat-label>
         <mat-select formControlName="studentId" required>
           <mat-option *ngFor="let student of students$ | async" [value]="student.id">
-            {{ student.name }}
+            {{ student.nombre }} {{ student.apellidos }}
           </mat-option>
         </mat-select>
         <mat-error *ngIf="inscriptionsForm.controls['studentId'].hasError('required') && inscriptionsForm.controls['studentId'].touched">
@@ -16,7 +16,7 @@
       </mat-form-field>
       
       <!-- Campo de selección de curso -->
-      <mat-form-field class="w-full mb-3">
+      <mat-form-field appearance="fill" class="w-full mb-3">
         <mat-label>Curso</mat-label>
         <mat-select formControlName="courseId" required>
           <mat-option *ngFor="let course of courses$ | async" [value]="course.id">
@@ -29,6 +29,7 @@
       </mat-form-field>
     </form> 
   </mat-dialog-content>
+  
   <mat-dialog-actions>
     <button mat-flat-button (click)="onCancel()">Cancelar</button>
     <button (click)="onSave()" mat-flat-button color="primary">Guardar</button>

@@ -23,7 +23,7 @@ import { DialogsInscriptionsComponent } from '../inscriptions/components/dialogs
   styleUrls: ['./inscriptions.component.scss'],
 })
 export class InscriptionsComponent implements OnInit {
-  enrollmentForm: FormGroup;
+  inscriptionsForm: FormGroup;
   isLoading$: Observable<boolean>;
   dataSource: MatTableDataSource<inscriptions>;
   students$: Observable<Student[]>;
@@ -42,7 +42,7 @@ export class InscriptionsComponent implements OnInit {
     this.students$ = this.store.select(selectInscriptionsStudents);
     this.courses$ = this.store.select(selectInscriptionsCourses);
     this.dataSource = new MatTableDataSource<inscriptions>();
-    this.enrollmentForm = this.fb.group({
+    this.inscriptionsForm = this.fb.group({
       studentId: [null, Validators.required],
       courseId: [null, Validators.required],
     });

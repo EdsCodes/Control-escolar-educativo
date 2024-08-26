@@ -49,6 +49,7 @@ export const reducer = createReducer(
     };
   }),
 
+  
   on(InscriptionsActions.loadStudentsAndCourses, (state) => ({
     ...state,
     isLoadingStudentsAndCourses: true,
@@ -56,7 +57,7 @@ export const reducer = createReducer(
   on(InscriptionsActions.loadStudentsAndCoursesSuccess, (state, action) => ({
     ...state,
     isLoadingStudentsAndCourses: false,
-    Courses: action.data.courses,
+    courses: action.data.courses,
     students: action.data.students,
     error: null,
   })),

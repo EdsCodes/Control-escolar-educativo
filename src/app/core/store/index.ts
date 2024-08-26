@@ -10,7 +10,8 @@ export interface RootState {
 
 export interface Student {
   id: string;
-  name: string
+  nombre: string
+  apellidos: string
 }
 
 export interface Course {
