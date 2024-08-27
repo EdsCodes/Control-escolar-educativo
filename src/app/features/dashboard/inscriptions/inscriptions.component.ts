@@ -51,9 +51,25 @@ export class InscriptionsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(InscriptionsActions.loadInscriptions());
-    this.store.dispatch(InscriptionsActions.loadStudentsAndCourses());
-  
+    this.loadData();
+  }
+
+  async openDialog(): Promise<void> {
+    const dialogRef = this.dialog.open(DialogsInscriptionsComponent, {
+      width: '400px',
+      data: null,
+    });
+
+    const result = await dialogRef.afterClosed().toPromise();
+    if (result) {
+      this.store.dispatch(InscriptionsActions.createInscription({ payload: result }));
+      await this.loadData();
+    }
+  }
+
+  async loadData(): Promise<void> {
+    await this.store.dispatch(InscriptionsActions.loadInscriptions());
+    await this.store.dispatch(InscriptionsActions.loadStudentsAndCourses());
     this.inscriptions$.pipe(
       tap(data => {
         if (data) {
@@ -61,26 +77,8 @@ export class InscriptionsComponent implements OnInit {
         }
       })
     ).subscribe();
-  
-    this.store.select(selectInscriptions).subscribe(inscriptions => {
-      this.dataSource.data = inscriptions;
-    });
   }
-  
-  openDialog(): void {
-    const dialogRef = this.dialog.open(DialogsInscriptionsComponent, {
-      width: '400px',
-      data: null,
-    });
-  
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.store.dispatch(InscriptionsActions.createInscription({ payload: result }));
-        this.store.dispatch(InscriptionsActions.loadInscriptions());
-      }
-    });
-  }
- 
+
   editInscription(inscription: inscriptions): void {
     // Pendiente Implementar lógica de edición
   }
@@ -89,3 +87,4 @@ export class InscriptionsComponent implements OnInit {
     // Pendiente Implementar lógica de eliminación
   }
 }
+

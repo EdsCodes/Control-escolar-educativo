@@ -38,10 +38,8 @@ export class DialogsInscriptionsComponent implements OnInit {
     this.courses$ = this.store.select(selectInscriptionsCourses);
   }
 
-  ngOnInit(): void {
-    
-  }
-
+  ngOnInit(): void {}
+  
   onSave(): void {
     if (this.inscriptionsForm.valid) {
       const formValue = this.inscriptionsForm.getRawValue();
