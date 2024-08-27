@@ -10,15 +10,19 @@ export interface RootState {
 
 export interface Student {
   id: string;
-  nombre: string
-  apellidos: string
+  nombre: string;
+  apellidos: string;
+  fechaNacimiento: string;
+  celular: string;
+  direccion: string;
+  curso: string;
 }
 
 export interface Course {
   id: string;
   nombreCurso: string;
   fechaInicioCurso: string;
-  fechaFinCurso: string
+  fechaFinCurso: string;
 }
 
 export interface loadStudentsAndCoursesResp {

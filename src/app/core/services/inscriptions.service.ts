@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { forkJoin, Observable } from 'rxjs';
+import { forkJoin, Observable, tap } from 'rxjs';
 import { inscriptions } from '../../shared/models/inscriptions';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
@@ -15,7 +15,7 @@ export class InscriptionsService {
   getAllInscriptions(): Observable<inscriptions[]> {
     return this.http.get<inscriptions[]>(
       `${environment.apiUrl}/inscriptions?_embed=student&_embed=course`
-    );
+    )
   }
 
   getStudentsAndCourses(): Observable<loadStudentsAndCoursesResp> {

@@ -166,49 +166,14 @@
   ],
   "inscriptions": [
     {
-      "id": "9b90",
-      "studentId": "db6c",
+      "id": "7ae1",
+      "studentId": "8070",
       "courseId": "2a0c"
     },
     {
-      "id": "8eed",
-      "studentId": "d008",
-      "courseId": "e0ac"
-    },
-    {
-      "id": "e79e",
-      "studentId": "8070",
-      "courseId": "6a68"
-    },
-    {
-      "id": "5b2a",
-      "studentId": "db6c",
-      "courseId": "6a68"
-    },
-    {
-      "id": "c4d1",
+      "id": "cc52",
       "studentId": "5c11",
-      "courseId": "9f70"
-    },
-    {
-      "id": "2e4b",
-      "studentId": "5c11",
-      "courseId": "91e3"
-    },
-    {
-      "id": "237b",
-      "studentId": "c4d5",
-      "courseId": "6a28"
-    },
-    {
-      "id": "d520",
-      "studentId": "d008",
       "courseId": "e0ac"
-    },
-    {
-      "id": "628f",
-      "studentId": "4955",
-      "courseId": "91e3"
     }
   ]
 }

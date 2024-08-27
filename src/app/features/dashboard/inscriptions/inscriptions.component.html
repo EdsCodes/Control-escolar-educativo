@@ -9,7 +9,7 @@
 <ng-template #tableContent>
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     
-    <!-- Student Name Column -->
+    <!-- Id Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef>Id</th>
       <td mat-cell *matCellDef="let element"> {{ element.id }} </td>
@@ -18,25 +18,25 @@
     <!-- Student Name Column -->
     <ng-container matColumnDef="studentName">
       <th mat-header-cell *matHeaderCellDef>Nombre Estudiante</th>
-      <td mat-cell *matCellDef="let element"> {{ element.student.nombre }} {{ element.student.apellidos }} </td>
+      <td mat-cell *matCellDef="let element"> {{ element.student?.nombre }} {{ element.student?.apellidos }} </td>
     </ng-container>
 
     <!-- Course Name Column -->
     <ng-container matColumnDef="courseName">
       <th mat-header-cell *matHeaderCellDef>Nombre Curso</th>
-      <td mat-cell *matCellDef="let element"> {{ element.course.nombreCurso }} </td>
+      <td mat-cell *matCellDef="let element"> {{ element.course?.nombreCurso }} </td>
     </ng-container>
 
     <!-- Start Date Column -->
     <ng-container matColumnDef="startDate">
       <th mat-header-cell *matHeaderCellDef>Fecha Inicio</th>
-      <td mat-cell *matCellDef="let element"> {{ element.course.dateRange.fechaInicioCurso | date:'shortDate' }} </td>
+      <td mat-cell *matCellDef="let element"> {{ element.course?.dateRange.fechaInicioCurso | date:'shortDate' }} </td>
     </ng-container>
 
     <!-- End Date Column -->
     <ng-container matColumnDef="endDate">
       <th mat-header-cell *matHeaderCellDef>Fecha Fin</th>
-      <td mat-cell *matCellDef="let element"> {{ element.course.dateRange.fechaFinCurso | date:'shortDate' }} </td>
+      <td mat-cell *matCellDef="let element"> {{ element.course?.dateRange.fechaFinCurso | date:'shortDate' }} </td>
     </ng-container>
 
     <!-- Actions Column -->

@@ -63,13 +63,23 @@ export const reducer = createReducer(
   })),
 
   // Create Inscription
-  on(InscriptionsActions.createInscriptionSuccess, (state, action) => {
-    return {
-      ...state,
-      inscriptions: [...state.inscriptions, action.data],
-      error: null,
-    };
-  })
+  on(InscriptionsActions.createInscription, (state) => ({
+    ...state,
+    isLoading: true, 
+  })),
+
+  on(InscriptionsActions.createInscriptionSuccess, (state, action) => ({
+    ...state,
+    isLoading: false,
+    inscriptions: [...state.inscriptions, action.data],
+    error: null,
+  })),
+
+  on(InscriptionsActions.createInscriptionFailure, (state, action) => ({
+    ...state,
+    isLoading: false,
+    error: action.error,
+  }))
 );
 
 export const inscriptionsFeature = createFeature({

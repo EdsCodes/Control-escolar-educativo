@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { inscriptions, Student, Course } from '../../../shared/models/inscriptions';
 import { NotificationService } from '../../../core/services/notifications.service';
 import { Store } from '@ngrx/store';
@@ -25,11 +26,12 @@ import { DialogsInscriptionsComponent } from '../inscriptions/components/dialogs
 export class InscriptionsComponent implements OnInit {
   inscriptionsForm: FormGroup;
   isLoading$: Observable<boolean>;
-  dataSource: MatTableDataSource<inscriptions>;
+  inscriptions$: Observable<inscriptions[]>; 
   students$: Observable<Student[]>;
   courses$: Observable<Course[]>;
   error$: Observable<unknown>;
   displayedColumns: string[] = ['id', 'studentName', 'courseName', 'startDate', 'endDate', 'actions'];
+  dataSource = new MatTableDataSource<inscriptions>();
 
   constructor(
     private notificationService: NotificationService,
@@ -41,7 +43,7 @@ export class InscriptionsComponent implements OnInit {
     this.error$ = this.store.select(selectInscriptionsError);
     this.students$ = this.store.select(selectInscriptionsStudents);
     this.courses$ = this.store.select(selectInscriptionsCourses);
-    this.dataSource = new MatTableDataSource<inscriptions>();
+    this.inscriptions$ = this.store.select(selectInscriptions); 
     this.inscriptionsForm = this.fb.group({
       studentId: [null, Validators.required],
       courseId: [null, Validators.required],
@@ -51,26 +53,34 @@ export class InscriptionsComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(InscriptionsActions.loadInscriptions());
     this.store.dispatch(InscriptionsActions.loadStudentsAndCourses());
-    this.store.select(selectInscriptions).subscribe((data) => {
-      if (data) {
-        this.dataSource.data = data;
-      }
+  
+    this.inscriptions$.pipe(
+      tap(data => {
+        if (data) {
+          this.dataSource.data = data;
+        }
+      })
+    ).subscribe();
+  
+    this.store.select(selectInscriptions).subscribe(inscriptions => {
+      this.dataSource.data = inscriptions;
     });
   }
-
+  
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogsInscriptionsComponent, {
       width: '400px',
       data: null,
     });
-
+  
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.store.dispatch(InscriptionsActions.createInscription({ payload: result }));
+        this.store.dispatch(InscriptionsActions.loadInscriptions());
       }
     });
   }
-
+ 
   editInscription(inscription: inscriptions): void {
     // Pendiente Implementar lógica de edición
   }
