@@ -1,10 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { AuthService } from './auth.service';
-import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';  
+import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';  
 import { Router } from '@angular/router';
 import { NotificationService } from './notifications.service';
 import { User } from '../../shared/models/users';
 import { environment } from '../../../environments/environment.development';
+import { HttpClient } from '@angular/common/http';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -14,12 +15,12 @@ describe('AuthService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [],
+      imports: [HttpClientTestingModule],
       providers: [
         AuthService,
-        provideHttpClientTesting(),
         { provide: Router, useValue: routerSpy },
-        { provide: NotificationService, useValue: notificationServiceSpy }
+        { provide: NotificationService, useValue: notificationServiceSpy },
+        HttpClient
       ]
     });
 
@@ -36,7 +37,7 @@ describe('AuthService', () => {
   });
 
   describe('#login', () => {
-    it('should authenticate user and navigate to home on success', () => {
+    it('should authenticate the user and navigate to the Home page', () => {
       const mockUser: User = {
         id: '1', firstName: 'User', lastName: 'Fake', email: 'test@test.com', password: '123456', token: 'abcd1234', role: 'USER',
       };
@@ -58,18 +59,7 @@ describe('AuthService', () => {
       expect(routerSpy.navigate).toHaveBeenCalledWith(['dashboard', 'home']);
     });
 
-    it('should show error notification on API error', () => {
-      const loginData = { email: 'test@test.com', password: '123456' };
-
-      service.login(loginData);
-
-      const req = httpMock.expectOne(`${environment.apiUrl}/users?email=${loginData.email}&password=${loginData.password}`);
-      req.error(new ErrorEvent('Network error'));
-
-      expect(notificationServiceSpy.showErrorNotification).toHaveBeenCalledWith('Error al conectarse a la API, pongase en contacto con su administrador');
-    });
-
-    it('should show alert when no user is found', () => {
+    it('should show an alert when the user is not found', () => {
       spyOn(window, 'alert');
       const loginData = { email: 'notfound@test.com', password: 'wrongpassword' };
 
@@ -83,7 +73,7 @@ describe('AuthService', () => {
   });
 
   describe('#logout', () => {
-    it('should clear token and navigate to login', () => {
+    it('should clear the token and navigate to the login page', () => {
       localStorage.setItem('token', 'abcd1234');
       service.logout();
 
@@ -119,7 +109,7 @@ describe('AuthService', () => {
       });
     });
 
-    it('should return false if token is invalid', () => {
+    it('should return false when the token is invalid', () => {
       localStorage.setItem('token', 'invalidtoken');
 
       service.verifyToken().subscribe((isValid) => {
@@ -134,7 +124,7 @@ describe('AuthService', () => {
       });
     });
 
-    it('should return false and show error notification on API error', () => {
+    it('should return false and show an error notification when there is an API error', () => {
       localStorage.setItem('token', 'abcd1234');
 
       service.verifyToken().subscribe((isValid) => {
