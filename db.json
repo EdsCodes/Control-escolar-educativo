@@ -81,16 +81,6 @@
       "fechaFinCurso": "2025-02-28T05:00:00.000Z"
     },
     {
-      "id": "0292",
-      "nombreCurso": "Mongo DB",
-      "dateRange": {
-        "fechaInicioCurso": "2024-11-20T05:00:00.000Z",
-        "fechaFinCurso": "2025-01-31T05:00:00.000Z"
-      },
-      "fechaInicioCurso": "2024-11-20T05:00:00.000Z",
-      "fechaFinCurso": "2025-01-31T05:00:00.000Z"
-    },
-    {
       "id": "6b15",
       "nombreCurso": "Bootstrap",
       "dateRange": {
@@ -209,7 +199,7 @@
     {
       "id": "8bb1",
       "studentId": "addd",
-      "courseId": "0292"
+      "courseId": null
     },
     {
       "studentId": "5c11",

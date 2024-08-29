@@ -5,10 +5,10 @@
     </mat-card-header>
     <mat-card-content>
       <p class="m-3" *ngIf="(autenticatedUser | async)?.role === 'ADMIN'">
-        Aquí puedes gestionar estudiantes, cursos, inscripciones, ver estadísticas de estos (próximamente) y más
+        Aquí puedes gestionar estudiantes, cursos e inscripciones.
       </p>
       <p class="m-3" *ngIf="(autenticatedUser | async)?.role === 'USER'">
-        Aquí puedes consultar y modificar info referente a estudiantes y cursos y agregar o eliminar usuarios e inscripciones de alumnos a los cursos.
+        Aquí puedes consultar y modificar info referente a estudiantes, cursos e inscripciones.
       </p>
     </mat-card-content>
   </mat-card>
