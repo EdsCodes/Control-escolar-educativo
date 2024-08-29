@@ -18,7 +18,7 @@ export class StudentsComponent {
   
   studentsDataSource: students[] = [];
   loadingInProcess = false;
-  displayedColumns: string[] = ['id', 'nombreCompleto', 'fechaNacimiento', 'celular', 'direccion', 'curso', 'actions'];
+  displayedColumns: string[] = ['id', 'nombreCompleto', 'fechaNacimiento', 'celular', 'direccion', 'actions'];
   autenticatedUser: Observable<User | null>
   
   constructor(private matDialog: MatDialog, private StudentsService: StudentsService, private authService: AuthService, private notifier: NotificationService) {

@@ -5,5 +5,4 @@ export interface students {
     fechaNacimiento: string;
     celular: string;
     direccion: string;
-    curso: string;
 }

@@ -10,9 +10,9 @@ import { Observable } from 'rxjs';
   styleUrl: './students-detail.component.scss'
 })
 export class StudentsDetailComponent {
-    student$: Observable<students | undefined>;
-  
-    constructor(private studentsService: StudentsService , private activatedRoute: ActivatedRoute) {
-      this.student$ = this.studentsService.getStudentById(this.activatedRoute.snapshot.params['id']);
-    }
+  student$: Observable<students | undefined>;
+
+  constructor(private studentsService: StudentsService , private activatedRoute: ActivatedRoute) {
+    this.student$ = this.studentsService.getStudentById(this.activatedRoute.snapshot.params['id']);
   }
+}

@@ -26,7 +26,7 @@ import { DialogsInscriptionsComponent } from '../inscriptions/components/dialogs
 export class InscriptionsComponent implements OnInit {
   inscriptionsForm: FormGroup;
   isLoading$: Observable<boolean>;
-  inscriptions$: Observable<inscriptions[]>; 
+  inscriptions$: Observable<inscriptions[]>;
   students$: Observable<Student[]>;
   courses$: Observable<Course[]>;
   error$: Observable<unknown>;
@@ -43,7 +43,7 @@ export class InscriptionsComponent implements OnInit {
     this.error$ = this.store.select(selectInscriptionsError);
     this.students$ = this.store.select(selectInscriptionsStudents);
     this.courses$ = this.store.select(selectInscriptionsCourses);
-    this.inscriptions$ = this.store.select(selectInscriptions); 
+    this.inscriptions$ = this.store.select(selectInscriptions);
     this.inscriptionsForm = this.fb.group({
       studentId: [null, Validators.required],
       courseId: [null, Validators.required],
@@ -51,40 +51,51 @@ export class InscriptionsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadData();
+    this.store.dispatch(InscriptionsActions.loadInscriptions());
+    this.store.dispatch(InscriptionsActions.loadStudentsAndCourses());
+    this.inscriptions$
+      .pipe(
+        tap((data) => {
+          if (data) {
+            this.dataSource.data = data;
+          }
+        })
+      )
+      .subscribe();
   }
 
-  async openDialog(): Promise<void> {
+  openDialog(): void {
     const dialogRef = this.dialog.open(DialogsInscriptionsComponent, {
       width: '400px',
       data: null,
     });
 
-    const result = await dialogRef.afterClosed().toPromise();
-    if (result) {
-      this.store.dispatch(InscriptionsActions.createInscription({ payload: result }));
-      await this.loadData();
-    }
-  }
-
-  async loadData(): Promise<void> {
-    await this.store.dispatch(InscriptionsActions.loadInscriptions());
-    await this.store.dispatch(InscriptionsActions.loadStudentsAndCourses());
-    this.inscriptions$.pipe(
-      tap(data => {
-        if (data) {
-          this.dataSource.data = data;
-        }
-      })
-    ).subscribe();
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.store.dispatch(InscriptionsActions.createInscription({ payload: result }));
+        this.notificationService.showSuccessNotification('Inscripción agregada correctamente.');
+        this.store.dispatch(InscriptionsActions.loadInscriptions());
+      }
+    });
   }
 
   editInscription(inscription: inscriptions): void {
-    // Pendiente Implementar lógica de edición
+    const dialogRef = this.dialog.open(DialogsInscriptionsComponent, {
+      width: '400px',
+      data: inscription,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.store.dispatch(InscriptionsActions.editInscription({ id: inscription.id, changes: result }));
+        this.notificationService.showSuccessNotification('Inscripción editada correctamente.');
+        this.store.dispatch(InscriptionsActions.loadInscriptions());
+      }
+    });
   }
 
   deleteInscriptionById(id: number): void {
-    // Pendiente Implementar lógica de eliminación
+    this.store.dispatch(InscriptionsActions.deleteInscription({ id: id.toString() }));
+    this.notificationService.showSuccessNotification('Inscripción eliminada correctamente.');
   }
 }
-

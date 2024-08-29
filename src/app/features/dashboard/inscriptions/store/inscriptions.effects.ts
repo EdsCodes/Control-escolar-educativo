@@ -26,7 +26,7 @@ export class InscriptionsEffects {
     );
   });
 
-  loadInscriptiopns$ = createEffect(() => {
+  loadInscriptions$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(InscriptionsActions.loadInscriptions),
       concatMap(() =>
@@ -50,6 +50,34 @@ export class InscriptionsEffects {
           ),
           catchError((error) =>
             of(InscriptionsActions.loadStudentsAndCoursesFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  deleteInscription$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(InscriptionsActions.deleteInscription),
+      concatMap((action) =>
+        this.inscriptionsService.deleteInscriptionById(action.id).pipe(
+          map(() => InscriptionsActions.deleteInscriptionSuccess({ id: action.id })),
+          catchError((error) =>
+            of(InscriptionsActions.deleteInscriptionFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+
+  editInscription$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(InscriptionsActions.editInscription),
+      concatMap((action) =>
+        this.inscriptionsService.editInscriptionById(action.id, action.changes).pipe(
+          map((inscription) => InscriptionsActions.editInscriptionSuccess({ inscription })),
+          catchError((error) =>
+            of(InscriptionsActions.editInscriptionFailure({ error }))
           )
         )
       )

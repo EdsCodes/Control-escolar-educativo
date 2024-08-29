@@ -9,7 +9,6 @@ export interface inscriptions {
     fechaNacimiento: string; 
     celular: string;
     direccion: string;
-    curso: string;
   };
   course: {
     nombreCurso: string;
@@ -53,7 +52,6 @@ export interface CreateInscriptionPayload {
     fechaNacimiento: string; 
     celular: string;
     direccion: string;
-    curso: string;
   };
   course: {
     id: string;

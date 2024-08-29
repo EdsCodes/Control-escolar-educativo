@@ -25,7 +25,6 @@ export class DialogsStudentsComponent {
       fechaNacimiento: [editingStudent?.fechaNacimiento || '', Validators.required],
       celular: [editingStudent?.celular || '', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
       direccion: [editingStudent?.direccion || '', [Validators.required, Validators.maxLength(50)]],
-      curso: [editingStudent?.curso || '', Validators.required]
     });
 
     if (this.editingStudent) {
