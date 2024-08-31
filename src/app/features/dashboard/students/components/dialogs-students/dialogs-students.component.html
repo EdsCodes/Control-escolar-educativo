@@ -59,13 +59,6 @@
         <mat-error *ngIf="studentForm.controls['direccion'].hasError('maxlength') && studentForm.controls['direccion'].touched">No puede tener más de 50 caracteres.</mat-error>
       </mat-form-field>
 
-      <!--campo de curso-->
-      <mat-form-field class="w-full mb-2">
-        <mat-label>Curso</mat-label>
-        <input formControlName="curso" matInput required/>
-        <mat-error *ngIf="studentForm.controls['curso'].hasError('required') && studentForm.controls['curso'].touched">Campo requerido</mat-error>
-      </mat-form-field>
-
     </form> 
   </mat-dialog-content>
   <mat-dialog-actions>
