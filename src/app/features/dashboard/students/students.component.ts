@@ -82,7 +82,7 @@ export class StudentsComponent {
               this.notifier.showErrorNotification('Error al editar el estudiante')
             }
           });
-        }
+        } 
       }
     });
   }
@@ -103,6 +103,8 @@ export class StudentsComponent {
           this.notifier.showSuccessNotification('curso borrado correctamente');
         },
       });
+    } else {
+      this.loadingInProcess = false;
     }
   }
 }

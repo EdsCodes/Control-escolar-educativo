@@ -103,16 +103,6 @@
   ],
   "students": [
     {
-      "Id": "db6c",
-      "nombre": "Josefina",
-      "apellidos": "Talaga",
-      "fechaNacimiento": "1993-07-18T05:00:00.000Z",
-      "celular": "3215904878",
-      "direccion": "Calle 11 Nº 11-11",
-      "curso": "React",
-      "id": "db6c"
-    },
-    {
       "id": "8070",
       "nombre": "Juan",
       "apellidos": "Cañas",
