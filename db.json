@@ -164,15 +164,6 @@
       "celular": "3197841033",
       "direccion": "Mz 5 Cs 9 Villas de Carolina",
       "curso": "React"
-    },
-    {
-      "id": "acb0",
-      "nombre": "Andrea",
-      "apellidos": "Serna",
-      "fechaNacimiento": "1989-11-25T05:00:00.000Z",
-      "celular": "3128620742",
-      "direccion": "Call5 15 - 49",
-      "curso": "SQL"
     }
   ],
   "inscriptions": [
@@ -182,7 +173,7 @@
       "id": "4ebe"
     },
     {
-      "studentId": "acb0",
+      "studentId": null,
       "courseId": "6b15",
       "id": "4d24"
     },

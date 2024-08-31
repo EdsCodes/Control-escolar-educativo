@@ -104,6 +104,8 @@ export class CoursesComponent implements OnInit {
           this.loadingInProcess = false;
         }
       });
+    } else {
+      this.loadingInProcess = false;
     }
   }
 }
