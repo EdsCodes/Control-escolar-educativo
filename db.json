@@ -41,16 +41,6 @@
       "id": "e0ac"
     },
     {
-      "nombreCurso": "Js Vanilla",
-      "dateRange": {
-        "fechaInicioCurso": "2024-10-15T05:00:00.000Z",
-        "fechaFinCurso": "2025-03-20T05:00:00.000Z"
-      },
-      "fechaInicioCurso": "2024-10-15T05:00:00.000Z",
-      "fechaFinCurso": "2025-03-20T05:00:00.000Z",
-      "id": "9f70"
-    },
-    {
       "nombreCurso": "CSS",
       "dateRange": {
         "fechaInicioCurso": "2024-12-15T05:00:00.000Z",
@@ -168,24 +158,19 @@
   ],
   "inscriptions": [
     {
+      "id": "803e",
       "studentId": "4955",
-      "courseId": "2a0c",
-      "id": "4ebe"
+      "courseId": "e0ac"
     },
     {
-      "studentId": null,
-      "courseId": "6b15",
-      "id": "4d24"
+      "id": "8bc6",
+      "studentId": "8070",
+      "courseId": "2a0c"
     },
     {
-      "studentId": "5c11",
-      "courseId": "855f",
-      "id": "03eb"
-    },
-    {
-      "id": "bbe8",
-      "studentId": "63ff",
-      "courseId": "9f70"
+      "id": "e856",
+      "studentId": "c4d5",
+      "courseId": "91e3"
     }
   ]
 }

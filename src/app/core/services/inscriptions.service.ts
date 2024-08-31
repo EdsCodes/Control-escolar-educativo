@@ -28,13 +28,13 @@ export class InscriptionsService {
   addInscription(inscription: inscriptions): Observable<inscriptions> {
     return this.http
       .post<inscriptions>(`${environment.apiUrl}/inscriptions`, inscription)
-      .pipe(
-        concatMap((inscriptionCreated) =>
-          this.http.get<inscriptions>(
-            `${environment.apiUrl}/inscriptions/${inscriptionCreated.id}?_embed=course&_embed=student`
-          )
-        )
-      );
+  }
+
+  getInscriptionById(id: string): Observable<inscriptions> {
+    return this.http
+      .get<inscriptions>(
+        `${environment.apiUrl}/inscriptions/${id}?_embed=course&_embed=student`
+      )
   }
 
   deleteInscriptionById(id: string): Observable<void> {

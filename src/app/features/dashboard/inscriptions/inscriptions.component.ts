@@ -26,6 +26,7 @@ import { DialogsInscriptionsComponent } from '../inscriptions/components/dialogs
 export class InscriptionsComponent implements OnInit {
   inscriptionsForm: FormGroup;
   isLoading$: Observable<boolean>;
+  loadingInProcess = false;
   inscriptions$: Observable<inscriptions[]>;
   students$: Observable<Student[]>;
   courses$: Observable<Course[]>;
@@ -94,8 +95,11 @@ export class InscriptionsComponent implements OnInit {
     });
   }
 
-  deleteInscriptionById(id: number): void {
-    this.store.dispatch(InscriptionsActions.deleteInscription({ id: id.toString() }));
-    this.notificationService.showSuccessNotification('Inscripción eliminada correctamente.');
+  deleteInscriptionById(id: number) {
+    this.loadingInProcess = true;
+    if(confirm('Confirma borrado de inscripción?')) {
+      this.store.dispatch(InscriptionsActions.deleteInscription({ id: id.toString() }));
+      this.notificationService.showSuccessNotification('Inscripción eliminada correctamente.');
+    }
   }
 }
