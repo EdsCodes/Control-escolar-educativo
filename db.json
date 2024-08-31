@@ -21,74 +21,88 @@
   ],
   "courses": [
     {
-      "nombreCurso": "React Js",
-      "dateRange": {
-        "fechaInicioCurso": "2024-08-16T05:00:00.000Z",
-        "fechaFinCurso": "2024-08-31T05:00:00.000Z"
-      },
-      "fechaInicioCurso": "2024-08-16T05:00:00.000Z",
-      "fechaFinCurso": "2024-08-31T05:00:00.000Z",
-      "id": "2a0c"
-    },
-    {
+      "id": "f090",
       "nombreCurso": "Angular",
       "dateRange": {
-        "fechaInicioCurso": "2024-09-20T05:00:00.000Z",
-        "fechaFinCurso": "2024-10-31T05:00:00.000Z"
+        "fechaInicioCurso": "2024-09-02T05:00:00.000Z",
+        "fechaFinCurso": "2024-11-29T05:00:00.000Z"
       },
-      "fechaInicioCurso": "2024-09-20T05:00:00.000Z",
-      "fechaFinCurso": "2024-10-31T05:00:00.000Z",
-      "id": "e0ac"
+      "profesor": "Joel Torres",
+      "costo": "250000",
+      "fechaInicioCurso": "2024-09-02T05:00:00.000Z",
+      "fechaFinCurso": "2024-11-29T05:00:00.000Z"
     },
     {
-      "nombreCurso": "CSS",
+      "id": "d1a6",
+      "nombreCurso": "React Js",
       "dateRange": {
-        "fechaInicioCurso": "2024-12-15T05:00:00.000Z",
-        "fechaFinCurso": "2025-05-20T05:00:00.000Z"
+        "fechaInicioCurso": "2024-09-02T05:00:00.000Z",
+        "fechaFinCurso": "2024-11-29T05:00:00.000Z"
       },
-      "fechaInicioCurso": "2024-12-15T05:00:00.000Z",
-      "fechaFinCurso": "2025-05-20T05:00:00.000Z",
-      "id": "91e3"
+      "profesor": "Josue Diago",
+      "costo": "250000",
+      "fechaInicioCurso": "2024-09-02T05:00:00.000Z",
+      "fechaFinCurso": "2024-11-29T05:00:00.000Z"
     },
     {
-      "id": "6a28",
-      "nombreCurso": "SQL",
+      "id": "7de3",
+      "nombreCurso": "PHP",
       "dateRange": {
-        "fechaInicioCurso": "2024-12-24T05:00:00.000Z",
-        "fechaFinCurso": "2025-03-31T05:00:00.000Z"
-      },
-      "fechaInicioCurso": "2024-12-24T05:00:00.000Z",
-      "fechaFinCurso": "2025-03-31T05:00:00.000Z"
-    },
-    {
-      "id": "6a68",
-      "nombreCurso": "Photoshop",
-      "dateRange": {
-        "fechaInicioCurso": "2024-12-25T05:00:00.000Z",
+        "fechaInicioCurso": "2024-12-02T05:00:00.000Z",
         "fechaFinCurso": "2025-02-28T05:00:00.000Z"
       },
-      "fechaInicioCurso": "2024-12-25T05:00:00.000Z",
+      "profesor": "Sonia Machado",
+      "costo": "200000",
+      "fechaInicioCurso": "2024-12-02T05:00:00.000Z",
       "fechaFinCurso": "2025-02-28T05:00:00.000Z"
     },
     {
-      "id": "6b15",
-      "nombreCurso": "Bootstrap",
+      "id": "c76f",
+      "nombreCurso": "Photoshop",
+      "dateRange": {
+        "fechaInicioCurso": "2025-01-06T05:00:00.000Z",
+        "fechaFinCurso": "2025-03-31T05:00:00.000Z"
+      },
+      "profesor": "Ana Castillo",
+      "costo": "150000",
+      "fechaInicioCurso": "2025-01-06T05:00:00.000Z",
+      "fechaFinCurso": "2025-03-31T05:00:00.000Z"
+    },
+    {
+      "id": "8f9f",
+      "nombreCurso": "Desarrollo Web",
       "dateRange": {
         "fechaInicioCurso": "2025-03-03T05:00:00.000Z",
         "fechaFinCurso": "2025-05-30T05:00:00.000Z"
       },
+      "profesor": "Julian De La Rosa",
+      "costo": "350000",
       "fechaInicioCurso": "2025-03-03T05:00:00.000Z",
       "fechaFinCurso": "2025-05-30T05:00:00.000Z"
     },
     {
-      "id": "855f",
-      "nombreCurso": "PHP",
+      "id": "df6c",
+      "nombreCurso": "SQL",
       "dateRange": {
-        "fechaInicioCurso": "2024-11-04T05:00:00.000Z",
-        "fechaFinCurso": "2025-02-28T05:00:00.000Z"
+        "fechaInicioCurso": "2024-12-02T05:00:00.000Z",
+        "fechaFinCurso": "2025-03-31T05:00:00.000Z"
       },
-      "fechaInicioCurso": "2024-11-04T05:00:00.000Z",
-      "fechaFinCurso": "2025-02-28T05:00:00.000Z"
+      "profesor": "John Gonzalez",
+      "costo": "280000",
+      "fechaInicioCurso": "2024-12-02T05:00:00.000Z",
+      "fechaFinCurso": "2025-03-31T05:00:00.000Z"
+    },
+    {
+      "id": "ff47",
+      "nombreCurso": "Next Js",
+      "dateRange": {
+        "fechaInicioCurso": "2025-03-03T05:00:00.000Z",
+        "fechaFinCurso": "2025-06-30T05:00:00.000Z"
+      },
+      "profesor": "Carla Giraldo",
+      "costo": "400000",
+      "fechaInicioCurso": "2025-03-03T05:00:00.000Z",
+      "fechaFinCurso": "2025-06-30T05:00:00.000Z"
     }
   ],
   "students": [
@@ -158,19 +172,34 @@
   ],
   "inscriptions": [
     {
-      "id": "803e",
-      "studentId": "4955",
-      "courseId": "e0ac"
-    },
-    {
-      "id": "8bc6",
+      "id": "174b",
       "studentId": "8070",
-      "courseId": "2a0c"
+      "courseId": "f090"
     },
     {
-      "id": "e856",
+      "id": "9bac",
+      "studentId": "4955",
+      "courseId": "d1a6"
+    },
+    {
+      "id": "a7ae",
       "studentId": "c4d5",
-      "courseId": "91e3"
+      "courseId": "7de3"
+    },
+    {
+      "id": "fa0e",
+      "studentId": "63ff",
+      "courseId": "c76f"
+    },
+    {
+      "id": "b03d",
+      "studentId": "d008",
+      "courseId": "8f9f"
+    },
+    {
+      "id": "cb85",
+      "studentId": "5c11",
+      "courseId": "df6c"
     }
   ]
 }

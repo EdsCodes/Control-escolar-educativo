@@ -11,10 +11,12 @@ export interface inscriptions {
     direccion: string;
   };
   course: {
+    id: string;
     nombreCurso: string;
     fechaInicioCurso: string; 
-    fechaFinCurso: string; 
-    id: string;
+    fechaFinCurso: string;
+    profesor: string;
+    costo: string; 
   };
 }
 
@@ -34,6 +36,8 @@ export interface Course {
   nombreCurso: string;
   fechaInicioCurso: string;
   fechaFinCurso: string;
+  profesor: string;
+  costo: string;
 }
 
 export interface LoadStudentsAndCoursesResp {
@@ -58,5 +62,7 @@ export interface CreateInscriptionPayload {
     nombreCurso: string;
     fechaInicioCurso: string; 
     fechaFinCurso: string; 
+    profesor: string;
+    costo: string;
   };
 }

@@ -1,35 +1,59 @@
 <div class="dialogWindow">
-    <h2 class="my-2" mat-dialog-title>Nombre del curso?</h2>
-    <mat-dialog-content>
-        <form [formGroup]="courseForm">
-            <mat-form-field class="w-full mb-2 pt-2">
-            <mat-label>Nombres cortos, sin detalles extra</mat-label>
-            <input formControlName="nombreCurso" matInput required/>
-            <mat-error *ngIf="courseForm.controls['nombreCurso'].hasError('required') && courseForm.controls['nombreCurso'].touched">
-                Campo requerido
-            </mat-error>
-            <mat-error *ngIf="courseForm.controls['nombreCurso'].hasError('minlength') && courseForm.controls['nombreCurso'].touched">
-                Debe tener al menos 2 caracteres.
-              </mat-error>
-            </mat-form-field>
-    
-            <!--Inicio Selector de fecha-->
-            <mat-form-field class="w-full" formGroupName="dateRange">
-            <mat-label>Ingresa un rango de fecha</mat-label>
-            <mat-date-range-input [rangePicker]="picker">
-                <input matStartDate formControlName="fechaInicioCurso" placeholder="Fecha inicio">
-                <input matEndDate formControlName="fechaFinCurso" placeholder="Fecha Terminacion">
-            </mat-date-range-input>
-            <mat-hint>MM/DD/YYYY - MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-date-range-picker #picker></mat-date-range-picker>
-            </mat-form-field>
-            <!--Fin Selector de fecha-->
-            
-        </form> 
-    </mat-dialog-content>
-    <mat-dialog-actions>
-      <button (click)="onCancel()" mat-flat-button>Cancelar</button>
-      <button (click)="onSave()" mat-flat-button>Guardar</button>
-    </mat-dialog-actions>
-  </div>
+  <h2 class="my-2" mat-dialog-title>Nombre del curso?</h2>
+  <mat-dialog-content>
+    <form [formGroup]="courseForm">
+      <mat-form-field class="w-full mb-2 pt-2">
+        <!--Campo nombre de curso-->
+        <mat-label>Nombres cortos, sin detalles extra</mat-label>
+        <input formControlName="nombreCurso" matInput required />
+        <mat-error *ngIf="courseForm.controls['nombreCurso'].hasError('required') && courseForm.controls['nombreCurso'].touched">
+          Campo requerido
+        </mat-error>
+        <mat-error *ngIf="courseForm.controls['nombreCurso'].hasError('minlength') && courseForm.controls['nombreCurso'].touched">
+          Debe tener al menos 2 caracteres.
+        </mat-error>
+      </mat-form-field>
+
+      <!--Inicio Selector de fecha-->
+      <mat-form-field class="w-full mb-2 pt-2">
+        <mat-label>Ingresa un rango de fecha</mat-label>
+        <mat-date-range-input [rangePicker]="picker" [formGroup]="dateRangeGroup">
+          <input matStartDate formControlName="fechaInicioCurso" placeholder="Fecha inicio">
+          <input matEndDate formControlName="fechaFinCurso" placeholder="Fecha Terminacion">
+        </mat-date-range-input>
+        <mat-hint>MM/DD/YYYY - MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+      <!--Fin Selector de fecha-->
+
+      <!--Campo profesor-->
+      <mat-form-field class="w-full mb-2 pt-2">
+        <mat-label>Profesor asignado</mat-label>
+        <input formControlName="profesor" matInput required />
+        <mat-error *ngIf="courseForm.controls['profesor'].hasError('required') && courseForm.controls['profesor'].touched">
+          Campo requerido
+        </mat-error>
+        <mat-error *ngIf="courseForm.controls['profesor'].hasError('minlength') && courseForm.controls['profesor'].touched">
+          Debe tener al menos 3 caracteres.
+        </mat-error>
+      </mat-form-field>
+
+      <!--Campo costo-->
+      <mat-form-field class="w-full mb-2 pt-2">
+        <mat-label>Costo</mat-label>
+        <input formControlName="costo" matInput required />
+        <mat-error *ngIf="courseForm.controls['costo'].hasError('required') && courseForm.controls['costo'].touched">
+          Campo requerido
+        </mat-error>
+        <mat-error *ngIf="courseForm.controls['costo'].hasError('minlength') && courseForm.controls['costo'].touched">
+          Debe tener al menos 5 caracteres.
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button (click)="onCancel()" mat-flat-button>Cancelar</button>
+    <button (click)="onSave()" mat-flat-button>Guardar</button>
+  </mat-dialog-actions>
+</div>

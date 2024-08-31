@@ -24,9 +24,10 @@ export class DialogsCoursesComponent {
       dateRange: this.fb.group({
         fechaInicioCurso: [editingCourse?.fechaInicioCurso || '', Validators.required],
         fechaFinCurso: [editingCourse?.fechaFinCurso || '', Validators.required]
-      })
+      }),
+      profesor: [editingCourse?.profesor || '', [Validators.required, Validators.minLength(3)]],
+      costo: [editingCourse?.costo || '', [Validators.required, Validators.minLength(5)]]
     });
-  
 
     if (this.editingCourse) {
       this.courseForm.patchValue({
@@ -35,9 +36,15 @@ export class DialogsCoursesComponent {
         dateRange: {
           fechaInicioCurso: new Date(this.editingCourse.fechaInicioCurso),
           fechaFinCurso: new Date(this.editingCourse.fechaFinCurso)
-        }
+        },
+        profesor: this.editingCourse.profesor,
+        costo: this.editingCourse.costo,
       });
     }
+  }
+
+  get dateRangeGroup(): FormGroup {
+    return this.courseForm.get('dateRange') as FormGroup;
   }
   
   onSave(): void {

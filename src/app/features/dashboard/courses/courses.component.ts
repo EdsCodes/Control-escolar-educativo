@@ -18,7 +18,7 @@ export class CoursesComponent implements OnInit {
   
   coursesDataSource: courses[] = [];
   loadingInProcess = false;
-  displayedColumns: string[] = ['id', 'nombreCurso', 'fechaInicioCurso', 'fechaFinCurso', 'actions'];
+  displayedColumns: string[] = ['id', 'nombreCurso', 'fechaInicioCurso', 'fechaFinCurso', 'teacher', 'cost', 'actions'];
   autenticatedUser: Observable<User | null>;
 
   constructor(private matDialog: MatDialog, private coursesService: CoursesService, private authService: AuthService, private notifier: NotificationService) {

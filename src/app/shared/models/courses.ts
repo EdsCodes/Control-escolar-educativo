@@ -3,4 +3,6 @@ export interface courses {
     nombreCurso: string;
     fechaInicioCurso: string;
     fechaFinCurso: string;
+    profesor: string;
+    costo: string;
 }

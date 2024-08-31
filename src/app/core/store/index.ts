@@ -23,6 +23,8 @@ export interface Course {
   nombreCurso: string;
   fechaInicioCurso: string;
   fechaFinCurso: string;
+  profesor: string;
+  costo: string;
 }
 
 export interface loadStudentsAndCoursesResp {
