@@ -4,6 +4,8 @@
     <p><strong>Nombre del Curso:</strong> {{ course.nombreCurso}}</p>
     <p><strong>Fecha de Inicio:</strong> {{ course.fechaInicioCurso | date: 'MM/dd/yyyy' }}</p>
     <p><strong>Fecha de Finalización:</strong> {{ course.fechaFinCurso | date: 'MM/dd/yyyy' }}</p>
+    <p><strong>Profesor:</strong> {{ course.profesor}}</p>
+    <p><strong>Costo:</strong> {{ course.costo | currency:'USD':'symbol':'1.0-0'}}</p>
 </div>
   
 <ng-template #loading>
