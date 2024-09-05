@@ -1,0 +1,18 @@
+<div *ngIf="inscription$ | async as inscription; else loading">
+    <h2 >Detalles de la inscripción</h2>
+    <p><strong>Id de la inscripción:</strong> {{ inscription.id }}</p>
+    <p><strong>Id del Alumno:</strong> {{ inscription.studentId }}</p>
+    <p><strong>Nombre del Alumno:</strong> {{ inscription.student.nombre}} {{ inscription.student.apellidos}} </p>
+    <p><strong>No. celular del Alumno:</strong> {{ inscription.student.celular}}</p>
+    <p><strong>Id del Curso:</strong> {{ inscription.courseId}}</p>
+    <p><strong>Nombre del Curso:</strong> {{ inscription.course.nombreCurso}}</p>
+    <p><strong>Fecha de Inicio:</strong> {{ inscription.course.fechaInicioCurso | date: 'MM/dd/yyyy' }}</p>
+    <p><strong>Fecha de Finalización:</strong> {{ inscription.course.fechaFinCurso | date: 'MM/dd/yyyy' }}</p>
+    <p><strong>Profesor:</strong> {{ inscription.course.profesor}}</p>
+    <p><strong>Costo:</strong> {{ inscription.course.costo | currency:'USD':'symbol':'1.0-0'}}</p>
+</div>
+  
+<ng-template #loading>
+    <p>Cargando detalles de la inscripción...</p>
+</ng-template>
+  

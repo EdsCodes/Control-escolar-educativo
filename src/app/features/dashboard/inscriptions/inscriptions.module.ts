@@ -18,11 +18,13 @@ import { EffectsModule } from '@ngrx/effects';
 import { InscriptionsEffects } from './store/inscriptions.effects';
 import { inscriptionsFeature } from './store/inscriptions.reducer';
 import { SharedModule } from '../../../shared/modules/shared-module/shared.module';
+import { InscriptionDetailComponent } from './detailedComponent/inscription-detail/inscription-detail.component';
 
 @NgModule({
   declarations: [
     InscriptionsComponent,
     DialogsInscriptionsComponent,
+    InscriptionDetailComponent,
   ],
   exports: [InscriptionsComponent],
   imports: [

@@ -49,6 +49,9 @@
         <button mat-icon-button (click)="deleteInscriptionById(element.id)">
           <mat-icon>delete</mat-icon>
         </button>
+        <button mat-icon-button [routerLink]="element.id">
+          <mat-icon>visibility</mat-icon>
+        </button>
       </td>
     </ng-container>
 

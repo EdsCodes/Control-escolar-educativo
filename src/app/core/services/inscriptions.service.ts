@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { concatMap, forkJoin, Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import { inscriptions, LoadStudentsAndCoursesResp } from '../../shared/models/inscriptions';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
@@ -30,7 +30,7 @@ export class InscriptionsService {
       .post<inscriptions>(`${environment.apiUrl}/inscriptions`, inscription)
   }
 
-  getInscriptionById(id: string): Observable<inscriptions> {
+  getInscriptionById(id: string): Observable<inscriptions | undefined> {
     return this.http
       .get<inscriptions>(
         `${environment.apiUrl}/inscriptions/${id}?_embed=course&_embed=student`
