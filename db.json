@@ -172,14 +172,9 @@
   ],
   "inscriptions": [
     {
-      "id": "174b",
-      "studentId": "8070",
-      "courseId": "f090"
-    },
-    {
-      "id": "9bac",
-      "studentId": "4955",
-      "courseId": "d1a6"
+      "studentId": "d008",
+      "courseId": "ff47",
+      "id": "9bac"
     },
     {
       "id": "a7ae",
@@ -207,9 +202,9 @@
       "courseId": "8f9f"
     },
     {
-      "id": "001b",
       "studentId": "c4d5",
-      "courseId": "d1a6"
+      "courseId": "f090",
+      "id": "001b"
     }
   ]
 }
