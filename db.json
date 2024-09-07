@@ -1,22 +1,49 @@
 {
   "users": [
     {
-      "id": "98ui",
-      "firstName": "John",
-      "lastName": "Gonzalez",
-      "email": "johncodes@gmail.com",
-      "password": "kalemi123321*",
-      "token": "ds4dkcjajsd789sssa898$64@",
-      "role": "ADMIN"
+      "id": "5d8bdv89-qw35-d5k9-1zx3-f824khgu1a54",
+      "firstName": "Edward",
+      "lastName": "Leemhuis",
+      "email": "edleemhuis@gmail.com",
+      "password": "Edleemhuis123**",
+      "role": "ADMIN",
+      "token": "33038a1a-a08e-459b-80da-6f0e16fcf84c"
     },
     {
-      "id": "87td",
-      "firstName": "Edward",
-      "lastName": "Codes",
-      "email": "edcodes@gmail.com",
-      "password": "kalemi123321*",
-      "token": "ty5jsdghetu563asdq0321$75@",
-      "role": "USER"
+      "id": "9d4f59c5-8a95-45c3-8bcd-5d4e39e234c5",
+      "firstName": "John",
+      "lastName": "Gonzalez",
+      "email": "johngonzalez@gmail.com",
+      "password": "johngonzalez123**",
+      "role": "USER",
+      "token": "a19b36e2-73b5-4b08-8ba3-752e0f85e0ee"
+    },
+    {
+      "id": "a70c31ba-d97c-471a-8bbd-7c9299edbe48",
+      "firstName": "Ana",
+      "lastName": "Castillo",
+      "email": "anacastillo@gmail.com",
+      "password": "anacastillo@gmail.com",
+      "role": "ADMIN",
+      "token": "de369502-5a65-4607-becf-682e07f6c819"
+    },
+    {
+      "id": "915c2e4e-29d6-498e-8c5f-50f6cba5f6b1",
+      "firstName": "Jorge",
+      "lastName": "Valencia",
+      "email": "jorgevalencia@gmail.com",
+      "password": "Jorgevalencia123**",
+      "role": "USER",
+      "token": "e76ebc5c-1c0c-4fd8-b5b8-3790f06c8bf8"
+    },
+    {
+      "id": "afb885f7-0926-4418-b405-cdc5c4c0a46f",
+      "firstName": "Julieta",
+      "lastName": "Castro",
+      "email": "julietacastro@gmail.com",
+      "password": "Julietacastro123**",
+      "role": "ADMIN",
+      "token": "f5dee921-e329-4977-a3b0-cdf29cb95dc7"
     }
   ],
   "courses": [
@@ -45,18 +72,6 @@
       "id": "d1a6"
     },
     {
-      "id": "7de3",
-      "nombreCurso": "PHP",
-      "dateRange": {
-        "fechaInicioCurso": "2024-12-02T05:00:00.000Z",
-        "fechaFinCurso": "2025-02-28T05:00:00.000Z"
-      },
-      "profesor": "Sonia Machado",
-      "costo": "200000",
-      "fechaInicioCurso": "2024-12-02T05:00:00.000Z",
-      "fechaFinCurso": "2025-02-28T05:00:00.000Z"
-    },
-    {
       "id": "c76f",
       "nombreCurso": "Photoshop",
       "dateRange": {
@@ -81,20 +96,19 @@
       "fechaFinCurso": "2025-05-30T05:00:00.000Z"
     },
     {
-      "id": "df6c",
       "nombreCurso": "SQL",
       "dateRange": {
         "fechaInicioCurso": "2024-12-02T05:00:00.000Z",
         "fechaFinCurso": "2025-03-31T05:00:00.000Z"
       },
       "profesor": "John Gonzalez",
-      "costo": "280000",
+      "costo": "300000",
       "fechaInicioCurso": "2024-12-02T05:00:00.000Z",
-      "fechaFinCurso": "2025-03-31T05:00:00.000Z"
+      "fechaFinCurso": "2025-03-31T05:00:00.000Z",
+      "id": "df6c"
     },
     {
-      "id": "ff47",
-      "nombreCurso": "Next Js",
+      "nombreCurso": "PHP",
       "dateRange": {
         "fechaInicioCurso": "2025-03-03T05:00:00.000Z",
         "fechaFinCurso": "2025-06-30T05:00:00.000Z"
@@ -102,7 +116,8 @@
       "profesor": "Carla Giraldo",
       "costo": "400000",
       "fechaInicioCurso": "2025-03-03T05:00:00.000Z",
-      "fechaFinCurso": "2025-06-30T05:00:00.000Z"
+      "fechaFinCurso": "2025-06-30T05:00:00.000Z",
+      "id": "ff47"
     }
   ],
   "students": [
@@ -145,41 +160,18 @@
     {
       "Id": "d008",
       "nombre": "Robin",
-      "apellidos": "De La Cruz",
+      "apellidos": "Calucci",
       "fechaNacimiento": "2002-03-30T05:00:00.000Z",
       "celular": "3155010818",
       "direccion": "Calle 8 Nº 80-80",
       "id": "d008"
-    },
-    {
-      "id": "5c11",
-      "nombre": "Maria",
-      "apellidos": "De Armas",
-      "fechaNacimiento": "1990-02-28T05:00:00.000Z",
-      "celular": "3196548759",
-      "direccion": "CL 15 # 15 - 59",
-      "curso": "SQL"
-    },
-    {
-      "id": "e788",
-      "Id": null,
-      "nombre": "Francia Patricia",
-      "apellidos": "Velasquez",
-      "fechaNacimiento": "2001-10-30T05:00:00.000Z",
-      "celular": "3125940316",
-      "direccion": "Mz 9 Cs 9 Llano Grande"
     }
   ],
   "inscriptions": [
     {
-      "studentId": "d008",
+      "studentId": "8070",
       "courseId": "ff47",
       "id": "9bac"
-    },
-    {
-      "id": "a7ae",
-      "studentId": "c4d5",
-      "courseId": "7de3"
     },
     {
       "id": "fa0e",
@@ -192,19 +184,14 @@
       "courseId": "8f9f"
     },
     {
-      "id": "cb85",
-      "studentId": "5c11",
-      "courseId": "df6c"
-    },
-    {
-      "id": "2699",
-      "studentId": "e788",
-      "courseId": "8f9f"
-    },
-    {
       "studentId": "c4d5",
       "courseId": "f090",
       "id": "001b"
+    },
+    {
+      "id": "ee51",
+      "studentId": "4955",
+      "courseId": "d1a6"
     }
   ]
 }

@@ -17,8 +17,12 @@ const routes: Routes = [
     },   
     {
       path: 'inscriptions',
-      // canActivate: [adminGuard],
       loadChildren: () => import('./inscriptions/inscriptions.module').then((archiveReference) => archiveReference.InscriptionsModule),
+    },
+    {
+      path: 'users',
+      canActivate: [adminGuard],
+      loadChildren: () => import('./users/users.module').then((archiveReference) => archiveReference.UsersModule),
     },
     {
       path: '**',

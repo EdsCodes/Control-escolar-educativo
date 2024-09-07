@@ -1,0 +1,79 @@
+<div class="dialogWindow">
+    <h2 class="my-2" mat-dialog-title>Añadir usuario</h2>
+    <mat-dialog-content>
+      <form [formGroup]="userForm">
+        
+        <!--Campo de firstName-->
+        <mat-form-field class="w-full mb-2 pt-2">
+          <mat-label>Nombre(s)</mat-label>
+          <input formControlName="firstName" matInput required/>
+          <mat-error *ngIf="userForm.controls['firstName'].hasError('required') && userForm.controls['firstName'].touched">
+            Campo requerido
+          </mat-error>
+          <mat-error *ngIf="userForm.controls['firstName'].hasError('minlength') && userForm.controls['firstName'].touched">
+            Debe tener al menos 3 caracteres.
+          </mat-error>
+          <mat-error *ngIf="userForm.get('firstName')?.hasError('pattern')">
+            Solo se permiten letras y espacios.
+          </mat-error>
+        </mat-form-field>
+        
+        <!--Campo de lastName-->
+        <mat-form-field class="w-full mb-2 pt-2">
+          <mat-label>Apellido(s)</mat-label>
+          <input formControlName="lastName" matInput required/>
+          <mat-error *ngIf="userForm.controls['lastName'].hasError('required') && userForm.controls['lastName'].touched">
+            Campo requerido
+          </mat-error>
+          <mat-error *ngIf="userForm.controls['lastName'].hasError('minlength') && userForm.controls['lastName'].touched">
+            Debe tener al menos 3 caracteres.
+          </mat-error>
+          <mat-error *ngIf="userForm.get('lastName')?.hasError('pattern')">
+            Solo se permiten letras y espacios.
+          </mat-error>
+        </mat-form-field>
+        
+        <!--Campo email-->
+        <mat-form-field class="w-full mb-2 pt-2" type="email">
+          <mat-label>Email</mat-label>
+          <input formControlName="email" matInput required/>
+          <mat-error *ngIf="userForm.controls['email'].hasError('required') && userForm.controls['email'].touched">
+            Campo requerido
+          </mat-error>
+          <mat-error *ngIf="userForm.controls['email'].hasError('minlength') && userForm.controls['email'].touched">
+            Debe tener al menos 3 caracteres.
+          </mat-error>
+        </mat-form-field>
+  
+        <!--Campo password-->
+        <mat-form-field class="w-full mb-2 pt-2" type="password">
+          <mat-label>password</mat-label>
+          <input formControlName="password" matInput required/>
+          <mat-error *ngIf="userForm.controls['password'].hasError('required') && userForm.controls['password'].touched">
+            Campo requerido
+          </mat-error>
+          <mat-error *ngIf="userForm.controls['password'].hasError('minlength') && userForm.controls['password'].touched">
+            Debe tener al menos 5 caracteres.
+          </mat-error>
+        </mat-form-field>
+
+        <!--Campo rol-->
+      <mat-form-field class="w-full mb-2 pt-2">
+        <mat-label>Rol</mat-label>
+        <mat-select formControlName="role" required>
+          <mat-option value="ADMIN">ADMIN</mat-option>
+          <mat-option value="USER">USER</mat-option>
+        </mat-select>
+        <mat-error *ngIf="userForm.controls['role'].hasError('required') && userForm.controls['role'].touched">
+          Campo requerido
+        </mat-error>
+      </mat-form-field>
+        
+      </form>
+    </mat-dialog-content>
+    
+    <mat-dialog-actions>
+      <button (click)="onCancel()" mat-flat-button>Cancelar</button>
+      <button (click)="onSave()" mat-flat-button>Guardar</button>
+    </mat-dialog-actions>
+</div> 

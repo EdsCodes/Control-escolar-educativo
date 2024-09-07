@@ -100,7 +100,7 @@ export class StudentsComponent {
         },
         complete: () => {
           this.loadingInProcess = false;
-          this.notifier.showSuccessNotification('curso borrado correctamente');
+          this.notifier.showSuccessNotification('estudiante borrado correctamente');
         },
       });
     } else {

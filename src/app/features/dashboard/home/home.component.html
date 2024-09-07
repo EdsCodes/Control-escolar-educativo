@@ -24,7 +24,8 @@
         </p>
         <p class="m-3" *ngIf="(autenticatedUser | async)?.role === 'USER'">
           Consulta el listado de los estudiantes inscritos
-        </p>      </mat-card-content>
+        </p>
+      </mat-card-content>
     </div>
 
     <div class="homeLink-card" (click)="navigateTo('courses')">
@@ -47,6 +48,16 @@
       </mat-card-header>
       <mat-card-content>
         <p>Gestiona y consulta las inscripciones de los estudiantes</p>
+      </mat-card-content>
+    </div>
+    
+    <!-- Este div solo se muestra si el usuario es ADMIN -->
+    <div *ngIf="(autenticatedUser | async)?.role === 'ADMIN'" class="homeLink-card" (click)="navigateTo('users')">
+      <mat-card-header>
+        <mat-card-title>Usuarios</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Gestiona y consulta los usuarios del Sistema</p>
       </mat-card-content>
     </div>
   </div>

@@ -19,28 +19,29 @@ export class AuthService {
 
   login(data: {email: string; password: string}) {
     this.http
-    .get<User[]>(`${environment.apiUrl}/users`, {
-      params: {
-        email: data.email,
-        password: data.password,
-      },
-    })
-    .subscribe({
-      next: (response) =>{
-        if (!response.length){
-          alert('Datos de usuario inválidos, por favor verifique')
-        } else {
-          const autenticatedUser = response[0];
-          localStorage.setItem('token', autenticatedUser.token);
-          this._autenticatedUser.next(autenticatedUser);
-          this.router.navigate(['dashboard', 'home']);
+      .get<User[]>(`${environment.apiUrl}/users`, {
+        params: {
+          email: data.email,
+          password: data.password
+        },
+      })
+      .subscribe({
+        next: (response) => {
+          if (!response.length) {
+            alert('Datos de usuario inválidos, por favor verifique');
+          } else {
+            const autenticatedUser = response[0];
+            localStorage.setItem('token', autenticatedUser.token); 
+            this._autenticatedUser.next(autenticatedUser); 
+            this.router.navigate(['dashboard', 'home']);
+          }
+        },
+        error: (err) => {
+          this.notifier.showErrorNotification('Error al conectarse a la API, comuníquese con su administrador');
         }
-      },
-      error: (err) => {
-        this.notifier.showErrorNotification('Error al conectarse a la API, pongase en contacto con su administrador')
-      }
-    });
+      });
   }
+  
 
   logout() {
     localStorage.removeItem('token'),
@@ -54,25 +55,22 @@ export class AuthService {
       return of(false);
     }
     return this.http.get<User[]>(`${environment.apiUrl}/users`, {
-      params: {
-        token: token,
-      },
+      params: { token },
     }).pipe(
       map((response) => {
         if (!response.length) {
           return false;
         } else {
           const authenticatedUser = response[0];
-          localStorage.setItem('token', authenticatedUser.token);
-          this._autenticatedUser.next(authenticatedUser);
+          localStorage.setItem('token', authenticatedUser.token); 
+          this._autenticatedUser.next(authenticatedUser); 
           return true;
         }
       }),
-      catchError((error) => {
-        this.notifier.showErrorNotification('Error al verificar el token, comuniquese con su admin.')
-        return of(false)
+      catchError(() => {
+        this.notifier.showErrorNotification('Error al verificar el token');
+        return of(false);
       })
     );
   }
-  
 }

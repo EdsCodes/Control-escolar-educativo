@@ -18,8 +18,9 @@ export class LoginComponent {
 
   constructor(private authService: AuthService, private fb: FormBuilder, private notifier: NotificationService) {
     this.loginForm = this.fb.group({
-      email: ['johncodes@gmail.com', [Validators.required, Validators.email]],
-      password: ['kalemi123321*', [Validators.required, Validators.minLength(5)]],
+      email: ['edleemhuis@gmail.com', [Validators.required, Validators.email]],
+      password: ['Edleemhuis123**', [Validators.required, Validators.minLength(5)]],
+      token: [Validators.required]
     });
   }
 

@@ -6,6 +6,7 @@
       <a mat-list-item routerLink="students" routerLinkActive="activeLink"><button mat-raised-button class="w-full">Alumnos</button></a>
       <a mat-list-item routerLink="courses" routerLinkActive="activeLink"><button mat-raised-button class="w-full">Cursos</button></a>
       <a mat-list-item routerLink="inscriptions" routerLinkActive="activeLink"><button mat-raised-button class="w-full">Inscripciones</button></a>
+      <a *ngIf="(autenticatedUser | async)?.role === 'ADMIN'" mat-list-item routerLink="users" routerLinkActive="activeLink"><button mat-raised-button class="w-full">Usuarios</button></a>
       <a mat-list-item routerLink="/auth" (click)= logout()  routerLinkActivate="activeLink"><button mat-raised-button class="w-full">Cerrar Sesión</button></a>
     </mat-nav-list>
   </mat-drawer>
@@ -15,10 +16,10 @@
   <div class="example-sidenav-content">
     <!--Inicio del ToolBar-->
     <mat-toolbar color="primary">
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" type="button" (click)="drawer.toggle()">
+      <button mat-icon-button (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-      <span TextSizeDirective class="dashboardTitle">Panel de control educativo Version 4.0. 4ta entrega, trab final - By Gonzalez</span>
+      <span class="dashboardTitle">Panel de control educativo Version 4.0</span>
       <span class="example-spacer"></span>
       <div class="actualRole text-sm font-medium">
         <div class="flex flex-column align-items-end">
@@ -33,12 +34,12 @@
     </mat-toolbar>
     <!--Fin del ToolBar-->
 
-    <!--Students, courses o Inscriptions-->
+    <!--Students, courses, Inscriptions o users-->
     <main class="p-5 d-flex align-items-start justify-content-start">
       <div class="dashBoardComps w-full">
         <router-outlet />
       </div>
     </main>
-    <!--Fin de Students, courses o Inscriptions-->
+    <!--Fin de Students, courses, Inscriptions o users-->
   </div>
 </mat-drawer-container>
