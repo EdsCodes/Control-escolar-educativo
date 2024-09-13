@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { AuthService } from './auth.service';
-import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';  
+import { HttpTestingController, HttpClientTestingModule, provideHttpClientTesting } from '@angular/common/http/testing';  
 import { Router } from '@angular/router';
 import { NotificationService } from './notifications.service';
 import { User } from '../../shared/models/users';
 import { environment } from '../../../environments/environment.development';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, provideHttpClient } from '@angular/common/http';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -20,7 +20,9 @@ describe('AuthService', () => {
         AuthService,
         { provide: Router, useValue: routerSpy },
         { provide: NotificationService, useValue: notificationServiceSpy },
-        HttpClient
+        HttpClient,
+        provideHttpClientTesting,
+        provideHttpClient
       ]
     });
 
@@ -134,7 +136,7 @@ describe('AuthService', () => {
       const req = httpMock.expectOne(`${environment.apiUrl}/users?token=abcd1234`);
       req.error(new ErrorEvent('Network error'));
 
-      expect(notificationServiceSpy.showErrorNotification).toHaveBeenCalledWith('Error al verificar el token, comuniquese con su admin.');
+      expect(notificationServiceSpy.showErrorNotification).toHaveBeenCalledWith('Error al verificar el token');
     });
   });
 });

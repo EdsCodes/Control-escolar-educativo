@@ -44,6 +44,15 @@
       "password": "Julietacastro123**",
       "role": "ADMIN",
       "token": "f5dee921-e329-4977-a3b0-cdf29cb95dc7"
+    },
+    {
+      "id": "7ec63f87-22bc-41d7-b665-a73c303ad74e",
+      "firstName": "Catalina",
+      "lastName": "Vallejo",
+      "email": "catavallejo@gmail.com",
+      "password": "Catavallejo123**",
+      "role": "USER",
+      "token": "35952e7f-6e61-440f-b702-350b38b8cccf"
     }
   ],
   "courses": [

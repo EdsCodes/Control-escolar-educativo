@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { UsersComponent } from './users.component';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { MatIconModule } from '@angular/material/icon';
+import { SharedModule } from '../../../shared/modules/shared-module/shared.module';
 
 describe('UsersComponent', () => {
   let component: UsersComponent;
@@ -8,7 +11,12 @@ describe('UsersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UsersComponent]
+      declarations: [UsersComponent],
+      imports: [SharedModule],
+      providers: [
+        provideHttpClientTesting(), 
+        provideHttpClient(),
+      ],
     })
     .compileComponents();
 

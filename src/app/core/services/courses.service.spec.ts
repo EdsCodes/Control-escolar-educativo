@@ -27,7 +27,7 @@ describe('Prueba del servicio CoursesService', () => {
 
   it('Prueba al obtener los cursos de la RestApi', () => {
     const mockCourses: courses[] = [
-      { id: '1', nombreCurso: 'Angular', fechaInicioCurso: '2023-01-01', fechaFinCurso: '2023-06-01' }
+      { id: '1', nombreCurso: 'Angular', fechaInicioCurso: '2023-01-01', fechaFinCurso: '2023-06-01', profesor: 'Jorge Lopez', costo: '250000'}
     ];
 
     service.getAllCourses().subscribe((courses) => {
