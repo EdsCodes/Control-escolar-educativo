@@ -25,7 +25,7 @@ import { rootReducer } from './core/store';
     CoreModule,
     SharedModule,
     MatProgressBar,
-    StoreModule.forRoot(rootReducer), 
+    StoreModule.forRoot(rootReducer, {}), 
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     EffectsModule.forRoot([]),
   ],

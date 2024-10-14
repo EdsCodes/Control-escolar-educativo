@@ -1,11 +1,11 @@
 import { ActionReducerMap } from '@ngrx/store';
 import { reducer, State as InscriptionsState, inscriptionsFeatureKey } from '../../features/dashboard/inscriptions/store/inscriptions.reducer';
+import { autenticatedFeatureName, autenticatedReducer, AutenticatedState } from './autentication/autentication.reducer';
 
-export const counterFeatureName = 'counter';
-export const authFeatureName = 'auth';
 
 export interface RootState {
   [inscriptionsFeatureKey]: InscriptionsState;
+  [autenticatedFeatureName]: AutenticatedState;
 }
 
 export interface Student {
@@ -34,5 +34,6 @@ export interface loadStudentsAndCoursesResp {
 
 export const rootReducer: ActionReducerMap<RootState> = {
     [inscriptionsFeatureKey]: reducer,
+    [autenticatedFeatureName]: autenticatedReducer,
 };
 

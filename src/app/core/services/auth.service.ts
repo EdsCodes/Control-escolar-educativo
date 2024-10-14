@@ -5,6 +5,9 @@ import { User } from '../../shared/models/users';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
 import { NotificationService } from './notifications.service';
+import { Store } from '@ngrx/store';
+import { RootState } from '../store';
+import { setAutenticatedUser, unsetAutenticateduser } from '../store/autentication/autentication.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +18,12 @@ export class AuthService {
   private _autenticatedUser = new BehaviorSubject<User | null>(null);
   autenticatedUser = this._autenticatedUser.asObservable();
 
-  constructor(private http: HttpClient, private router: Router, private notifier: NotificationService) {}
+  constructor(
+    private http: HttpClient, 
+    private router: Router, 
+    private notifier: NotificationService,
+    private store: Store<RootState>
+  ) {}
 
   login(data: {email: string; password: string}) {
     this.http
@@ -28,11 +36,11 @@ export class AuthService {
       .subscribe({
         next: (response) => {
           if (!response.length) {
-            alert('Datos de usuario inválidos, por favor verifique');
+            this.notifier.showErrorNotification('Datos de usuario inválidos, por favor verifique');
           } else {
             const autenticatedUser = response[0];
             localStorage.setItem('token', autenticatedUser.token); 
-            this._autenticatedUser.next(autenticatedUser); 
+            this.store.dispatch(setAutenticatedUser({ payload: autenticatedUser }));
             this.router.navigate(['dashboard', 'home']);
           }
         },
@@ -42,10 +50,9 @@ export class AuthService {
       });
   }
   
-
   logout() {
     localStorage.removeItem('token'),
-    this._autenticatedUser.next(null);
+    this.store.dispatch(unsetAutenticateduser());
     this.router.navigate(['auth', 'login']);
   }
   
@@ -54,22 +61,26 @@ export class AuthService {
     if (!token) {
       return of(false);
     }
-    return this.http.get<User[]>(`${environment.apiUrl}/users`, {
-      params: { token },
-    }).pipe(
-      map((response) => {
-        if (!response.length) {
-          return false;
-        } else {
-          const authenticatedUser = response[0];
-          localStorage.setItem('token', authenticatedUser.token); 
-          this._autenticatedUser.next(authenticatedUser); 
-          return true;
-        }
-      }),
-      catchError(() => {
-        this.notifier.showErrorNotification('Error al verificar el token');
-        return of(false);
+    return this.http
+      .get<User[]>(`${environment.apiUrl}/users`, {
+        params: { 
+          token 
+        },
+      })
+      .pipe(
+        map((response) => {
+          if (!response.length) {
+            return false;
+          } else {
+            const autenticatedUser = response[0];
+            localStorage.setItem('token', autenticatedUser.token); 
+            this.store.dispatch(setAutenticatedUser({ payload: autenticatedUser }));
+            return true;
+          }
+        }),
+        catchError(() => {
+          this.notifier.showErrorNotification('Error al verificar el token');
+          return of(false);
       })
     );
   }

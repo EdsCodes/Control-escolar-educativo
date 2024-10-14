@@ -4,10 +4,10 @@
       <mat-card-title>Bienvenido al Sistema de Control Escolar</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <p class="m-3" *ngIf="(autenticatedUser | async)?.role === 'ADMIN'">
+      <p class="m-3" *ngIf="(autenticatedUser$ | async)?.role === 'ADMIN'">
         Aquí puedes gestionar estudiantes, cursos e inscripciones.
       </p>
-      <p class="m-3" *ngIf="(autenticatedUser | async)?.role === 'USER'">
+      <p class="m-3" *ngIf="(autenticatedUser$ | async)?.role === 'USER'">
         Aquí puedes consultar y modificar info referente a estudiantes, cursos e inscripciones.
       </p>
     </mat-card-content>
@@ -19,10 +19,10 @@
         <mat-card-title>Estudiantes</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <p class="m-3" *ngIf="(autenticatedUser | async)?.role === 'ADMIN'">
+        <p class="m-3" *ngIf="(autenticatedUser$ | async)?.role === 'ADMIN'">
           Gestiona y consulta los estudiantes
         </p>
-        <p class="m-3" *ngIf="(autenticatedUser | async)?.role === 'USER'">
+        <p class="m-3" *ngIf="(autenticatedUser$ | async)?.role === 'USER'">
           Consulta el listado de los estudiantes inscritos
         </p>
       </mat-card-content>
@@ -33,10 +33,10 @@
         <mat-card-title>Cursos</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <p class="m-3" *ngIf="(autenticatedUser | async)?.role === 'ADMIN'">
+        <p class="m-3" *ngIf="(autenticatedUser$ | async)?.role === 'ADMIN'">
           Gestiona y consulta los cursos ofrecidos
         </p>
-        <p class="m-3" *ngIf="(autenticatedUser | async)?.role === 'USER'">
+        <p class="m-3" *ngIf="(autenticatedUser$ | async)?.role === 'USER'">
           Consulta el detalle de los cursos ofrecidos
         </p>
       </mat-card-content>
@@ -52,7 +52,7 @@
     </div>
     
     <!-- Este div solo se muestra si el usuario es ADMIN -->
-    <div *ngIf="(autenticatedUser | async)?.role === 'ADMIN'" class="homeLink-card" (click)="navigateTo('users')">
+    <div *ngIf="(autenticatedUser$ | async)?.role === 'ADMIN'" class="homeLink-card" (click)="navigateTo('users')">
       <mat-card-header>
         <mat-card-title>Usuarios</mat-card-title>
       </mat-card-header>

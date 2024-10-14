@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../core/services/auth.service';
 import { Observable } from 'rxjs';
 import { User } from '../../shared/models/users';
+import { RootState } from '../../core/store';
+import { Store } from '@ngrx/store';
+import { selectAutenticatedUser } from '../../core/store/autentication/autentication.selectors';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,8 +16,11 @@ export class DashboardComponent {
 
   autenticatedUser: Observable<User | null>
 
-  constructor(private authService: AuthService) {
-    this.autenticatedUser = this.authService.autenticatedUser;
+  constructor(
+    private authService: AuthService,
+    private store: Store<RootState>
+  ) {
+    this.autenticatedUser = this.store.select(selectAutenticatedUser);
   } 
 
   logout() {
