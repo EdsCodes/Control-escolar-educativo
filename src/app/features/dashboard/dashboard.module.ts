@@ -9,11 +9,13 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { SharedModule } from '../../shared/modules/shared-module/shared.module';
+import { CoursesGrapchicsComponent } from './graphics/courses-grapchics/courses-grapchics.component';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
+    CoursesGrapchicsComponent,
   ],
   exports: [DashboardComponent],
   imports: [

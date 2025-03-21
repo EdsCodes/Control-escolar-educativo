@@ -7,6 +7,7 @@ import { NotificationService } from '../../../core/services/notifications.servic
 import { UsersService } from '../../../core/services/users.service';
 import { DialogsUsersComponent } from './components/dialogs-users/dialogs-users.component';
 import { v4 as uuidv4 } from 'uuid';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-users',
@@ -19,7 +20,12 @@ export class UsersComponent {
   displayedColumns: string[] = ['id', 'name', 'email', 'role', 'actions'];
   autenticatedUser: Observable<User | null>;
 
-  constructor(private matDialog: MatDialog, private usersService: UsersService, private authService: AuthService, private notifier: NotificationService) {
+  constructor(
+    private matDialog: MatDialog, 
+    private usersService: UsersService, 
+    private authService: AuthService, 
+    private notifier: NotificationService
+  ) {
     this.autenticatedUser = this.authService.autenticatedUser;
   }
 
@@ -42,10 +48,8 @@ export class UsersComponent {
     });
   }
 
-
   openDialog(): void {
     const dialogRef = this.matDialog.open(DialogsUsersComponent, {});
-
     dialogRef.afterClosed().subscribe({
       next: (value) => {
         if (value) {
@@ -83,6 +87,7 @@ export class UsersComponent {
           .subscribe({
             next: (user) => {
               this.usersDataSource = this.usersDataSource.map(c => c.id === user.id ? user : c);
+              this.notifier.showSuccessNotification('Usuario editado correctamente');
             },
             error: () => {
               this.notifier.showErrorNotification('Error al editar el usuario');
@@ -95,22 +100,31 @@ export class UsersComponent {
 
   deleteUser(id: string) {
     this.loadingInProcess = true;
-    if (confirm('Confirma borrado de usuario?')) {
-      this.usersService.deleteUserById(id)
-      .pipe(
-        tap(() => this.loadingUsers())
-      )
-      .subscribe({
-        error: () => {
-          this.notifier.showErrorNotification('Error al borrar el usuario');
-        },
-        complete: () => {
-          this.notifier.showSuccessNotification('Usuario borrado correctamente')
-          this.loadingInProcess = false;
-        }
-      });
-    } else {
-      this.loadingInProcess = false;
-    }
+    Swal.fire({
+      title: '¿Confirma borrado de usuario?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, borrar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.usersService.deleteUserById(id)
+          .pipe(
+            tap(() => this.loadingUsers())
+          )
+          .subscribe({
+            error: () => {
+              this.notifier.showErrorNotification('Error al borrar el usuario');
+              this.loadingInProcess = false;
+            },
+            complete: () => {
+              this.notifier.showSuccessNotification('Usuario borrado correctamente');
+              this.loadingInProcess = false;
+            }
+          });
+      } else {
+        this.loadingInProcess = false;
+      }
+    });
   }
 }

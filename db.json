@@ -1,58 +1,30 @@
 {
   "users": [
     {
-      "id": "5d8bdv89-qw35-d5k9-1zx3-f824khgu1a54",
+      "id": "5269ce94-5a78-437d-bb7e-4e5dacd98ca7",
       "firstName": "Edward",
       "lastName": "Leemhuis",
       "email": "edleemhuis@gmail.com",
       "password": "Edleemhuis123**",
       "role": "ADMIN",
-      "token": "33038a1a-a08e-459b-80da-6f0e16fcf84c"
+      "token": "ae80a127-3a8d-4ed5-bb0e-bd6a4c1a5772"
     },
     {
-      "id": "9d4f59c5-8a95-45c3-8bcd-5d4e39e234c5",
+      "id": "f0e2972f-9ba2-4076-81b4-c50b1e44934e",
       "firstName": "John",
       "lastName": "Gonzalez",
       "email": "johngonzalez@gmail.com",
-      "password": "johngonzalez123**",
-      "role": "USER",
-      "token": "a19b36e2-73b5-4b08-8ba3-752e0f85e0ee"
+      "password": "Johngonzalez123**",
+      "role": "USER"
     },
     {
-      "id": "a70c31ba-d97c-471a-8bbd-7c9299edbe48",
-      "firstName": "Ana",
-      "lastName": "Castillo",
-      "email": "anacastillo@gmail.com",
-      "password": "anacastillo@gmail.com",
-      "role": "ADMIN",
-      "token": "de369502-5a65-4607-becf-682e07f6c819"
-    },
-    {
-      "id": "915c2e4e-29d6-498e-8c5f-50f6cba5f6b1",
-      "firstName": "Jorge",
-      "lastName": "Valencia",
-      "email": "jorgevalencia@gmail.com",
-      "password": "Jorgevalencia123**",
-      "role": "USER",
-      "token": "e76ebc5c-1c0c-4fd8-b5b8-3790f06c8bf8"
-    },
-    {
-      "id": "afb885f7-0926-4418-b405-cdc5c4c0a46f",
+      "id": "f23beb37-5d0d-40f5-b674-571d304056be",
       "firstName": "Julieta",
-      "lastName": "Castro",
-      "email": "julietacastro@gmail.com",
-      "password": "Julietacastro123**",
+      "lastName": "Gonzalez",
+      "email": "Juligonzalez@gmail.com",
+      "password": "Juligonzalez123**",
       "role": "ADMIN",
-      "token": "f5dee921-e329-4977-a3b0-cdf29cb95dc7"
-    },
-    {
-      "id": "7ec63f87-22bc-41d7-b665-a73c303ad74e",
-      "firstName": "Catalina",
-      "lastName": "Vallejo",
-      "email": "catavallejo@gmail.com",
-      "password": "Catavallejo123**",
-      "role": "USER",
-      "token": "35952e7f-6e61-440f-b702-350b38b8cccf"
+      "token": "619ffc81-4a70-4364-8446-12bd6850e3e5"
     }
   ],
   "courses": [
@@ -200,6 +172,11 @@
     {
       "id": "ee51",
       "studentId": "4955",
+      "courseId": "d1a6"
+    },
+    {
+      "id": "285b",
+      "studentId": "63ff",
       "courseId": "d1a6"
     }
   ]

@@ -74,7 +74,8 @@ export class StudentsComponent {
     .subscribe({
       next: (value) => {
         if (!!value) {
-          this.StudentsService.editStudentsById(editingStudent.id, value).subscribe({
+          this.StudentsService.editStudentsById(editingStudent.id, value)
+          .subscribe({
             next: (students) => {
               this.studentsDataSource = this.studentsDataSource.map(c => c.id === students.id ? students : c);
             },
