@@ -1,5 +1,7 @@
 export const environment = {
-    envName: 'produccion',
+    production: false,
+    envName: 'development',
+    apiUrl: 'http://localhost:3000',
     firebaseConfig: {
         apiKey: "AIzaSyDkFBfMhoaqWl6O_OctjPKANHQ1LuJAWus",
         authDomain: "school-monitoring-app-d64aa.firebaseapp.com",

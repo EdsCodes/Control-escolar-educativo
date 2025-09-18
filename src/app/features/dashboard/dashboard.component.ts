@@ -9,7 +9,7 @@ import { selectAutenticatedUser } from '../../core/store/autentication/autentica
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss'
+  styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
   showFiller = false;

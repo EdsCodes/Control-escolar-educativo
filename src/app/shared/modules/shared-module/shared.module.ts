@@ -14,7 +14,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatOptionModule } from '@angular/material/core';
 
 @NgModule({
-  declarations: [TextSizeDirective],
+  declarations: [],
   exports: [
     TextSizeDirective,
     MatCardModule,
@@ -32,6 +32,7 @@ import { MatOptionModule } from '@angular/material/core';
   ],
   imports: [
     CommonModule,
+    TextSizeDirective,
   ]
 })
 export class SharedModule { }

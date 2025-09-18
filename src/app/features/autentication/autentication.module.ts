@@ -13,9 +13,8 @@ import { AuthService } from '../../core/services/auth.service';
 import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
-  declarations: [LoginComponent],
-  exports: [LoginComponent],
   imports: [
+    LoginComponent,
     CommonModule,
     AutenticationRoutingModule,
     MatFormFieldModule,

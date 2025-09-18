@@ -8,48 +8,40 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/modules/shared-module/shared.module';
 import { provideHttpClient, withFetch } from '@angular/common/http';
-import { MatProgressBar } from '@angular/material/progress-bar';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { rootReducer } from './core/store';
-import { BaseChartDirective, provideCharts, withDefaultRegisterables } from 'ng2-charts';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
+import { environment } from '../environments/environment';
 
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuthModule } from '@angular/fire/auth'; 
+import { AngularFireModule } from '@angular/fire/compat';
+import { provideAuth } from '@angular/fire/auth';
+import { getAuth } from 'firebase/auth';
+import { FirebaseOptions } from 'firebase/app';
+
+export function getFirebaseConfig(): FirebaseOptions {
+  return environment.firebaseConfig;
+}
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     CoreModule,
     SharedModule,
-    MatProgressBar,
-    StoreModule.forRoot(rootReducer, {}), 
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    StoreModule.forRoot(rootReducer, {}),
     EffectsModule.forRoot([]),
-    BaseChartDirective,
-
-    AngularFireModule.initializeApp({
-      apiKey: import.meta.env['VITE_FIREBASE_API_KEY'],
-      authDomain: import.meta.env['VITE_FIREBASE_AUTH_DOMAIN'],
-      projectId: import.meta.env['VITE_FIREBASE_PROJECT_ID'],
-      storageBucket: import.meta.env['VITE_FIREBASE_STORAGE_BUCKET'],
-      messagingSenderId: import.meta.env['VITE_FIREBASE_MESSAGING_SENDER_ID'],
-      appId: import.meta.env['VITE_FIREBASE_APP_ID']
-    }),
-    AngularFireAuthModule,  
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    AngularFireModule.initializeApp(getFirebaseConfig())
   ],
   providers: [
     provideAnimationsAsync(),
     provideNativeDateAdapter(),
     provideHttpClient(withFetch()),
     provideCharts(withDefaultRegisterables()),
+    provideAuth(() => getAuth())
   ],
-  bootstrap: [AppComponent]
 })
 export class AppModule {}

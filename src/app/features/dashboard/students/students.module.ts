@@ -15,7 +15,7 @@ import { MatProgressBar } from '@angular/material/progress-bar';
     NombreCompletoPipe,
     StudentsDetailComponent
   ],
-  exports: [StudentsComponent],
+q  exports: [StudentsComponent],
   imports: [
     CommonModule,
     StudentsRoutingModule,
